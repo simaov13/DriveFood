@@ -1,0 +1,26 @@
+Funcionais-
+
+Clientes
+
+O cliente caso queira fazer encomendas precisa de se registar.
+Para se registar é preciso preencher os campos (Nome, Email, Password, NIF, Morada, CodigoPostal, Cidade).
+O cliente pode encomendar mais que um produto.
+O cliente pode editar a encomenda e cancelar caso esta ainda não tenha sido entregue.
+
+Condutores
+
+Os condutores precisam de se registar.
+Para se registar é preciso preencher os campos
+
+
+
+Não Funcionais-
+
+Clientes
+
+Verficar se o email introduzido pelo cliente é válido ou se já existe na base de dados.
+Verificar se a encomenda do cliente foi entregue ou não quando este a desejar editar.
+
+
+
+Fora de âmbito -
