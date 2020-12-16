@@ -31,3 +31,39 @@ exports.getRestaurante = (req, res) => {
 };
 
 
+
+//adicionar Restaurante
+exports.adicionarRestaurante = (req, res) => {
+    try {
+        // req.body
+        let id_restaurante = req.body.id_restaurante;
+        let name = req.body.name;
+        let image = req.body.image;
+        let location = req.body.location;
+        let phone = req.body.phone;
+        let email = req.body.email;
+    
+        //se ele for diferente merchant dá erro, se nao executa
+        if (req.body.type != 'merchant')  return res.status(406).send({ message: 'Tipo de utilizador inválido ("user"/"driver"/"merchant")' });
+        // criar restaurante
+        sql = 'INSERT INTO restaurante (id_restaurante, name, image, location, phone, email) VALUES (?,?,?,?,?,?)';
+        db.run(sql, [id_restaurante, name, image, location, phone, email], (err) => {
+            if (err) return res.status(500).send(err.message);
+    
+            return res.status(201).send({
+                message: 'Restaurante adicionado com sucesso',
+                user: {
+                    id_restaurante: id_restaurante,
+                    name: name,
+                    image: image,  
+                    location: location,
+                    phone: phone,
+                    email: email,
+                },
+            });
+        });
+    } catch (err) {
+        return res.status(500).send({ message: err.message });
+    }
+    };
+    
