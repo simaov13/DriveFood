@@ -78,4 +78,21 @@ exports.adicionarEncomenda = (req, res) => {
 };
 
 
-a
+//editar encomenda
+exports.editarEncomenda = (req, res) => {
+    try {
+        //se ele for diferente user dá erro, se nao executa
+        if (req.body.type != 'user') return res.status(406).send({ message: 'Tipo de utilizador inválido ("user"/"driver"/"merchant")' });        // Check if order exists
+        //update encomenda
+        let sql = 'UPDATE order set username = ?, id_restaurante = ?, food_name = ?, food_qty = ?, paymenth_method = ? WHERE  id_encomenda = ?'
+        db.get(sql, [username, id_restaurante, food_name, food_qty, payment_method], (err, result) => {
+            if (err) return res.status(500).send(err.message);
+            //encomenda editada 
+            return res.json(result).send({ message: 'Encomenda editada com sucesso' });
+
+        });
+    } catch (err) {
+        return res.status(500).send({ message: err.message });
+    }
+};
+
