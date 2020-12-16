@@ -96,3 +96,41 @@ exports.editarEncomenda = (req, res) => {
     }
 };
 
+//editar encomenda
+exports.editarEncomenda = (req, res) => {
+    try {
+        //se ele for diferente user dá erro, se nao executa
+        if (req.body.type != 'user') return res.status(406).send({ message: 'Tipo de utilizador inválido ("user"/"driver"/"merchant")' });        // Check if order exists
+        //update encomenda
+        let sql = 'UPDATE order set username = ?, id_restaurante = ?, food_name = ?, food_qty = ?, paymenth_method = ? WHERE  id_encomenda = ?'
+        db.get(sql, [username, id_restaurante, food_name, food_qty, payment_method], (err, result) => {
+            if (err) return res.status(500).send(err.message);
+            //encomenda editada 
+            return res.json(result).send({ message: 'Encomenda editada com sucesso' });
+
+        });
+    } catch (err) {
+        return res.status(500).send({ message: err.message });
+    }
+};
+
+
+//eliminar/cancelar emcomenda atraves do utilizador
+exports.eliminarEncomenda = (req, res) => {
+    try {
+        //se ele for diferente user dá erro, se nao executa
+        if (req.body.type != 'user') return res.status(406).send({ message: 'Tipo de utilizador inválido ("user"/"driver"/"merchant")' });
+        //Eliminar atraves do id
+        let sql = 'DELETE * FROM encomenda WHERE id = ?';
+        db.get(sql, [req.params.id_encomenda], (err, result) => {
+            if (err) return res.status(500).send(err.message);
+
+            return res.status(201).send({
+                //encomenda cancelada
+                message: 'Encomenda cancelada com sucesso'
+            });
+        });
+    } catch (err) {
+        return res.status(500).send({ message: err.message });
+    }
+};
