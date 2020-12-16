@@ -86,3 +86,19 @@ exports.adicionarRestaurante = (req, res) => {
     };
     
     
+    //eliminar restaurante
+    exports.eliminarRestaurante = (req, res) => {
+        try {
+            //se ele for diferente merchant dá erro, se nao executa
+            if (req.body.type != 'merchant')  return res.status(406).send({ message: 'Tipo de utilizador inválido ("user"/"driver"/"merchant")' });
+            //eliminar restaurante
+            let sql = 'DELETE * FROM restaurante WHERE id_restaurante = ?';
+            db.get(sql, [req.params.id_restaurante], (err, result) => {
+                if (err) return res.status(500).send(err.message);
+    
+                return res.json(result);
+            });
+        } catch (err) {
+            return res.status(500).send({ message: err.message });
+        }
+    };
