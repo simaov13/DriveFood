@@ -67,3 +67,22 @@ exports.adicionarRestaurante = (req, res) => {
     }
     };
     
+    
+    //editar restaurante
+    exports.editarRestaurante = (req, res) => {
+        try {
+            //se ele for diferente merchant dá erro, se nao executa
+            if (req.body.type != 'merchant') return res.status(406).send({ message: 'Tipo de utilizador inválido ("user"/"driver"/"merchant")' }); 
+            //alterar restaurante
+            let sql = 'UPDATE restaurante set name = ?, image = ?, location = ?, phone = ?, email = ? WHERE  id_restaurante = ?'
+            db.get(sql, [name, image, location, phone, email], (err, result) => {
+                if (err) return res.status(500).send(err.message);
+                return res.json(result).send({ message: 'Restaurante editado com sucesso' });
+    
+            });
+        } catch (err) {
+            return res.status(500).send({ message: err.message });
+        }
+    };
+    
+    
