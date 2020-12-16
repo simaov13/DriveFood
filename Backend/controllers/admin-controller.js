@@ -107,3 +107,18 @@ exports.getRestaurantes = (req, res) => {
         return res.status(500).send({ message: err.message });
     }
 };
+
+//O administrador pode eiminar um restaurante
+exports.eliminarRestaurante = (req, res) => {
+    try {
+        //eliminar restaurante
+        let sql = 'DELETE * FROM restaurante WHERE id_restaurante = ?';
+        db.get(sql, [req.params.id_restaurante], (err, result) => {
+            if (err) return res.status(500).send(err.message);
+
+            return res.json(result);
+        });
+    } catch (err) {
+        return res.status(500).send({ message: err.message });
+    }
+};
