@@ -85,7 +85,6 @@ exports.adicionarRestaurante = (req, res) => {
         }
     };
     
-    
     //eliminar restaurante
     exports.eliminarRestaurante = (req, res) => {
         try {
