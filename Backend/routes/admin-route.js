@@ -17,5 +17,7 @@ router.get('/user/encomendas', adminController.getEncomendas);
 router.get('/user/entregas', adminController.getEntregas);
 //admin ve todos os restaurantes
 router.get('/user/restaurantes', adminController.getRestaurantes);
+//admin ve todos os restaurantes
+router.delete('/user/restaurantes/id_restaurante', adminController.eliminarRestaurante);
 
 module.exports = router;
