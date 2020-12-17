@@ -47,6 +47,7 @@ exports.adicionarRestaurante = (req, res) => {
         //se ele for diferente merchant dá erro, se nao executa
         if (req.body.type != 'merchant') return res.status(406).send({ message: 'Tipo de utilizador inválido ("user"/"driver"/"merchant")' });
         //verificar se restaurante já existe
+        let sql = 'SELECT name FROM restaurante WHERE name = ?';
         db.get(sql, [name], (err, result) => {
             if (err) return res.status(500).send(err.message);
             if (result) return res.status(409).send({ message: 'Restaurante já registado' });
@@ -96,6 +97,12 @@ exports.eliminarRestaurante = (req, res) => {
     try {
         //se ele for diferente merchant dá erro, se nao executa
         if (req.body.type != 'merchant') return res.status(406).send({ message: 'Tipo de utilizador inválido ("user"/"driver"/"merchant")' });
+        //verificar se existe
+        let sql = 'SELECT id_restaurante FROM restaurante WHERE id_restaurante = ?';
+        db.get(sql, [id_restaurante], (err, result) => {
+            if (err) return res.status(500).send(err.message);
+            if (!result) return res.status(409).send({ message: 'Restaurante não existe' });
+        });
         //eliminar restaurante
         let sql = 'DELETE * FROM restaurante WHERE id_restaurante = ?';
         db.get(sql, [req.params.id_restaurante], (err, result) => {
@@ -107,3 +114,5 @@ exports.eliminarRestaurante = (req, res) => {
         return res.status(500).send({ message: err.message });
     }
 };
+
+
