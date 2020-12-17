@@ -3,8 +3,8 @@ const db = require('../config/sqlite');
 //procurar os restaurantes
 exports.getRestaurantes = (req, res) => {
     try {
+        //Selecionar todos os restaurantes
         let sql = 'SELECT * FROM restaurante';
-
         db.all(sql, [], (err, result) => {
             if (err) return res.status(500).send(err.message);
 
@@ -18,8 +18,8 @@ exports.getRestaurantes = (req, res) => {
 //procurar um restaurante por um id
 exports.getRestaurante = (req, res) => {
     try {
+        //procurar na tabela restaurante o id
         let sql = 'SELECT * FROM restaurante WHERE id_restaurante = ?';
-
         db.get(sql, [req.params.id_restaurante], (err, result) => {
             if (err) return res.status(500).send(err.message);
 
@@ -50,22 +50,23 @@ exports.adicionarRestaurante = (req, res) => {
         db.get(sql, [name], (err, result) => {
             if (err) return res.status(500).send(err.message);
             if (result) return res.status(409).send({ message: 'Restaurante já registado' });
-            // criar restaurante
-            sql = 'INSERT INTO restaurante (id_restaurante, name, image, location, phone, email) VALUES (?,?,?,?,?,?)';
-            db.run(sql, [id_restaurante, name, image, location, phone, email], (err) => {
-                if (err) return res.status(500).send(err.message);
-                return res.status(201).send({
-                    message: 'Restaurante adicionado com sucesso',
-                    user: {
-                        id_restaurante: id_restaurante,
-                        name: name,
-                        image: image,
-                        location: location,
-                        phone: phone,
-                        email: email,
-                    },
-                });
+        });
+        // criar restaurante
+        sql = 'INSERT INTO restaurante (id_restaurante, name, image, location, phone, email) VALUES (?,?,?,?,?,?)';
+        db.run(sql, [id_restaurante, name, image, location, phone, email], (err) => {
+            if (err) return res.status(500).send(err.message);
+            return res.status(201).send({
+                message: 'Restaurante adicionado com sucesso',
+                user: {
+                    id_restaurante: id_restaurante,
+                    name: name,
+                    image: image,
+                    location: location,
+                    phone: phone,
+                    email: email,
+                },
             });
+
         });
     } catch (err) {
         return res.status(500).send({ message: err.message });
