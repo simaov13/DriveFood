@@ -122,9 +122,15 @@ exports.editarProduto = (req, res) => {
 //procura o id 
 exports.eliminarProduto = (req, res) => {
     try {
+        //verificar se existe
+        let sql = 'SELECT id_produto FROM product WHERE id_produto = ?';
+        db.get(sql, [id_restaurante], (err, result) => {
+            if (err) return res.status(500).send(err.message);
+            if (!result) return res.status(409).send({ message: 'Produto não existe / não encontrado' });
+        });
         //base dados
-        let sql = 'DELETE * FROM product WHERE id = ?';
-        db.get(sql, [req.params.id], (err, result) => {
+        let sql = 'DELETE * FROM product WHERE id_produto = ?';
+        db.get(sql, [req.params.id_produto], (err, result) => {
             if (err) return res.status(500).send(err.message);
             return res.json(result).send({ message: 'Produto eliminado com sucesso' });
 
