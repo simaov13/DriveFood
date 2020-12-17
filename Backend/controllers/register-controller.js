@@ -21,7 +21,6 @@ exports.register = (req, res) => {
         let sql = 'SELECT username FROM user WHERE username = ?';
         db.get(sql, [username], (err, result) => {
             if (err) return res.status(500).send(err.message);
-
             if (result) return res.status(409).send({ message: 'Utilizador já registado' });
         });
 
