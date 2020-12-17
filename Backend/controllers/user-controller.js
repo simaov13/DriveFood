@@ -1,7 +1,5 @@
 const db = require('../config/sqlite');
 
-
-
 //editar utilizador
 exports.editarUtilizador = (req, res) => {
     try {
