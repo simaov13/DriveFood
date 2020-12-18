@@ -1,5 +1,9 @@
 const db = require('../config/sqlite');
+<<<<<<< Updated upstream
 
+=======
+var jwt = require('jsonwebtoken');
+>>>>>>> Stashed changes
 
 //Um Administrador pode ver todos os utilizadores
 exports.getUsers = (req, res) => {
@@ -48,7 +52,11 @@ exports.eliminarUtilizador = (req, res) => {
 
 
 //Administrador tem acesso a todos os produtos
+<<<<<<< Updated upstream
 exports.getProdutos = (req, res) => {
+=======
+exports.getProducts = (req, res) => {
+>>>>>>> Stashed changes
     try {
         let sql = 'SELECT * FROM product';
 
