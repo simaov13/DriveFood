@@ -17,7 +17,7 @@ exports.register = (req, res) => {
 
         let approved = 0;
 
-        // verificar se existe
+        // verificar se o username já existe
         let sql = 'SELECT username FROM user WHERE username = ?';
         db.get(sql, [username], (err, result) => {
             if (err) return res.status(500).send(err.message);
@@ -28,7 +28,7 @@ exports.register = (req, res) => {
          let sql1 = 'SELECT email FROM user WHERE username = ?';
          db.get(sql, [username], (err, result) => {
              if (err) return res.status(500).send(err.message);
-             if (result) return res.status(409).send({ message: 'email já registado' });
+             if (result) return res.status(409).send({ message: 'Email já registado' });
          });
 
         // Verificações
