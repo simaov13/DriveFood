@@ -24,6 +24,13 @@ exports.register = (req, res) => {
             if (result) return res.status(409).send({ message: 'Utilizador já registado' });
         });
 
+         // verificar se email ja existe
+         let sql1 = 'SELECT email FROM user WHERE username = ?';
+         db.get(sql, [username], (err, result) => {
+             if (err) return res.status(500).send(err.message);
+             if (result) return res.status(409).send({ message: 'email já registado' });
+         });
+
         // Verificações
         if (username.length < 5) return res.status(411).send({ message: 'O nome de utilizador tem de ter 5 ou mais caracteres' });
         if (password.length < 8) return res.status(411).send({ message: 'A palavra-passe tem de ter 8 ou mais caracteres' });
