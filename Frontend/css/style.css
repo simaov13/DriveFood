@@ -65,10 +65,7 @@
 	  form.example button {
 		float: left;
 		width: 15%;
-<<<<<<< HEAD
 		height: 50px;
-=======
->>>>>>> 2e537b800845d8760fa9282e3436ef1cbb2fb766
 		background: #ffe600;
 		color: white;
 		font-size: 17px;
@@ -571,10 +568,6 @@
 
 /* Button */
 
-<<<<<<< HEAD
-=======
-	input[type="submit"],
->>>>>>> 2e537b800845d8760fa9282e3436ef1cbb2fb766
 	input[type="reset"],
 	input[type="button"],
 	button,
@@ -672,10 +665,6 @@
 
 		}
 
-<<<<<<< HEAD
-=======
-	input[type="submit"],
->>>>>>> 2e537b800845d8760fa9282e3436ef1cbb2fb766
 	input[type="reset"],
 	input[type="button"],
 	button,
@@ -684,10 +673,6 @@
 		color: #000 !important;
 	}
 
-<<<<<<< HEAD
-=======
-		input[type="submit"]:hover,
->>>>>>> 2e537b800845d8760fa9282e3436ef1cbb2fb766
 		input[type="reset"]:hover,
 		input[type="button"]:hover,
 		button:hover,
@@ -695,10 +680,6 @@
 			background-color: white;
 		}
 
-<<<<<<< HEAD
-=======
-		input[type="submit"]:active,
->>>>>>> 2e537b800845d8760fa9282e3436ef1cbb2fb766
 		input[type="reset"]:active,
 		input[type="button"]:active,
 		button:active,
@@ -706,10 +687,6 @@
 			background-color: #e5e5e5;
 		}
 
-<<<<<<< HEAD
-=======
-		input[type="submit"].alt,
->>>>>>> 2e537b800845d8760fa9282e3436ef1cbb2fb766
 		input[type="reset"].alt,
 		input[type="button"].alt,
 		button.alt,
@@ -1781,11 +1758,7 @@
 	}
 
 		.banner input, .banner select, .banner textarea {
-<<<<<<< HEAD
 			color: #000;
-=======
-			color: #ffffff;
->>>>>>> 2e537b800845d8760fa9282e3436ef1cbb2fb766
 		}
 
 		.banner a {
