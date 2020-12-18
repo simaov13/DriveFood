@@ -12,10 +12,9 @@ exports.login = (req, res) => {
 
         var VerificarCampos = false;
         //verificar se os campos estao vazios
-        if (username === '' || password === '') {
+        if (username === '' || password === '' || type === '') {
             VerificarCampos = true;
         }
-
         //Verifique se a senha combina com a do banco de dados
         let sql = 'SELECT password, type FROM user WHERE username = ?';
         //se os campos estiverem prenchifod
@@ -34,7 +33,7 @@ exports.login = (req, res) => {
                     });
                      res.status(200).send({
                         message: 'Autenticado com sucesso',
-                        //retorna o array com o username e o type
+                        //retorna o array com o username , type, token
                         user: {
                             username: result.username,
                             type: result.type,
