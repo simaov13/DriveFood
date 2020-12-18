@@ -48,7 +48,7 @@ exports.eliminarUtilizador = (req, res) => {
 
 
 //Administrador tem acesso a todos os produtos
-exports.getProducts = (req, res) => {
+exports.getProdutos = (req, res) => {
     try {
         let sql = 'SELECT * FROM product';
 

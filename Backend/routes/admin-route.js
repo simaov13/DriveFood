@@ -10,7 +10,7 @@ router.get('/user/:username', adminController.getUser);
 //admin elimina um utilizador.
 router.delete('/user/:id_utilizador', adminController.eliminarUtilizador);
 //admin ve todos os produtos
-router.get('/users/produtos', adminController.getProducts);
+router.get('/user/produtos', adminController.getProdutos);
 //admin ve todas as encomendas
 router.get('/user/encomendas', adminController.getEncomendas);
 //admin ve todas as entregas

@@ -32,8 +32,11 @@ exports.register = (req, res) => {
          });
 
         // Verificações
+        //Username maior que 5 caracteres
         if (username.length < 5) return res.status(411).send({ message: 'O nome de utilizador tem de ter 5 ou mais caracteres' });
+        //Palavra passe maior que 8 caracteres
         if (password.length < 8) return res.status(411).send({ message: 'A palavra-passe tem de ter 8 ou mais caracteres' });
+        //Não pode ser for diferente de 9
         if (!Number.isInteger(nif) && nif.length != 9) return res.status(406).send({ message: 'NIF inválido' });
         if (type != 'user' && type != 'driver' && type != 'merchant') return res.status(406).send({ message: 'Tipo de utilizador inválido ("user"/"driver"/"merchant")' });
 
