@@ -4,14 +4,14 @@ const router = express.Router();
 const produtosController = require('../controllers/products-controller');
 
 //todos os produtos
-router.get('/products', produtosController.getProducts);
+router.get('/produtos', produtosController.getProducts);
 //um produto
-router.get('/products/:id', produtosController.getProduct);
+router.get('/produto/:id_produto', produtosController.getProduct);
 //adiocionar
-router.post('/products', produtosController.adicionarProduto);
+router.post('/produto', produtosController.adicionarProduto);
 //alterar
-router.put('/products/:name', produtosController.editarProduto);
+router.put('/produto/:name', produtosController.editarProduto);
 //Eliminar
-router.delete('/products/:id', produtosController.eliminarProduto);
+router.delete('/produto/:id_produto', produtosController.eliminarProduto);
 
 module.exports = router;

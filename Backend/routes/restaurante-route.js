@@ -4,7 +4,7 @@ const router = express.Router();
 const restauranteController = require('../controllers/restaurant-controller');
 
 //todos os restaurantes
-router.get('/restaurante', restauranteController.getRestaurantes);
+router.get('/restaurantes', restauranteController.getRestaurantes);
 //um restaurante
 router.get('/restaurante/:id_restaurante', restauranteController.getRestaurante);
 //adicionar
