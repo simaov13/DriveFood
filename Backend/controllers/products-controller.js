@@ -129,7 +129,7 @@ exports.eliminarProduto = (req, res) => {
             if (!result) return res.status(409).send({ message: 'Produto não existe / não encontrado' });
         });
         //base dados
-        let sql = 'DELETE * FROM product WHERE id_produto = ?';
+        let sql1 = 'DELETE * FROM product WHERE id_produto = ?';
         db.get(sql, [req.params.id_produto], (err, result) => {
             if (err) return res.status(500).send(err.message);
             return res.json(result).send({ message: 'Produto eliminado com sucesso' });

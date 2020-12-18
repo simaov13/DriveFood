@@ -104,7 +104,7 @@ exports.eliminarRestaurante = (req, res) => {
             if (!result) return res.status(409).send({ message: 'Restaurante não existe' });
         });
         //eliminar restaurante
-        let sql = 'DELETE * FROM restaurante WHERE id = ?';
+        let sql1 = 'DELETE * FROM restaurante WHERE id = ?';
         db.get(sql, [req.params.id_restaurante], (err, result) => {
             if (err) return res.status(500).send(err.message);
 

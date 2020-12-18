@@ -1,5 +1,5 @@
 const db = require('../config/sqlite');
-var jwt = require('jsonwebtoken');
+
 
 //Um Administrador pode ver todos os utilizadores
 exports.getUsers = (req, res) => {
