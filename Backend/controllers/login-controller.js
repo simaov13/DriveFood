@@ -17,7 +17,7 @@ exports.login = (req, res) => {
         }
         //Verifique se a senha combina com a do banco de dados
         let sql = 'SELECT password, type FROM user WHERE username = ?';
-        //se os campos estiverem prenchifod
+        //se os campos estiverem prenchidos
         if (!VerificarCampos) {
             db.get(sql, [username], (err, result) => {
                 if (err) return res.status(500).send(err.message);
