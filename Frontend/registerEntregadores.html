@@ -32,7 +32,6 @@
     <ul class="links">
         <li><a href="index.html">Home</a></li>
         <li><a href="login.html">Iniciar Sessão</a></li>
-        <li><a href="register.html">Registar</a></li>
         <li><a href="restaurantes.html">Restaurantes</a></li>
         <li><a href="about.html">Sobre Nós</a></li>
         <li><a href="contact.html">Contactos</a></li>
@@ -40,13 +39,13 @@
 </nav>
 
 <body>
-
     <!-- Register Entregadores -->
     <div class="container">
 
         <div class="row register-form" style="margin:0 auto; margin-top: 120px">
-            <div align="center" style="padding-bottom: 20px; padding-top: 20px;"><img src="./img/drive_food.png"
-                    width="100px" height="auto" /></a></div>
+            <div align="center" style="padding-bottom: 20px; padding-top: 20px;">
+                <img src="./img/drive_food.png" width="100px" height="auto" /></a>
+            </div>
             <form class="container" action="#">
                 <div class="column mb-3">
                     <i class="fa fa-user"></i> <label for="nome" class="form-label">Nome</label>
@@ -73,7 +72,7 @@
                         required>
                 </div>
                 <div class="column mb-3">
-                    <i class="fa fa-phone"></i> <label for="telemovel" class="form-label">Telemóvel de segurança</label>
+                    <i class="fa fa-phone"></i> <label for="telemovel" class="form-label">Telemóvel de emergência</label> <i class="fa fa-info-circle" title="Em caso de acidente"></i>
                     <input type="text" class="form-control" id="telemovel" placeholder="Escreva o número..." required>
                 </div>
                 <div class="column mb-3">
@@ -81,25 +80,25 @@
                     <input type="text" class="form-control" id="city" placeholder="Escreva a cidade..." required>
                 </div>
                 <div class="column mb-3">
-                    <i class="fa fa-id-card-o"></i> <label id=carta for="carta_conducao">Tipo de carta de condução</label>
-                    <select name="carta_conducao" id=lista>
+                    <i class="fa fa-id-card-o"></i> <label id="carta" for="carta_conducao">Tipo de carta de condução</label>
+                    <select class="form-control" name="carta_conducao" id="carta">
                         <option value="" disabled selected hidden>Por favor escolha...</option>
                         <optgroup label="16 Anos">
-                            <option value="AM">AM - Ciclomotores e Motociclos até 50 cm3</option>
-                            <option value="A1">A1 - Motociclos de Cilindrada não Superior a 125cm3 e Potência até 11kw</option>
+                            <option value="am">AM - Ciclomotores e Motociclos até 50 cm3</option>
+                            <option value="a1">A1 - Motociclos de Cilindrada não Superior a 125cm3 e Potência até 11kw</option>
                         </optgroup>
                         <optgroup label="18 Anos">
-                            <option value="A2">A2 - Motociclos de Potência não Superior a 35kw</option>
-                            <option value="B">B - Automóveis Ligeiros</option>
+                            <option value="a2">A2 - Motociclos de Potência não Superior a 35kw</option>
+                            <option value="b">B - Automóveis Ligeiros</option>
                         </optgroup>
                     </select>
                 </div>
                 <div class="column mb-3">
-                    <i class="fa fa-car"></i> <label id=carta for="veiculo_pessoal">Tem veiculo pessoal?</label>
-                    <select name="veiculo_pessoal" id="lista">
+                    <i class="fa fa-car"></i> <label id="veiculo" for="veiculo_pessoal">Tem veiculo pessoal?</label>
+                    <select class="form-control" name="veiculo_pessoal" id="veiculo">
                         <option value="" disabled selected hidden>Por favor escolha...</option>
-                        <option value="SIM">Sim</option>
-                        <option value="NAO">Não</option>
+                        <option value="sim">Sim</option>
+                        <option value="nao">Não</option>
                     </select>
                 </div>
                 <input type="submit" value="Registar" class="button_registar">

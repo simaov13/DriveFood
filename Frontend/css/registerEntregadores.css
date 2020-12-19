@@ -4,7 +4,7 @@
 
 .register-form {
     margin: 0 auto;
-    width: 600px;
+    width: 700px;
     margin-top: 204px;
     background-color: #f2f2f2;
     border-radius: 8px;
@@ -69,16 +69,10 @@ input[type="submit"] {
     padding: 10px;
 }
 
-#lista {
-    width: 100%;
-    padding: 0px 5px;
-}
-
 #carta {
     margin-bottom: .5rem;
 }
 
-select optgroup {
-   color: #00ec4f;
-
+#veiculo {
+    margin-bottom: .5rem;
 }
