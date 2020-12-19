@@ -73,3 +73,12 @@ input[type="submit"] {
     width: 100%;
     padding: 0px 5px;
 }
+
+#carta {
+    margin-bottom: .5rem;
+}
+
+select optgroup {
+   color: #00ec4f;
+
+}

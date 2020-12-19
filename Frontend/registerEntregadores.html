@@ -77,30 +77,29 @@
                     <input type="text" class="form-control" id="telemovel" placeholder="Escreva o número..." required>
                 </div>
                 <div class="column mb-3">
-                    <i class="fa fa-building"></i> <label for="city" class="form-label">Cidade que deseja
-                        trabalhar</label>
+                    <i class="fa fa-building"></i> <label for="city" class="form-label">Cidade que deseja trabalhar</label>
                     <input type="text" class="form-control" id="city" placeholder="Escreva a cidade..." required>
                 </div>
                 <div class="column mb-3">
-                    <i class="fa fa-id-card-o"></i> <label for="carta_conducao" accesskey="s">Tipo de carta de condução</label>
+                    <i class="fa fa-id-card-o"></i> <label id=carta for="carta_conducao">Tipo de carta de condução</label>
                     <select name="carta_conducao" id=lista>
                         <option value="" disabled selected hidden>Por favor escolha...</option>
                         <optgroup label="16 Anos">
-                            <option value=lista>AM - Ciclomotores e Motociclos até 50 cm3
-                            <option value=lista>A1 - Motociclos de Cilindrada não Superior a 125cm3 e Potência até 11kw
+                            <option value="AM">AM - Ciclomotores e Motociclos até 50 cm3</option>
+                            <option value="A1">A1 - Motociclos de Cilindrada não Superior a 125cm3 e Potência até 11kw</option>
                         </optgroup>
                         <optgroup label="18 Anos">
-                            <option value="A2">A2 - Motociclos de Potência não Superior a 35kw
-                            <option value="B">B - Automóveis Ligeiros
+                            <option value="A2">A2 - Motociclos de Potência não Superior a 35kw</option>
+                            <option value="B">B - Automóveis Ligeiros</option>
                         </optgroup>
                     </select>
                 </div>
                 <div class="column mb-3">
-                    <i class="fa fa-car"></i> <label for="veiculo_pessoal" accesskey="s">Tem veiculo pessoal?</label>
+                    <i class="fa fa-car"></i> <label id=carta for="veiculo_pessoal">Tem veiculo pessoal?</label>
                     <select name="veiculo_pessoal" id="lista">
                         <option value="" disabled selected hidden>Por favor escolha...</option>
-                        <option value="SIM">Sim
-                        <option value="NAO">Não
+                        <option value="SIM">Sim</option>
+                        <option value="NAO">Não</option>
                     </select>
                 </div>
                 <input type="submit" value="Registar" class="button_registar">
