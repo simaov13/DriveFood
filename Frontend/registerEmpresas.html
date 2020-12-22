@@ -6,12 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" type="text/css" href="./css/style.css" media="screen" />
-    <link rel="stylesheet" type="text/css" href="./css/register.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="./css/registerEntregadores.css" media="screen" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
-    <title>DriveFood - Registar Cliente</title>
+    <title>DriveFood - Registar Entregadores</title>
 </head>
 
 <style>
@@ -32,8 +32,6 @@
     <ul class="links">
         <li><a href="index.html">Home</a></li>
         <li><a href="login.html">Iniciar Sessão</a></li>
-        <li><a href="#">Registar como Empresa</a></li>
-        <li><a href="registerEntregadores.html">Registar como Entregador</a></li>
         <li><a href="restaurantes.html">Restaurantes</a></li>
         <li><a href="about.html">Sobre Nós</a></li>
         <li><a href="contact.html">Contactos</a></li>
@@ -41,48 +39,46 @@
 </nav>
 
 <body>
-    <!-- Login -->
+    <!-- Register Entregadores -->
     <div class="container">
 
         <div class="row register-form" style="margin:0 auto; margin-top: 120px">
-            <div align="center" style="padding-bottom: 20px; padding-top: 20px;"><img src="./img/drive_food.png"
-                    width="100px" height="auto" /></a></div>
+            <div align="center" style="padding-bottom: 20px; padding-top: 20px;">
+                <img src="./img/drive_food.png" width="100px" height="auto" /></a>
+            </div>
             <form class="container" action="#">
                 <div class="column mb-3">
                     <i class="fa fa-user"></i> <label for="nome" class="form-label">Nome</label>
-                    <input type="text" class="form-control" id="nome" placeholder="Escreva o seu nome..." required>
+                    <input type="text" class="form-control" id="nome" placeholder="Escreva o nome..." required>
                 </div>
                 <div class="column mb-3">
                     <i class="fa fa-envelope"></i> <label for="email" class="form-label">Email</label>
-                    <input type="email" class="form-control" id="email" placeholder="Escreva o seu email..."
+                    <input type="email" class="form-control" id="email" placeholder="Escreva o email..."
                         aria-describedby="emailHelp" required>
                 </div>
                 <div class="column mb-3">
                     <i class="fa fa-lock"></i> <label for="password" class="form-label">Password</label>
-                    <input type="password" class="form-control" id="password" placeholder="Escreva a sua password..."
+                    <input type="password" class="form-control" id="password" placeholder="Escreva a password..."
                         required>
                 </div>
                 <div class="column mb-3">
                     <i class="fa fa-lock"></i> <label for="password" class="form-label">Repetir Password</label>
-                    <input type="password" class="form-control" id="password" placeholder="Repita a sua password..."
+                    <input type="password" class="form-control" id="password" placeholder="Repita a password..."
                         required>
                 </div>
                 <div class="column mb-3">
-                    <i class="fa fa-id-card"></i> <label for="nif" class="form-label">NIF</label>
-                    <input type="text" class="form-control" id="nif" placeholder="Escreva o seu NIF..." required>
+                    <i class="fa fa-phone"></i> <label for="telemovel" class="form-label">Contacto</label>
+                    <input type="text" class="form-control" id="telemovel" placeholder="Escreva o número..." required>
                 </div>
                 <div class="column mb-3">
                     <i class="fa fa-home"></i> <label for="morada" class="form-label">Morada</label>
-                    <input type="text" class="form-control" id="morada" placeholder="Escreva a sua morada..." required>
+                    <input type="text" class="form-control" id="morada" placeholder="Escreva a morada..." required>
                 </div>
                 <div class="column mb-3">
-                    <i class="fa fa-building"></i> <label for="morada" class="form-label">Cidade</label>
-                    <input type="text" class="form-control" id="city" placeholder="Escreva a sua cidade..." required>
-                </div>
-                <div class="column mb-3">
-                    <i class="fa fa-archive"></i> <label for="cod_postal" class="form-label">Código Postal</label>
-                    <input type="text" class="form-control" id="cod_postal" placeholder="Escreva o seu código postal..."
-                        required>
+                    <i class="fa fa-upload"></i> <label for="logotipo" class="form-label">Logotipo</label>
+                    <form action="/action_page.php">
+                        <input type="file" id="myFile" name="filename">
+                    </form>
                 </div>
                 <input type="submit" value="Registar" class="button_registar">
                 <br>
@@ -93,12 +89,6 @@
         </div>
 
     </div>
-
-
-
-
-
-
     <!-- Scripts -->
     <script src="./js/jquery.min.js"></script>
     <script src="./js/jquery.scrollex.min.js"></script>
