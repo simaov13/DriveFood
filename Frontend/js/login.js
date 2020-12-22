@@ -18,4 +18,24 @@ async function basiclogin(email, password) {
 async function isLoggedIn() {
     const token = store.get('token')
     if (!token) return false
+    
+    // Verificar a validação do token
+    const response = await zlFetch.post(loginEndpoint, {
+        auth: token,
+        body: { course: 'learn-javascript' }
+    })
+
+    // Salva o token em localStorage novamente
+    const { token } = response.body
+    localStorage.setItem('token', token)
+
+    return true
 }
+
+/* Se não estiver conectado, redireciono para a página de login */
+async function autoRedirect() {
+    const validLogin = await isLoggedIn()
+    if (!validLogin && location.pathname !== '/login/') redirect('/login')
+    if (validLogin && location.pathname === '/login/') redirect('/')
+}
+
