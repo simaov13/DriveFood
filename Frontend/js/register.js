@@ -20,3 +20,10 @@ function verifyPassword() {
         alert("Password is correct");
     }
 }  
+function verifyNif(){
+    var nif = document.getElementById("nif").value;
+    //verificar nif igual a 9 caracteres
+    if(nif != 9){
+        document.getElementById("message").innerHTML = "Só aceitam 9 caracteres";
+    }
+}
