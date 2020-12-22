@@ -49,62 +49,39 @@
             <form class="container" action="#">
                 <div class="column mb-3">
                     <i class="fa fa-user"></i> <label for="nome" class="form-label">Nome</label>
-                    <input type="text" class="form-control" id="username" placeholder="Escreva o seu nome..." required>
+                    <input type="text" class="form-control" id="username" placeholder="Escreva o nome..." required>
                 </div>
                 <div class="column mb-3">
                     <i class="fa fa-envelope"></i> <label for="email" class="form-label">Email</label>
-                    <input type="email" class="form-control" id="email" placeholder="Escreva o seu email..."
+                    <input type="email" class="form-control" id="email" placeholder="Escreva o email..."
                         aria-describedby="emailHelp" required>
                 </div>
                 <div class="column mb-3">
                     <i class="fa fa-lock"></i> <label for="password" class="form-label">Password</label>
-                    <input type="password" class="form-control" id="password" placeholder="Escreva a sua password..."
+                    <input type="password" class="form-control" id="password" placeholder="Escreva a password..."
                         required>
                 </div>
                 <div class="column mb-3">
                     <i class="fa fa-lock"></i> <label for="password" class="form-label">Repetir Password</label>
-                    <input type="password" class="form-control" id="password" placeholder="Repita a sua password..."
+                    <input type="password" class="form-control" id="password" placeholder="Repita a password..."
                         required>
                 </div>
                 <div class="column mb-3">
-                    <i class="fa fa-phone"></i> <label for="telemovel" class="form-label">Telemóvel</label>
-                    <input type="text" class="form-control" id="telemovel" placeholder="Escreva o seu número..."
-                        required>
-                </div>
-                <div class="column mb-3">
-                    <i class="fa fa-phone"></i> <label for="telemovel" class="form-label">Telemóvel de
-                        emergência</label> <i class="fa fa-info-circle" title="Em caso de acidente"></i>
+                    <i class="fa fa-phone"></i> <label for="telemovel" class="form-label">Contacto</label>
                     <input type="text" class="form-control" id="telemovel" placeholder="Escreva o número..." required>
                 </div>
                 <div class="column mb-3">
-                    <i class="fa fa-building"></i> <label for="city" class="form-label">Cidade que deseja
-                        trabalhar</label>
-                    <input type="text" class="form-control" id="city" placeholder="Escreva a cidade..." required>
+                    <i class="fa fa-home"></i> <label for="morada" class="form-label">Morada</label>
+                    <input type="text" class="form-control" id="morada" placeholder="Escreva a morada..." required>
                 </div>
                 <div class="column mb-3">
-                    <i class="fa fa-id-card-o"></i> <label id="carta" for="carta_conducao">Tipo de carta de
-                        condução</label>
-                    <select class="form-control" name="carta_conducao" id="carta">
-                        <option value="" disabled selected hidden>Por favor escolha...</option>
-                        <optgroup label="16 Anos">
-                            <option value="am">AM - Ciclomotores e Motociclos até 50 cm3</option>
-                            <option value="a1">A1 - Motociclos de Cilindrada não Superior a 125cm3 e Potência até 11kw
-                            </option>
-                        </optgroup>
-                        <optgroup label="18 Anos">
-                            <option value="a2">A2 - Motociclos de Potência não Superior a 35kw</option>
-                            <option value="b">B - Automóveis Ligeiros</option>
-                        </optgroup>
-                    </select>
+                    <i class="fa fa-upload"></i> <label for="logotipo" class="form-label">Logotipo</label>
+                    <label for="formFileSm" class="form-label"></label>
+                    <input class="form-control form-control-sm" id="formFileSm" type="file" />
                 </div>
-                <div class="column mb-3">
-                    <i class="fa fa-car"></i> <label id="veiculo" for="veiculo_pessoal">Tem veiculo pessoal?</label>
-                    <select class="form-control" name="veiculo_pessoal" id="veiculo">
-                        <option value="" disabled selected hidden>Por favor escolha...</option>
-                        <option value="sim">Sim</option>
-                        <option value="nao">Não</option>
-                    </select>
-                </div>
+
+
+
                 <input type="submit" value="Registar" class="button_registar">
                 <br>
                 <div align="center" style="padding-top: 20px;">
@@ -114,12 +91,6 @@
         </div>
 
     </div>
-
-
-
-
-
-
     <!-- Scripts -->
     <script src="./js/jquery.min.js"></script>
     <script src="./js/jquery.scrollex.min.js"></script>
