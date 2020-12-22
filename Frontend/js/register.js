@@ -24,7 +24,7 @@ function verifyPassword() {
 
 function verifyUsername() {
     var user = document.getElementById("usernmae").value;
-    //verificar se password está vazia
+    //verificar se username está vazio
     if (user == "") {
         document.getElementById("message").innerHTML = "Preencha o usernamepor favor!";
         return false;
