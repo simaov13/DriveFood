@@ -2,9 +2,15 @@
   "ExpandedNodes": [
     "",
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     "\\controllers"
   ],
   "SelectedNode": "\\controllers\\encomendas-controller.js",
+=======
+    "\\db"
+  ],
+  "SelectedNode": "\\db\\api.db",
+>>>>>>> Stashed changes
 =======
     "\\db"
   ],
