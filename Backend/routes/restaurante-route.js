@@ -4,11 +4,7 @@ const router = express.Router();
 const restauranteController = require('../controllers/restaurant-controller');
 
 //todos os restaurantes
-<<<<<<< Updated upstream
 router.get('/restaurantes', restauranteController.getRestaurantes);
-=======
-router.get('/restaurante', restauranteController.getRestaurantes);
->>>>>>> Stashed changes
 //um restaurante
 router.get('/restaurante/:id_restaurante', restauranteController.getRestaurante);
 //adicionar

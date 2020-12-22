@@ -56,23 +56,19 @@ exports.login = (req, res) => {
 
 //Verifique se a senha combina com a do banco de dados
 let sql = 'SELECT password FROM user WHERE username = ?';
+if (bcrypt.compareSync(password, result.password)) {
+    return res.status(200).send({
+        message: 'Autenticado com sucesso',
+        //retorna o array com o username e o type
+        user: {
+            username: result.username,
+            type: result.type,
+        },
+    });
+} else {
+    //Falha na autenticação
+    return res.status(401).send({ message: 'Falha na autenticação' });
+}
 
-db.get(sql, [username], (err, result) => {
-    if (err) return res.status(500).send(err.message);
-
-    if (bcrypt.compareSync(password, result.password)) {
-        return res.status(200).send({
-            message: 'Autenticado com sucesso',
-            //retorna o array com o username e o type
-            user: {
-                username: result.username,
-                type: result.type,
-            },
-        });
-    } else {
-        //Falha na autenticação
-        return res.status(401).send({ message: 'Falha na autenticação' });
-    }
-});
 
 

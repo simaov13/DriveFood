@@ -10,11 +10,7 @@ router.get('/user/:username', adminController.getUser);
 //admin elimina um utilizador.
 router.delete('/user/:id_utilizador', adminController.eliminarUtilizador);
 //admin ve todos os produtos
-<<<<<<< Updated upstream
 router.get('/user/produtos', adminController.getProdutos);
-=======
-router.get('/users/produtos', adminController.getProducts);
->>>>>>> Stashed changes
 //admin ve todas as encomendas
 router.get('/user/encomendas', adminController.getEncomendas);
 //admin ve todas as entregas

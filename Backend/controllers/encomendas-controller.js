@@ -120,11 +120,7 @@ exports.eliminarEncomenda = (req, res) => {
     try {
         //se ele for diferente user dá erro, se nao executa
         if (req.body.type != 'user') return res.status(406).send({ message: 'Tipo de utilizador inválido ("user"/"driver"/"merchant")' });
-<<<<<<< Updated upstream
-        
-        
-=======
->>>>>>> Stashed changes
+
         //Eliminar atraves do id
         let sql = 'DELETE * FROM encomenda WHERE id = ?';
         db.get(sql, [req.params.id_encomenda], (err, result) => {
