@@ -12,5 +12,11 @@ function verifyPassword() {
         return false;
     }
 
-
+    //comprimento máximo de validação da password
+    if (pw.length > 15) {
+        document.getElementById("message").innerHTML = "**Password length must not exceed 15 characters";
+        return false;
+    } else {
+        alert("Password is correct");
+    }
 }  
