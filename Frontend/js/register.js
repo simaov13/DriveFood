@@ -5,3 +5,12 @@ function verifyPassword() {
         document.getElementById("message").innerHTML = "Preencha a password por favor!";
         return false;
     }
+
+    // validação do comprimento mínimo da password
+    if (pw.length < 8) {
+        document.getElementById("message").innerHTML = "**Password length must be atleast 8 characters";
+        return false;
+    }
+
+
+}  
