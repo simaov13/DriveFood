@@ -30,11 +30,19 @@ function matchPassword() {
         alert("Password criada com sucesso");
     }
 }
-
 function verifyNif() {
     var nif = document.getElementById("nif").value;
     //verificar nif igual a 9 caracteres
     if (nif != 9) {
         document.getElementById("message").innerHTML = "Só aceitam 9 caracteres";
+    }
+}
+
+function verifyEmail() {
+    var email = document.getElementById("email").value;
+    //verificar se email está vazio
+    if (pw == "") {
+        document.getElementById("message").innerHTML = "Preencha o email por favor!";
+        return false;
     }
 }
