@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 async function basiclogin(email, password) {
     const response = await zlFetch.post(loginEndpoint, {
         auth: {
@@ -19,3 +20,15 @@ async function isLoggedIn() {
     const token = store.get('token')
     if (!token) return false
 }
+=======
+async function basiclogin (email, password) {
+    /* zlFetch -> é para tornar o uso da api mais facil */
+    const response = await zlFetch.post(loginEndpoint, {
+      auth: {
+        email: email,
+        password: password
+      },
+      body: { /*...*/ }
+    })
+  }
+>>>>>>> Stashed changes
