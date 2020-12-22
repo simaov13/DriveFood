@@ -1,10 +1,4 @@
 const db = require('../config/sqlite');
-<<<<<<< Updated upstream
-
-=======
-var jwt = require('jsonwebtoken');
->>>>>>> Stashed changes
-
 //Um Administrador pode ver todos os utilizadores
 exports.getUsers = (req, res) => {
     try {
@@ -42,8 +36,8 @@ exports.eliminarUtilizador = (req, res) => {
         let sql = 'DELETE * FROM user WHERE id = ?';
         db.get(sql, [req.params.id_utilizador], (err, result) => {
             if (err) return res.status(500).send(err.message);
-            return res.json(result).send({message: 'Utilizador eliminado com sucesso'});
-            
+            return res.json(result).send({ message: 'Utilizador eliminado com sucesso' });
+
         });
     } catch (err) {
         return res.status(500).send({ message: err.message });
@@ -52,11 +46,7 @@ exports.eliminarUtilizador = (req, res) => {
 
 
 //Administrador tem acesso a todos os produtos
-<<<<<<< Updated upstream
 exports.getProdutos = (req, res) => {
-=======
-exports.getProducts = (req, res) => {
->>>>>>> Stashed changes
     try {
         let sql = 'SELECT * FROM product';
 

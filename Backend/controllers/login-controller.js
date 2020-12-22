@@ -1,9 +1,7 @@
 const bcrypt = require('bcrypt');
 const db = require("../config/sqlite");
-<<<<<<< Updated upstream
 var jwt = require('jsonwebtoken');
-=======
->>>>>>> Stashed changes
+
 
 //Login
 exports.login = (req, res) => {
@@ -11,7 +9,6 @@ exports.login = (req, res) => {
         //req.body
         let username = req.body.username;
         let password = req.body.password;
-<<<<<<< Updated upstream
         let type = req.body.type;
 
         var VerificarCampos = false;
@@ -35,7 +32,7 @@ exports.login = (req, res) => {
                         algorithm: 'HS256',
                         expiresIn: 86400 // expires in 24 hours
                     });
-                     res.status(200).send({
+                    res.status(200).send({
                         message: 'Autenticado com sucesso',
                         //retorna o array com o username , type, token
                         user: {
@@ -46,38 +43,36 @@ exports.login = (req, res) => {
                     });
                 } else {
                     //Falha na autenticação
-                     res.status(401).send({ message: 'Falha na autenticação' });
+                    res.status(401).send({ message: 'Falha na autenticação' });
                 }
             });
-        }//fecha o verificar
+        }
+        //fecha o verificar
         return;
     } catch (err) {
         return res.status(500).send({ message: err.message });
     }
 };
-=======
 
-        //Verifique se a senha combina com a do banco de dados
-        let sql = 'SELECT password FROM user WHERE username = ?';
-        db.get(sql, [username], (err, result) => {
-            if (err) return res.status(500).send(err.message);
+//Verifique se a senha combina com a do banco de dados
+let sql = 'SELECT password FROM user WHERE username = ?';
 
-            if (bcrypt.compareSync(password, result.password)) {
-                return res.status(200).send({
-                    message: 'Autenticado com sucesso',
-                    //retorna o array com o username e o type
-                    user:{
-                        username: result.username,
-                        type: result.type,
-                    },                    
-                });
-            } else {
-                //Falha na autenticação
-                return res.status(401).send({ message: 'Falha na autenticação' });
-            }
+db.get(sql, [username], (err, result) => {
+    if (err) return res.status(500).send(err.message);
+
+    if (bcrypt.compareSync(password, result.password)) {
+        return res.status(200).send({
+            message: 'Autenticado com sucesso',
+            //retorna o array com o username e o type
+            user: {
+                username: result.username,
+                type: result.type,
+            },
         });
-    } catch (err) {
-        return res.status(500).send({ message: err.message });
+    } else {
+        //Falha na autenticação
+        return res.status(401).send({ message: 'Falha na autenticação' });
     }
-};
->>>>>>> Stashed changes
+});
+
+
