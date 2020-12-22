@@ -8,18 +8,45 @@ function verifyPassword() {
 
     // validação do comprimento mínimo da password
     if (pw.length < 8) {
-        document.getElementById("message").innerHTML = "**Password length must be atleast 8 characters";
+        document.getElementById("message").innerHTML = "**Password não pode ter menos que 8 caracteres";
         return false;
     }
 
     //comprimento máximo de validação da password
     if (pw.length > 15) {
-        document.getElementById("message").innerHTML = "**Password length must not exceed 15 characters";
+        document.getElementById("message").innerHTML = "**Password nao pode ultrapassar os 15 caracteres";
         return false;
     } else {
-        alert("Password is correct");
+        alert("Password correta");
     }
 }
+
+
+function verifyUsername() {
+    var user = document.getElementById("usernmae").value;
+    //verificar se password está vazia
+    if (user == "") {
+        document.getElementById("message").innerHTML = "Preencha o usernamepor favor!";
+        return false;
+    }
+
+    // validação do comprimento mínimo do username
+    if (user.length <= 5) {
+        document.getElementById("message").innerHTML = "**Username não pode ter menos que 5 caracteres";
+        return false;
+    }
+
+    //comprimento máximo de validação do username
+    if (user.length >= 10) {
+        document.getElementById("message").innerHTML = "**Username nao pode ultrapassar os 10 caracteres";
+        return false;
+    } else {
+        alert("username correto");
+    }
+}
+
+
+
 //verificar se passwords são iguais 
 function matchPassword() {
     var pw1 = document.getElementById("password");
