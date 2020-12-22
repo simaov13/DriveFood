@@ -49,7 +49,7 @@
             <form class="container" action="#">
                 <div class="column mb-3">
                     <i class="fa fa-user"></i> <label for="nome" class="form-label">Nome</label>
-                    <input type="text" class="form-control" id="nome" placeholder="Escreva o nome..." required>
+                    <input type="text" class="form-control" id="username" placeholder="Escreva o nome..." required>
                 </div>
                 <div class="column mb-3">
                     <i class="fa fa-envelope"></i> <label for="email" class="form-label">Email</label>
@@ -76,10 +76,12 @@
                 </div>
                 <div class="column mb-3">
                     <i class="fa fa-upload"></i> <label for="logotipo" class="form-label">Logotipo</label>
-                    <form action="/action_page.php">
-                        <input type="file" id="myFile" name="filename">
-                    </form>
+                    <label for="formFileSm" class="form-label"></label>
+                    <input class="form-control form-control-sm" id="formFileSm" type="file" />
                 </div>
+
+
+
                 <input type="submit" value="Registar" class="button_registar">
                 <br>
                 <div align="center" style="padding-top: 20px;">
