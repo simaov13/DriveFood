@@ -17,7 +17,6 @@ exports.register = (req, res) => {
 
         let approved = 0;
 
-<<<<<<< Updated upstream
         // verificar se o username já existe
         let sql = 'SELECT username FROM user WHERE username = ?';
         db.get(sql, [username], (err, result) => {
@@ -38,19 +37,7 @@ exports.register = (req, res) => {
         //Palavra passe maior que 8 caracteres
         if (password.length < 8) return res.status(411).send({ message: 'A palavra-passe tem de ter 8 ou mais caracteres' });
         //Não pode ser for diferente de 9
-=======
-        // verificar se existe
-        let sql = 'SELECT username FROM user WHERE username = ?';
-        db.get(sql, [username], (err, result) => {
-            if (err) return res.status(500).send(err.message);
 
-            if (result) return res.status(409).send({ message: 'Utilizador já registado' });
-        });
-
-        // Verificações
-        if (username.length < 5) return res.status(411).send({ message: 'O nome de utilizador tem de ter 5 ou mais caracteres' });
-        if (password.length < 8) return res.status(411).send({ message: 'A palavra-passe tem de ter 8 ou mais caracteres' });
->>>>>>> Stashed changes
         if (!Number.isInteger(nif) && nif.length != 9) return res.status(406).send({ message: 'NIF inválido' });
         if (type != 'user' && type != 'driver' && type != 'merchant') return res.status(406).send({ message: 'Tipo de utilizador inválido ("user"/"driver"/"merchant")' });
 
