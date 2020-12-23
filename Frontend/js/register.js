@@ -26,7 +26,7 @@ function verifyUsername() {
     var user = document.getElementById("usernmae").value;
     //verificar se username está vazio
     if (user == "") {
-        document.getElementById("message").innerHTML = "Preencha o usernamepor favor!";
+        document.getElementById("message").innerHTML = "Preencha o username por favor!";
         return false;
     }
 
