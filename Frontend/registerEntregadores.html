@@ -50,41 +50,49 @@
             </div>
             <form class="container" action="#">
                 <div class="column mb-3">
+                       <!-- username-->
                     <i class="fa fa-user"></i> <label for="nome" class="form-label">Nome</label>
                     <input type="text" class="form-control" id="username" placeholder="Escreva o seu nome..." required>
                 </div>
                 <div class="column mb-3">
+                       <!-- email-->
                     <i class="fa fa-envelope"></i> <label for="email" class="form-label">Email</label>
                     <input type="email" class="form-control" id="email" placeholder="Escreva o seu email..."
                         aria-describedby="emailHelp" required>
                 </div>
                 <div class="column mb-3">
+                       <!-- password-->
                     <i class="fa fa-lock"></i> <label for="password" class="form-label">Password</label>
                     <input type="password" class="form-control" id="password" placeholder="Escreva a sua password..."
                         required>
                 </div>
                 <div class="column mb-3">
+                       <!-- password-->
                     <i class="fa fa-lock"></i> <label for="password" class="form-label">Repetir Password</label>
                     <input type="password" class="form-control" id="password" placeholder="Repita a sua password..."
                         required>
                 </div>
                 <div class="column mb-3">
-                    <i class="fa fa-phone"></i> <label for="telemovel" class="form-label">Telemóvel</label>
-                    <input type="text" class="form-control" id="telemovel" placeholder="Escreva o seu número..."
+                       <!-- phone-->
+                    <i class="fa fa-phone"></i> <label for="phone" class="form-label">Telemóvel</label>
+                    <input type="text" class="form-control" id="phone" placeholder="Escreva o seu número..."
                         required>
                 </div>
                 <div class="column mb-3">
-                    <i class="fa fa-phone"></i> <label for="telemovel" class="form-label">Telemóvel de
+                       <!-- phone_security-->
+                    <i class="fa fa-phone"></i> <label for="phone_security" class="form-label">Telemóvel de
                         emergência</label> <i class="fa fa-info-circle" title="Em caso de acidente"></i>
-                    <input type="text" class="form-control" id="telemovel" placeholder="Escreva o número..." required>
+                    <input type="text" class="form-control" id="phone_security" placeholder="Escreva o número..." required>
                 </div>
                 <div class="column mb-3">
+                       <!-- city-->
                     <i class="fa fa-building"></i> <label for="city" class="form-label">Cidade que deseja
                         trabalhar</label>
                     <input type="text" class="form-control" id="city" placeholder="Escreva a cidade..." required>
                 </div>
                 <div class="column mb-3">
-                    <i class="fa fa-id-card-o"></i> <label id="carta" for="carta_conducao">Tipo de carta de
+                       <!-- type_license-->
+                    <i class="fa fa-id-card-o"></i> <label id="type_license" for="carta_conducao">Tipo de carta de
                         condução</label>
                     <select class="form-control" name="carta_conducao" id="carta">
                         <option value="" disabled selected hidden>Por favor escolha...</option>
@@ -100,8 +108,9 @@
                     </select>
                 </div>
                 <div class="column mb-3">
+                       <!-- type_vehicle-->
                     <i class="fa fa-car"></i> <label id="veiculo" for="veiculo_pessoal">Tem veiculo pessoal?</label>
-                    <select class="form-control" name="veiculo_pessoal" id="veiculo">
+                    <select class="form-control" name="veiculo_pessoal" id="type_vehicle">
                         <option value="" disabled selected hidden>Por favor escolha...</option>
                         <option value="sim">Sim</option>
                         <option value="nao">Não</option>
