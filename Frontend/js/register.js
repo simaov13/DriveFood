@@ -11,7 +11,8 @@ function inserir_registo() {
         'campo7': $(this).data("city"),
         'campo8': $(this).data("postal_code"),
     };
-    pageurl = 'register-controller.js';
+    //nao sei o que é para por aqui
+    pageurl = 'register.js';
     //para consultar mais opcoes possiveis numa chamada ajax
     //http://api.jquery.com/jQuery.ajax/
     $.ajax({
@@ -79,7 +80,7 @@ function verifyUsername() {
 
     // validação do comprimento mínimo do username
     if (user.length <= 5) {
-        document.getElementById("message").innerHTML = "**Username não pode ter menos que 5 caracteres";
+        document.getElementById("message").innerHTML = "Username não pode ter menos que 5 caracteres";
         return false;
     }
 
