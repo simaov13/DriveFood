@@ -1,3 +1,51 @@
+
+function inserir_registo() {
+    //dados a enviar, vai buscar os valores dos campos que queremos enviar para a BD
+    var dadosajax = {
+        'campo1': $(this).data("username"),
+        'campo2': $(this).data("email"),
+        'campo3': $(this).data("password"),
+        'campo4': $(this).data("password"),
+        'campo5': $(this).data("nif"),
+        'campo6': $(this).data("adress"),
+        'campo7': $(this).data("city"),
+        'campo8': $(this).data("postal_code"),
+    };
+    pageurl = 'register-controller.js';
+    //para consultar mais opcoes possiveis numa chamada ajax
+    //http://api.jquery.com/jQuery.ajax/
+    $.ajax({
+
+        //url da pagina
+        url: pageurl,
+        //parametros a passar
+        data: dadosajax,
+        //tipo: POST ou GET
+        type: 'POST',
+        //cache
+        cache: false,
+        //se ocorrer um erro na chamada ajax, retorna este alerta
+        //possiveis erros: pagina nao existe, erro de codigo na pagina, falha de comunicacao/internet, etc etc etc
+        error: function () {
+            alert('Erro: Inserir Registo!!');
+        },
+        //retorna o resultado da pagina para onde enviamos os dados
+        success: function (result) {
+            //se foi inserido com sucesso
+            if ($.trim(result) == '1') {
+                alert("O seu registo foi inserido com sucesso!");
+            }
+            //se foi um erro
+            else {
+                alert("Ocorreu um erro ao inserir o seu registo!");
+            }
+
+        }
+    });
+}
+
+
+
 function verifyPassword() {
     var pw = document.getElementById("password").value;
     //verificar se password está vazia
@@ -21,7 +69,6 @@ function verifyPassword() {
     }
 }
 
-
 function verifyUsername() {
     var user = document.getElementById("usernmae").value;
     //verificar se username está vazio
@@ -44,8 +91,6 @@ function verifyUsername() {
         alert("username correto");
     }
 }
-
-
 
 //verificar se passwords são iguais 
 function matchPassword() {
