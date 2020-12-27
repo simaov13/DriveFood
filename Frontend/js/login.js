@@ -1,7 +1,7 @@
 async function basiclogin(email, password) {
     const response = await zlFetch.post(loginEndpoint, {
         auth: {
-            email: email,
+            username: username,
             password: password
         },
         body: { /*...*/ }
