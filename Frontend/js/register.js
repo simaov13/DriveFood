@@ -12,7 +12,7 @@ function inserir_registo() {
         'campo8': $(this).data("postal_code"),
     };
     //nao sei o que é para por aqui
-    pageurl = 'register.js';
+    pageurl = ' http://localhost:3000/api/register';
     //para consultar mais opcoes possiveis numa chamada ajax
     //http://api.jquery.com/jQuery.ajax/
     $.ajax({
