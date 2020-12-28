@@ -51,7 +51,7 @@ exports.register = (req, res) => {
                 message: 'Utilizador registado com sucesso',
                 user: {
                     username: username,
-                    password: password,
+                    password: hash,
                     nif: nif,
                     address: address,
                     postal_code: postal_code,

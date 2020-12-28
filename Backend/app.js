@@ -5,6 +5,14 @@ const bodyParser = require('body-parser');
 app.use(express.static('public'));
 const port = 3000;
 
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+
+var routes = requireDir("./routes");
+for (var i in routes) app.use("/api/", routes[i]);
+
+app.listen(port, () => console.log(`Hello world app listening on port ${port}!`));
+
 
 //to solve CORS
 app.use((req, res, next) => {
@@ -22,14 +30,5 @@ app.use((req, res, next) => {
     next();
 
 })
-
-
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
-
-var routes = requireDir("./routes");
-for (var i in routes) app.use("/api/", routes[i]);
-
-app.listen(port, () => console.log(`Hello world app listening on port ${port}!`));
 
 module.exports = app;
