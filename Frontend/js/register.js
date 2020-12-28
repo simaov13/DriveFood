@@ -5,7 +5,7 @@ function inserir_registo() {
         'campo1': $(this).data("username"),
         'campo2': $(this).data("email"),
         'campo3': $(this).data("password"),
-        'campo4': $(this).data("password"),
+        'campo4': $(this).data("password2"),
         'campo5': $(this).data("nif"),
         'campo6': $(this).data("adress"),
         'campo7': $(this).data("city"),
