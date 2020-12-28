@@ -1,4 +1,4 @@
-$("#validar").click(function() {
+$("#validar").click(function () {
     //dados a enviar, vai buscar os valores dos campos que queremos enviar para a BD
     var dadosajax = {
         username: $("#username").val(),
@@ -9,8 +9,9 @@ $("#validar").click(function() {
         adress: $("#adress").val(),
         city: $("#city").val(),
         postal_code: $("#postal_code").val(),
-        type: "user"
+        type: $("#typeUser").val()
     };
+    console.log($("#typeUser").val());
     /*
     true = error;
     false = nao da erro;

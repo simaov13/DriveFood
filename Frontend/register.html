@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html>
 
 <head>
     <meta charset="UTF-8">
@@ -44,7 +44,7 @@
         <div class="row register-form" style="margin:0 auto; margin-top: 120px">
             <div align="center" style="padding-bottom: 20px; padding-top: 20px;"><img src="./img/drive_food.png"
                     width="100px" height="auto" /></a></div>
-            <form class="container" action="#">
+            <form class="container">
                 <div class="column mb-3">
                     <!-- username-->
                     <i class="fa fa-user"></i> <label for="nome" class="form-label">Nome de Utilizador</label>
@@ -90,7 +90,18 @@
                     <input type="text" class="form-control" id="postal_code"
                         placeholder="Escreva o seu código postal..." required>
                 </div>
-                <input type="submit" id="validar" value="Registar" class="button_registar">
+
+                <div class="mb-3">
+                    <i class="fa fa-users"></i> <label class= "form-label" for="typeUser">Tipo de Utilizador</label>
+                    <select class="form-control" id="typeUser">
+                        <option value="" disabled selected hidden>Escolha o tipo de utilizador...</option>
+                        <option value="cliente">Cliente</a></option>
+                    </select>
+                </div>
+                <button id="validar" class="button_registar">
+                        Registar
+                </button>
+                <!--<input type="button" id="validar" value="Registar" class="button_registar">-->
                 <br>
                 <div align="center" style="padding-top: 20px;">
                     Já tem conta? <a href="index.html">Faça login</a>
@@ -115,4 +126,5 @@
         integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous">
         </script>
 </body>
+
 </html>

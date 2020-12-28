@@ -13,7 +13,7 @@ for (var i in routes) app.use("/api/", routes[i]);
 
 app.listen(port, () => console.log(`Hello world app listening on port ${port}!`));
 
-
+/*
 //to solve CORS
 app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*');
@@ -30,5 +30,6 @@ app.use((req, res, next) => {
     next();
 
 })
+*/
 
 module.exports = app;
