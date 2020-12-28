@@ -1,6 +1,4 @@
-
-function inserir_registo(e) {
-    e.preventDefault();
+$("#validar").click(function() {
     //dados a enviar, vai buscar os valores dos campos que queremos enviar para a BD
     var dadosajax = {
         username: $("#username").val(),
@@ -10,7 +8,8 @@ function inserir_registo(e) {
         nif: $("#nif").val(),
         adress: $("#adress").val(),
         city: $("#city").val(),
-        postal_code: $("#postal_code").val()
+        postal_code: $("#postal_code").val(),
+        type: "user"
     };
     /*
     true = error;
@@ -18,7 +17,7 @@ function inserir_registo(e) {
     */
     if (!verifyPassword() && !verifyUsername() && !verifyEmail() && !matchPassword()) {
         //nao sei o que é para por aqui
-        pageurl = ' http://localhost:3000/api/register';
+        pageurl = 'http://localhost:3000/api/register';
         //para consultar mais opcoes possiveis numa chamada ajax
         //http://api.jquery.com/jQuery.ajax/
         $.ajax({
@@ -50,6 +49,10 @@ function inserir_registo(e) {
             }
         });
     }
+});
+
+function inserir_registo() {
+
 
 }
 

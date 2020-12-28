@@ -20,16 +20,16 @@ exports.register = (req, res) => {
         // verificar se o username já existe
         let sql = 'SELECT username FROM user WHERE username = ?';
         db.get(sql, [username], (err, result) => {
-            if (err) return res.status(500).send(err.message);
+            if (err) return res.status(401).send(err.message);
             if (result) return res.status(409).send({ message: 'Utilizador já registado' });
         });
 
-         // verificar se email ja existe
-         let sql1 = 'SELECT email FROM user WHERE username = ?';
-         db.get(sql, [username], (err, result) => {
-             if (err) return res.status(500).send(err.message);
-             if (result) return res.status(409).send({ message: 'Email já registado' });
-         });
+        // verificar se email ja existe
+        let sql1 = 'SELECT email FROM user WHERE username = ?';
+        db.get(sql, [username], (err, result) => {
+            if (err) return res.status(402).send(err.message);
+            if (result) return res.status(409).send({ message: 'Email já registado' });
+        });
 
         // Verificações
         //Username maior que 5 caracteres
@@ -37,32 +37,32 @@ exports.register = (req, res) => {
         //Palavra passe maior que 8 caracteres
         if (password.length < 8) return res.status(411).send({ message: 'A palavra-passe tem de ter 8 ou mais caracteres' });
         //Não pode ser for diferente de 9
-
         if (!Number.isInteger(nif) && nif.length != 9) return res.status(406).send({ message: 'NIF inválido' });
         if (type != 'user' && type != 'driver' && type != 'merchant') return res.status(406).send({ message: 'Tipo de utilizador inválido ("user"/"driver"/"merchant")' });
 
         let hash = bcrypt.hashSync(password, 10);
 
         // Inserir um utilizador
-        sql = 'INSERT INTO user (username, password, name, nif, address, postal_code , city, type) VALUES (?,?,?,?,?,?,?,?)';
-        db.run(sql, [username, hash, name, nif, address, postal_code, city, type], (err) => {
-            if (err) return res.status(500).send(err.message);
-
+        sql = 'INSERT INTO user (username, password, nif, address, postal_code , city, type) VALUES (?,?,?,?,?,?,?)';
+        db.run(sql, [username, hash, nif, address, postal_code, city, type], (err) => {
+            if (err) return res.status(403).send(err.message);
             return res.status(201).send({
                 // Utilizador registado
                 message: 'Utilizador registado com sucesso',
                 user: {
                     username: username,
-                    name: name,
+                    password: password,
                     nif: nif,
                     address: address,
-                    postal_code : postal_code,
+                    postal_code: postal_code,
                     city: city,
                     type: type
                 },
             });
+           
         });
     } catch (err) {
+        console.log(err);
         return res.status(500).send({ message: err.message });
     }
 };
