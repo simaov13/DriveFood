@@ -17,7 +17,7 @@ $("#validar").click(function() {
     */
     if (!verifyPassword() && !verifyUsername() && !verifyEmail() && !matchPassword()) {
         //nao sei o que é para por aqui
-        pageurl = 'http://localhost:3000/api/register';
+        pageurl = 'http://localhost:3001/api/register';
         //para consultar mais opcoes possiveis numa chamada ajax
         //http://api.jquery.com/jQuery.ajax/
         $.ajax({
