@@ -36,7 +36,7 @@ exports.getEntrega = (req, res) => {
 
 
 //Adicionar uma Entrega
-exports.adicionarEntrega= (req, res) => {
+exports.adicionarEntrega = (req, res) => {
     try {
         // req.body
         let id_entrega = req.body.id_entrega;
@@ -70,17 +70,17 @@ exports.adicionarEntrega= (req, res) => {
         });
 
 
-        // Inserir entreha na base dados
+        // Inserir entrega na base dados
         sql = 'INSERT INTO deliverie (id_produto) VALUES (?,?)';
         db.run(sql, [id_produto], (err) => {
             if (err) return res.status(500).send(err.message);
-
             return res.status(201).send({
                 //produto criado com sucesso
                 message: 'Entrega criada com sucesso!',
                 user: {
                     id_produto: id_produto,
-                    username: username                
+                    username: username
+                }
             });
         });
     } catch (err) {
