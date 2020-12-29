@@ -14,7 +14,7 @@ exports.register = (req, res) => {
         let postal_code = req.body.postal_code;
         let city = req.body.city;
         let type = req.body.type;
-
+        console.log(type);
         let approved = 0;
 
         // verificar se o username já existe

@@ -1,4 +1,5 @@
-$("#validar").click(function () {
+$("#validar").click(function (e) {
+    e.preventDefault();
     //dados a enviar, vai buscar os valores dos campos que queremos enviar para a BD
     var dadosajax = {
         username: $("#username").val(),
@@ -6,12 +7,11 @@ $("#validar").click(function () {
         password: $("#password").val(),
         password2: $("#password2").val(),
         nif: $("#nif").val(),
-        adress: $("#adress").val(),
+        address: $("#address").val(),
         city: $("#city").val(),
         postal_code: $("#postal_code").val(),
         type: $("#typeUser").val()
     };
-    console.log($("#typeUser").val());
     /*
     true = error;
     false = nao da erro;
@@ -19,10 +19,8 @@ $("#validar").click(function () {
     if (!verifyPassword() && !verifyUsername() && !verifyEmail() && !matchPassword()) {
         //nao sei o que é para por aqui
         pageurl = 'http://localhost:4000/api/register';
-        //para consultar mais opcoes possiveis numa chamada ajax
-        //http://api.jquery.com/jQuery.ajax/
+        //ajax
         $.ajax({
-
             //url da pagina
             url: pageurl,
             //parametros a passar
@@ -33,8 +31,12 @@ $("#validar").click(function () {
             cache: false,
             //se ocorrer um erro na chamada ajax, retorna este alerta
             //possiveis erros: pagina nao existe, erro de codigo na pagina, falha de comunicacao/internet, etc etc etc
-            error: function () {
+            error: function ( jqXHR, textStatus, err) {
                 alert('Erro: Inserir Registo!!');
+               
+                console.log(jqXHR);
+                    console.log(err,textStatus);
+                
             },
             //retorna o resultado da pagina para onde enviamos os dados
             success: function (result) {
@@ -46,15 +48,12 @@ $("#validar").click(function () {
                 else {
                     alert("Ocorreu um erro ao inserir o seu registo!");
                 }
-
             }
         });
     }
 });
 
 function inserir_registo() {
-
-
 }
 
 function verifyPassword() {
@@ -100,7 +99,7 @@ function verifyUsername() {
         document.getElementById("message").innerHTML = "Username nao pode ultrapassar os 10 caracteres";
         return true;
     } else {
-        alert("username correto");
+        //alert("username correto");
         return false;
     }
 }
