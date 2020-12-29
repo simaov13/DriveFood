@@ -40,8 +40,12 @@ exports.register = (req, res) => {
         if (password.length < 8) return res.status(411).send({ message: 'A palavra-passe tem de ter 8 ou mais caracteres' });
         //Não pode ser for diferente de 9
         if (!Number.isInteger(nif) && nif.length != 9) return res.status(406).send({ message: 'NIF inválido' });
+        //Diferente de algum utilizador
         if (type != 'user' && type != 'driver' && type != 'merchant') return res.status(406).send({ message: 'Tipo de utilizador inválido ("user"/"driver"/"merchant")' });
-        if (veihcle != 'sim' && veihcle != 'não') return res.status(406).send({message: 'Veiculo Própriov inválido ("sim" /"não")'});
+        //Veiculo Proprio
+        if (veihcle != 'sim' && veihcle != 'não') return res.status(406).send({message: 'Veiculo Próprio inválido ("sim" /"não")'});
+        //Tipo de carta
+        if(type_license != 'am' && type_license != 'a1' && type_license != 'a2' && type_license != 'b')return res.status(406).send({message: 'Tipo de veiculo inválido ("am" /"a1" /"a2" /"b" )'})
         let hash = bcrypt.hashSync(password, 10);
 
         // Inserir um utilizador
