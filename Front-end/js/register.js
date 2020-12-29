@@ -75,7 +75,6 @@ function verifyPassword() {
         document.getElementById("message").innerHTML = "Password nao pode ultrapassar os 15 caracteres";
         return true;
     } else {
-        document.getElementById("message").innerHTML = "Password correta";
         return false;
     }
 }
