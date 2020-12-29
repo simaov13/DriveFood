@@ -39,7 +39,7 @@ exports.register = (req, res) => {
         //Não pode ser for diferente de 9
         if (!Number.isInteger(nif) && nif.length != 9) return res.status(406).send({ message: 'NIF inválido' });
         if (type != 'user' && type != 'driver' && type != 'merchant') return res.status(406).send({ message: 'Tipo de utilizador inválido ("user"/"driver"/"merchant")' });
-
+        if (veihcle != 'sim' && veihcle != 'não') return res.status(406).send({message: 'Veiculo Própriov inválido ("sim" /"não")'});
         let hash = bcrypt.hashSync(password, 10);
 
         // Inserir um utilizador
@@ -59,7 +59,7 @@ exports.register = (req, res) => {
                     type: type
                 },
             });
-           
+
         });
     } catch (err) {
         console.log(err);
