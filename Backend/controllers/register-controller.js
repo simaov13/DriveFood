@@ -15,6 +15,8 @@ exports.register = (req, res) => {
         let city = req.body.city;
         let type = req.body.type;
         console.log(type);
+        let veihcle = req.body.type;
+        let type_license = req.body.type;
         let approved = 0;
 
         // verificar se o username já existe
