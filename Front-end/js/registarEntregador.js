@@ -9,8 +9,8 @@ $("#validarEntregador").click(function (e) {
         phone: $("#phone").val(),
         phone_security: $("#phone_security").val(),
         city: $("#city").val(),
-        carta_conducao: $("#carta_conducao").val(),
-        veiculo_pessoal: $("#veiculo_pessoal").val(),
+        type_license: $("#type_license").val(),
+        veihcle: $("#veihcle").val(),
         type: $("#typeUser").val()
     };
     /*
