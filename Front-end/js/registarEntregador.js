@@ -1,4 +1,4 @@
-$("#validar").click(function (e) {
+$("#validarEntregador").click(function (e) {
     e.preventDefault();
     //dados a enviar, vai buscar os valores dos campos que queremos enviar para a BD
     var dadosajax = {
@@ -6,17 +6,18 @@ $("#validar").click(function (e) {
         email: $("#email").val(),
         password: $("#password").val(),
         password2: $("#password2").val(),
-        nif: $("#nif").val(),
-        address: $("#address").val(),
+        phone: $("#phone").val(),
+        phone_security: $("#phone_security").val(),
         city: $("#city").val(),
-        postal_code: $("#postal_code").val(),
+        carta_conducao: $("#carta_conducao").val(),
+        veiculo_pessoal: $("#veiculo_pessoal").val(),
         type: $("#typeUser").val()
     };
     /*
     true = error;
     false = nao da erro;
     */
-    if (!verifyPassword() && !verifyUsername() && !verifyEmail() && !matchPassword() && !verifyNif) {
+    if (!verifyPassword() && !verifyUsername() && !verifyEmail() && !matchPassword()) {
         //nao sei o que é para por aqui
         pageurl = 'http://localhost:4000/api/register';
         //ajax
@@ -55,29 +56,6 @@ $("#validar").click(function (e) {
 
 function inserir_registo() {
 }
-//verificar password
-function verifyPassword() {
-    var pw = document.getElementById("password").value;
-    //verificar se password está vazia
-    if (pw == "") {
-        document.getElementById("message").innerHTML = "Preencha a password por favor!";
-        return true;
-    }
-
-    // validação do comprimento mínimo da password
-    if (pw.length < 8) {
-        document.getElementById("message").innerHTML = "Password não pode ter menos que 8 caracteres";
-        return true;
-    }
-
-    //comprimento máximo de validação da password
-    if (pw.length > 15) {
-        document.getElementById("message").innerHTML = "Password nao pode ultrapassar os 15 caracteres";
-        return true;
-    } else {
-        return false;
-    }
-}
 //verificar nome de utilizador
 function verifyUsername() {
     var user = document.getElementById("username").value;
@@ -102,6 +80,30 @@ function verifyUsername() {
         return false;
     }
 }
+
+//verificar password
+function verifyPassword() {
+    var pw = document.getElementById("password").value;
+    //verificar se password está vazia
+    if (pw == "") {
+        document.getElementById("message").innerHTML = "Preencha a password por favor!";
+        return true;
+    }
+
+    // validação do comprimento mínimo da password
+    if (pw.length < 8) {
+        document.getElementById("message").innerHTML = "Password não pode ter menos que 8 caracteres";
+        return true;
+    }
+
+    //comprimento máximo de validação da password
+    if (pw.length > 15) {
+        document.getElementById("message").innerHTML = "Password nao pode ultrapassar os 15 caracteres";
+        return true;
+    } else {
+        return false;
+    }
+}
 //verificar se passwords são iguais 
 function matchPassword() {
     var pw1 = document.getElementById("password").value;
@@ -113,15 +115,6 @@ function matchPassword() {
         return true;
     } else {
         return false;
-    }
-}
-//verificar nif
-function verifyNif() {
-    var nif = document.getElementById("nif").value;
-    //verificar nif igual a 9 caracteres
-    if (nif.length != 9) {
-        document.getElementById("message").innerHTML = "Só aceitam 9 caracteres";
-        return true;
     }
 }
 //verificar email
