@@ -55,7 +55,7 @@ $("#validar").click(function (e) {
 
 function inserir_registo() {
 }
-
+//verificar password
 function verifyPassword() {
     var pw = document.getElementById("password").value;
     //verificar se password está vazia
@@ -78,7 +78,7 @@ function verifyPassword() {
         return false;
     }
 }
-
+//verificar nome de utilizador
 function verifyUsername() {
     var user = document.getElementById("username").value;
     //verificar se username está vazio
@@ -102,7 +102,6 @@ function verifyUsername() {
         return false;
     }
 }
-
 //verificar se passwords são iguais 
 function matchPassword() {
     var pw1 = document.getElementById("password").value;
@@ -116,16 +115,16 @@ function matchPassword() {
         return false;
     }
 }
-/*function verifyNif() {
+//verificar nif
+function verifyNif() {
     var nif = document.getElementById("nif").value;
     //verificar nif igual a 9 caracteres
-    if (nif != 9) {
+    if (nif.length != 9) {
         document.getElementById("message").innerHTML = "Só aceitam 9 caracteres";
         return true;
     }
 }
-*/
-
+//verificar email
 function verifyEmail() {
     var email = document.getElementById("email").value;
     //verificar se email está vazio
