@@ -46,7 +46,7 @@ $("#validar").click(function (e) {
                 }
                 //se foi um erro
                 else {
-                    alert("Ocorreu um erro ao inserir o seu registo!");
+                    alert("Erro: Ocorreu um erro ao inserir o seu registo!");
                 }
             }
         });
@@ -75,7 +75,7 @@ function verifyPassword() {
         document.getElementById("message").innerHTML = "Password nao pode ultrapassar os 15 caracteres";
         return true;
     } else {
-        alert("Password correta");
+        document.getElementById("message").innerHTML = "Password correta";
         return false;
     }
 }
@@ -111,10 +111,9 @@ function matchPassword() {
     if (pw1 !== pw2) {
         console.log(pw1);
         console.log(pw2);
-        alert("As passwords não coincidem");
+        document.getElementById("message").innerHTML = "As passwords nao coincidem";
         return true;
     } else {
-        alert("Password criada com sucesso");
         return false;
     }
 }

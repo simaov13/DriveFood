@@ -50,48 +50,48 @@
             </div>
             <form class="container" action="#">
                 <div class="column mb-3">
-                       <!-- username-->
+                    <!-- username-->
                     <i class="fa fa-user"></i> <label for="nome" class="form-label">Nome</label>
                     <input type="text" class="form-control" id="username" placeholder="Escreva o seu nome..." required>
                 </div>
                 <div class="column mb-3">
-                       <!-- email-->
+                    <!-- email-->
                     <i class="fa fa-envelope"></i> <label for="email" class="form-label">Email</label>
                     <input type="email" class="form-control" id="email" placeholder="Escreva o seu email..."
                         aria-describedby="emailHelp" required>
                 </div>
                 <div class="column mb-3">
-                       <!-- password-->
+                    <!-- password-->
                     <i class="fa fa-lock"></i> <label for="password" class="form-label">Password</label>
                     <input type="password" class="form-control" id="password" placeholder="Escreva a sua password..."
                         required>
                 </div>
                 <div class="column mb-3">
-                       <!-- password-->
+                    <!-- password-->
                     <i class="fa fa-lock"></i> <label for="password" class="form-label">Repetir Password</label>
                     <input type="password" class="form-control" id="password" placeholder="Repita a sua password..."
                         required>
                 </div>
                 <div class="column mb-3">
-                       <!-- phone-->
+                    <!-- phone-->
                     <i class="fa fa-phone"></i> <label for="phone" class="form-label">Telemóvel</label>
-                    <input type="text" class="form-control" id="phone" placeholder="Escreva o seu número..."
+                    <input type="text" class="form-control" id="phone" placeholder="Escreva o seu número..." required>
+                </div>
+                <div class="column mb-3">
+                    <!-- phone_security-->
+                    <i class="fa fa-phone"></i> <label for="phone_security" class="form-label">Telemóvel de
+                        emergência</label> <i class="fa fa-info-circle" title="Em caso de acidente"></i>
+                    <input type="text" class="form-control" id="phone_security" placeholder="Escreva o número..."
                         required>
                 </div>
                 <div class="column mb-3">
-                       <!-- phone_security-->
-                    <i class="fa fa-phone"></i> <label for="phone_security" class="form-label">Telemóvel de
-                        emergência</label> <i class="fa fa-info-circle" title="Em caso de acidente"></i>
-                    <input type="text" class="form-control" id="phone_security" placeholder="Escreva o número..." required>
-                </div>
-                <div class="column mb-3">
-                       <!-- city-->
+                    <!-- city-->
                     <i class="fa fa-building"></i> <label for="city" class="form-label">Cidade que deseja
                         trabalhar</label>
                     <input type="text" class="form-control" id="city" placeholder="Escreva a cidade..." required>
                 </div>
                 <div class="column mb-3">
-                       <!-- type_license-->
+                    <!-- type_license-->
                     <i class="fa fa-id-card-o"></i> <label id="type_license" for="carta_conducao">Tipo de carta de
                         condução</label>
                     <select class="form-control" name="carta_conducao" id="carta">
@@ -108,12 +108,19 @@
                     </select>
                 </div>
                 <div class="column mb-3">
-                       <!-- type_vehicle-->
+                    <!-- type_vehicle-->
                     <i class="fa fa-car"></i> <label id="veiculo" for="veiculo_pessoal">Tem veiculo pessoal?</label>
                     <select class="form-control" name="veiculo_pessoal" id="type_vehicle">
                         <option value="" disabled selected hidden>Por favor escolha...</option>
                         <option value="sim">Sim</option>
                         <option value="nao">Não</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <i class="fa fa-users"></i> <label class="form-label" for="typeUser">Tipo de Utilizador</label>
+                    <select class="form-control" id="typeUser">
+                        <option value="" disabled selected hidden>Escolha o tipo de utilizador...</option>
+                        <option value="driver">Entregador</a></option>
                     </select>
                 </div>
                 <input type="submit" value="Registar" class="button_registar">
@@ -140,13 +147,13 @@
     <script src="./js/login.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"
         integrity="sha384-q2kxQ16AaE6UbzuKqyBE9/u/KzioAlnx2maXQHiDX9d4/zp8Ok3f+M7DPm+Ib6IU" crossorigin="anonymous">
-    </script>
+        </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.min.js"
         integrity="sha384-pQQkAEnwaBkjpqZ8RU1fF1AKtTcHJwFl3pblpTlHXybJjHpMYo79HY3hIi4NKxyj" crossorigin="anonymous">
-    </script>
+        </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous">
-    </script>
+        </script>
 
 </body>
 
