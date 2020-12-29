@@ -12,7 +12,7 @@ var routes = requireDir("./routes");
 for (var i in routes) app.use("/api/", routes[i]);
 
 app.listen(port, () => console.log(`Hello world app listening on port ${port}!`));
-
+var cors = require('cors');
 //to solve CORS
 app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*');
