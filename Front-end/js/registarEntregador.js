@@ -17,7 +17,7 @@ $("#validarEntregador").click(function (e) {
     true = error;
     false = nao da erro;
     */
-    if (!verifyPassword() && !verifyUsername() && !verifyEmail() && !matchPassword()) {
+    if (!verifyPassword() && !verifyUsername() && !verifyEmail() && !matchPassword() && !verifyphone && !verifyphoneSecurity) {
         //nao sei o que é para por aqui
         pageurl = 'http://localhost:4000/api/register';
         //ajax
@@ -123,6 +123,25 @@ function verifyEmail() {
     //verificar se email está vazio
     if (email == "") {
         document.getElementById("message").innerHTML = "Preencha o email por favor!";
+        return true;
+    }
+}
+//verificar telefone Segurança
+function verifyphoneSecurity() {
+    var phone_security = document.getElementById("phone_security").value;
+    //verificar se email está vazio
+    if (phone_security == "") {
+        document.getElementById("message").innerHTML = "Preencha o campo por favor!";
+        return true;
+    }
+}
+
+//verificar telefone 
+function verifyphone() {
+    var phone = document.getElementById("phone").value;
+    //verificar se email está vazio
+    if (phone == "") {
+        document.getElementById("message").innerHTML = "Preencha o campo por favor!";
         return true;
     }
 }
