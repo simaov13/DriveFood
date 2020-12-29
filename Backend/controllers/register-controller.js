@@ -20,14 +20,14 @@ exports.register = (req, res) => {
         // verificar se o username já existe
         let sql = 'SELECT username FROM user WHERE username = ?';
         db.get(sql, [username], (err, result) => {
-            if (err) return res.status(401).send(err.message);
+            if (err) return res.status(500).send(err.message);
             if (result) return res.status(409).send({ message: 'Utilizador já registado' });
         });
 
         // verificar se email ja existe
         let sql1 = 'SELECT email FROM user WHERE username = ?';
         db.get(sql, [username], (err, result) => {
-            if (err) return res.status(402).send(err.message);
+            if (err) return res.status(500).send(err.message);
             if (result) return res.status(409).send({ message: 'Email já registado' });
         });
 
@@ -45,7 +45,7 @@ exports.register = (req, res) => {
         // Inserir um utilizador
         sql = 'INSERT INTO user (username, password, nif, address, postal_code , city, type) VALUES (?,?,?,?,?,?,?)';
         db.run(sql, [username, hash, nif, address, postal_code, city, type], (err) => {
-            if (err) return res.status(403).send(err.message);
+            if (err) return res.status(500).send(err.message);
             return res.status(201).send({
                 // Utilizador registado
                 message: 'Utilizador registado com sucesso',
