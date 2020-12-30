@@ -25,6 +25,8 @@ exports.register = (req, res) => {
         let logo = req.body.logo;
         let approved = 0;
 
+
+
         // verificar se o username já existe
         let sql = 'SELECT username FROM user WHERE username = ?';
         db.get(sql, [username], (err, result) => {
@@ -52,12 +54,17 @@ exports.register = (req, res) => {
         if (vehicle != 'sim' && veihcle != 'não') return res.status(406).send({ message: 'Veiculo Próprio inválido ("sim" /"não")' });
         //Tipo de carta
         if (type_license != 'am' && type_license != 'a1' && type_license != 'a2' && type_license != 'b') return res.status(406).send({ message: 'Tipo de veiculo inválido ("am" /"a1" /"a2" /"b" )' })
+        //hash
         let hash = bcrypt.hashSync(password, 10);
+        
+        
+        
+        
         //utilizador tipo user
         if (vehicle != null && type_license != null && phone != null && phone_security != null) {
             // Inserir um utilizador Driver
-            sql = 'INSERT INTO user (username,email, password, address, postal_code , city, phone, phone_security, vehicle, type_license, type) VALUES (?,?,?,?,?,?,?,?,?,?,?)';
-            db.run(sql, [username, email, hash, address, postal_code, city, type], (err) => {
+            sql = 'INSERT INTO user (username, email, password, city, phone, phone_security, vehicle, type_license, type) VALUES (?,?,?,?,?,?,?,?,?)';
+            db.run(sql, [username, email, hash, city, type], (err) => {
                 if (err) return res.status(500).send(err.message);
                 return res.status(201).send({
                     // Utilizador registado
@@ -66,8 +73,6 @@ exports.register = (req, res) => {
                         username: username,
                         password: hash,
                         email: email,
-                        address: address,
-                        postal_code: postal_code,
                         city: city,
                         phone: phone,
                         phone_security: phone_security,
