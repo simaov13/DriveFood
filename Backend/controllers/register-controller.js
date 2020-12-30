@@ -15,8 +15,8 @@ exports.register = (req, res) => {
         let city = req.body.city;
         let type = req.body.type;
         console.log(type);
-        let veihcle = req.body.type;
-        let type_license = req.body.type;
+        let vehicle = req.body.vehicle;
+        let type_license = req.body.type_license;
         let approved = 0;
 
         // verificar se o username já existe
@@ -43,30 +43,53 @@ exports.register = (req, res) => {
         //Diferente de algum utilizador
         if (type != 'user' && type != 'driver' && type != 'merchant') return res.status(406).send({ message: 'Tipo de utilizador inválido ("user"/"driver"/"merchant")' });
         //Veiculo Proprio
-        if (veihcle != 'sim' && veihcle != 'não') return res.status(406).send({message: 'Veiculo Próprio inválido ("sim" /"não")'});
+        if (vehicle != 'sim' && veihcle != 'não') return res.status(406).send({ message: 'Veiculo Próprio inválido ("sim" /"não")' });
         //Tipo de carta
-        if(type_license != 'am' && type_license != 'a1' && type_license != 'a2' && type_license != 'b')return res.status(406).send({message: 'Tipo de veiculo inválido ("am" /"a1" /"a2" /"b" )'})
+        if (type_license != 'am' && type_license != 'a1' && type_license != 'a2' && type_license != 'b') return res.status(406).send({ message: 'Tipo de veiculo inválido ("am" /"a1" /"a2" /"b" )' })
         let hash = bcrypt.hashSync(password, 10);
+        if (vehicle != null && type_license != null) {
+            // Inserir um utilizador Driver
+            sql = 'INSERT INTO user (username, password, address, postal_code , city, vehicle, type_license, type) VALUES (?,?,?,?,?,?,?,?)';
+            db.run(sql, [username, hash, address, postal_code, city, type], (err) => {
+                if (err) return res.status(500).send(err.message);
+                return res.status(201).send({
+                    // Utilizador registado
+                    message: 'Utilizador registado com sucesso',
+                    user: {
+                        username: username,
+                        password: hash,
+                        address: address,
+                        postal_code: postal_code,
+                        city: city,
+                        vehicle : vehicle,
+                        type_license: type_license,
+                        type: type
+                    },
+                });
 
-        // Inserir um utilizador
-        sql = 'INSERT INTO user (username, password, nif, address, postal_code , city, type) VALUES (?,?,?,?,?,?,?)';
-        db.run(sql, [username, hash, nif, address, postal_code, city, type], (err) => {
-            if (err) return res.status(500).send(err.message);
-            return res.status(201).send({
-                // Utilizador registado
-                message: 'Utilizador registado com sucesso',
-                user: {
-                    username: username,
-                    password: hash,
-                    nif: nif,
-                    address: address,
-                    postal_code: postal_code,
-                    city: city,
-                    type: type
-                },
             });
+        } else {
 
-        });
+            // Inserir um utilizador
+            sql = 'INSERT INTO user (username, password, nif, address, postal_code , city, type) VALUES (?,?,?,?,?,?,?)';
+            db.run(sql, [username, hash, nif, address, postal_code, city, type], (err) => {
+                if (err) return res.status(500).send(err.message);
+                return res.status(201).send({
+                    // Utilizador registado
+                    message: 'Utilizador registado com sucesso',
+                    user: {
+                        username: username,
+                        password: hash,
+                        nif: nif,
+                        address: address,
+                        postal_code: postal_code,
+                        city: city,
+                        type: type
+                    },
+                });
+
+            });
+        }
     } catch (err) {
         console.log(err);
         return res.status(500).send({ message: err.message });

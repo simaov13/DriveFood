@@ -19,7 +19,7 @@ $("#validarEntregador").click(function (e) {
     */
     if (!verifyPassword() && !verifyUsername() && !verifyEmail() && !matchPassword() && !verifyphone && !verifyphoneSecurity) {
         //nao sei o que é para por aqui
-        pageurl = 'http://localhost:4000/api/register';
+        pageurl = 'http://localhost:3000/api/register';
         //ajax
         $.ajax({
             //url da pagina

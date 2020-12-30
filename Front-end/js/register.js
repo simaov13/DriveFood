@@ -16,9 +16,9 @@ $("#validar").click(function (e) {
     true = error;
     false = nao da erro;
     */
-    if (!verifyPassword() && !verifyUsername() && !verifyEmail() && !matchPassword() && !verifyNif) {
+    if (!verifyPassword() && !verifyUsername() && !verifyEmail() && !matchPassword() && !verifyNif()) {
         //nao sei o que é para por aqui
-        pageurl = 'http://localhost:4000/api/register';
+        pageurl = 'http://localhost:3000/api/register';
         //ajax
         $.ajax({
             //url da pagina
