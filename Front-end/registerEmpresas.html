@@ -20,6 +20,17 @@
         background-color: #cccccc;
         background-size: 100%;
     }
+
+    textarea {
+        width: 100%;
+        height: 100px;
+        padding: 12px 20px;
+        box-sizing: border-box;
+        border: 2px solid #ccc;
+        border-radius: 4px;
+        background-color: #ffffff;
+        resize: none;
+    }
 </style>
 </head>
 <!-- Header -->
@@ -83,23 +94,37 @@
                     <input type="text" class="form-control" id="adress" placeholder="Escreva a morada..." required>
                 </div>
                 <div class="column mb-3">
-                    <!-- nif-->
-                    <i class="fa fa-id-card"></i> <label for="nif" class="form-label">NIF</label>
-                    <input type="text" class="form-control" id="nif" placeholder="Escreva o NIF..." required>
+                    <!-- city-->
+                    <i class="fa fa-id-card"></i> <label for="nif" class="form-label">Cidade</label>
+                    <input type="text" class="form-control" id="city" placeholder="Escreva a cidade.." required>
+                </div>
+                <div class="column mb-3">
+                    <!-- phone-->
+                    <i class="fa fa-phone"></i> <label for="phone" class="form-label">Telemóvel</label>
+                    <input type="text" class="form-control" id="phone" placeholder="Escreva o seu número..." required>
+                </div>
+                <div class="mb-3">
+                    <!--Description-->
+                    <i class="fa fa-align-justify"></i> <label for="description" class="form-label">Descrição</label>
+                    <textarea id="description">Descreva o seu restaurante...</textarea>
                 </div>
                 <div class="column mb-3">
                     <!-- logotipo-->
                     <i class="fa fa-upload"></i> <label for="logotipo" class="form-label">Logotipo</label>
-                    <input class="form-control form-control-sm" id="formFileSm" type="file" />
+                    <input class="form-control form-control-sm" id="logo" type="file" />
                 </div>
-                <div class="mb-3">	
-                    <i class="fa fa-users"></i> <label class= "form-label" for="typeUser">Tipo de Utilizador</label>	
-                    <select class="form-control" id="typeUser">	
-                        <option value="" disabled selected hidden>Escolha o tipo de utilizador...</option>	
-                        <option value="merchant">Empresa</a></option>	
-                    </select>	
-                </div>	
-                <input type="submit" value="Registar" class="button_registar">
+                <div class=" column mb-3">
+                    <!--Type-->
+                    <i class="fa fa-users"></i> <label class="form-label" for="typeUser">Tipo de Utilizador</label>
+                    <select class="form-control" id="typeUser">
+                        <option value="" disabled selected hidden>Escolha o tipo de utilizador...</option>
+                        <option value="merchant">Empresa</a></option>
+                    </select>
+                </div>
+                <button id="validarEmpresa" class="button_registar">
+                    Registar
+                </button>
+                <!--<input type="submit" value="Registar" class="button_registar">-->
                 <br>
                 <div align="center" style="padding-top: 20px;">
                     Já tem conta? <a href="index.html">Faça login</a>
