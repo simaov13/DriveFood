@@ -6,6 +6,7 @@ const db = require('../config/sqlite');
 exports.register = (req, res) => {
     try {
         // req.body
+        //user
         let username = req.body.username;
         let password = req.body.password;
         let name = req.body.name;
@@ -14,9 +15,14 @@ exports.register = (req, res) => {
         let postal_code = req.body.postal_code;
         let city = req.body.city;
         let type = req.body.type;
-        console.log(type);
+        //driver
         let vehicle = req.body.vehicle;
         let type_license = req.body.type_license;
+        let phone = req.body.phone;
+        let phone_security = req.body.phone_security;
+        //merchant
+        let description = req.body.description;
+        let logo = req.body.logo;
         let approved = 0;
 
         // verificar se o username já existe
@@ -47,10 +53,11 @@ exports.register = (req, res) => {
         //Tipo de carta
         if (type_license != 'am' && type_license != 'a1' && type_license != 'a2' && type_license != 'b') return res.status(406).send({ message: 'Tipo de veiculo inválido ("am" /"a1" /"a2" /"b" )' })
         let hash = bcrypt.hashSync(password, 10);
-        if (vehicle != null && type_license != null) {
+        //utilizador tipo user
+        if (vehicle != null && type_license != null && phone != null && phone_security != null) {
             // Inserir um utilizador Driver
-            sql = 'INSERT INTO user (username, password, address, postal_code , city, vehicle, type_license, type) VALUES (?,?,?,?,?,?,?,?)';
-            db.run(sql, [username, hash, address, postal_code, city, type], (err) => {
+            sql = 'INSERT INTO user (username,email, password, address, postal_code , city, phone, phone_security, vehicle, type_license, type) VALUES (?,?,?,?,?,?,?,?,?,?,?)';
+            db.run(sql, [username, email, hash, address, postal_code, city, type], (err) => {
                 if (err) return res.status(500).send(err.message);
                 return res.status(201).send({
                     // Utilizador registado
@@ -58,21 +65,45 @@ exports.register = (req, res) => {
                     user: {
                         username: username,
                         password: hash,
+                        email: email,
                         address: address,
                         postal_code: postal_code,
                         city: city,
-                        vehicle : vehicle,
+                        phone: phone,
+                        phone_security: phone_security,
+                        vehicle: vehicle,
                         type_license: type_license,
                         type: type
                     },
                 });
 
             });
-        } else {
+        } else if (description != null && logo != null && phone != null) {
+            // Inserir um utilizador Merchant
+            sql = 'INSERT INTO user (username, email, password, address, city, phone, description, logo, type) VALUES (?,?,?,?,?,?,?,?,?)';
+            db.run(sql, [username, hash, address, city, type], (err) => {
+                if (err) return res.status(500).send(err.message);
+                return res.status(201).send({
+                    // Utilizador registado
+                    message: 'Utilizador registado com sucesso',
+                    user: {
+                        username: username,
+                        email: email,
+                        password: hash,
+                        address: address,
+                        city: city,
+                        phone: phone,
+                        description: description,
+                        logo: logo,
+                        type: type
+                    },
+                });
 
-            // Inserir um utilizador
-            sql = 'INSERT INTO user (username, password, nif, address, postal_code , city, type) VALUES (?,?,?,?,?,?,?)';
-            db.run(sql, [username, hash, nif, address, postal_code, city, type], (err) => {
+            });
+        } else {
+            // Inserir um utilizador User
+            sql = 'INSERT INTO user (username, password, nif, address, postal_code , city, phone, type) VALUES (?,?,?,?,?,?,?,?)';
+            db.run(sql, [username, hash, nif, address, postal_code, city, phone, type], (err) => {
                 if (err) return res.status(500).send(err.message);
                 return res.status(201).send({
                     // Utilizador registado
@@ -84,6 +115,7 @@ exports.register = (req, res) => {
                         address: address,
                         postal_code: postal_code,
                         city: city,
+                        phone:phone,
                         type: type
                     },
                 });
