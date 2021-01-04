@@ -1,4 +1,4 @@
-async function basiclogin(email, password) {	
+async function basiclogin(username, password) {	
     const response = await zlFetch.post(loginEndpoint, {	
         auth: {	
             username: username,	
@@ -7,7 +7,7 @@ async function basiclogin(email, password) {
         body: { /*...*/ }	
     })	
     /*Guardar o Token */	
-    const { token } = response.body	
+    var token = 'teste123';
 
     localStorage.setItem('token', token)	
     // user contains accessLevel	
@@ -42,6 +42,6 @@ async function autoRedirect() {
 
 /*logout*/	
 function logout() {	
-    localStorage.removeItem('token')	
-    localStorage.removeItem('user')	
+    sessionStorage.removeItem('token')	
+    sessionStorage.removeItem('username')	
 } 
