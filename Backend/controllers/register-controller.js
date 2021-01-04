@@ -15,6 +15,7 @@ exports.register = (req, res) => {
         let postal_code = req.body.postal_code;
         let city = req.body.city;
         let type = req.body.type;
+        let email = req.body.email;
         //driver
         let vehicle = req.body.vehicle;
         let type_license = req.body.type_license;
@@ -50,21 +51,28 @@ exports.register = (req, res) => {
         if (!Number.isInteger(nif) && nif.length != 9) return res.status(406).send({ message: 'NIF inválido' });
         //Diferente de algum utilizador
         if (type != 'user' && type != 'driver' && type != 'merchant') return res.status(406).send({ message: 'Tipo de utilizador inválido ("user"/"driver"/"merchant")' });
-        //Veiculo Proprio
-        if (vehicle != 'sim' && veihcle != 'não') return res.status(406).send({ message: 'Veiculo Próprio inválido ("sim" /"não")' });
-        //Tipo de carta
-        if (type_license != 'am' && type_license != 'a1' && type_license != 'a2' && type_license != 'b') return res.status(406).send({ message: 'Tipo de veiculo inválido ("am" /"a1" /"a2" /"b" )' })
+        //Se tipo for driver
+        if (type === 'driver') {
+            //Veiculo Proprio
+            if (vehicle != 'sim' && vehicle != 'não') {
+                return res.status(406).send({ message: 'Veiculo Próprio inválido ("sim" /"não")' });
+            }
+            //Tipo de carta
+            if (type_license != 'am' && type_license != 'a1' && type_license != 'a2' && type_license != 'b') {
+                return res.status(406).send({ message: 'Tipo de veiculo inválido ("am" /"a1" /"a2" /"b" )' })
+            }
+        }
         //hash
         let hash = bcrypt.hashSync(password, 10);
-        
-        
-        
-        
-        //utilizador tipo user
+
+
+
+
+        //utilizador tipo driver
         if (vehicle != null && type_license != null && phone != null && phone_security != null) {
             // Inserir um utilizador Driver
             sql = 'INSERT INTO user (username, email, password, city, phone, phone_security, vehicle, type_license, type) VALUES (?,?,?,?,?,?,?,?,?)';
-            db.run(sql, [username, email, hash, city, type], (err) => {
+            db.run(sql, [username, email, hash, city, phone, phone_security, vehicle, type_license, type], (err) => {
                 if (err) return res.status(500).send(err.message);
                 return res.status(201).send({
                     // Utilizador registado
@@ -86,7 +94,7 @@ exports.register = (req, res) => {
         } else if (description != null && logo != null && phone != null) {
             // Inserir um utilizador Merchant
             sql = 'INSERT INTO user (username, email, password, address, city, phone, description, logo, type) VALUES (?,?,?,?,?,?,?,?,?)';
-            db.run(sql, [username, hash, address, city, type], (err) => {
+            db.run(sql, [username, email, hash, address, city, phone, description, logo, type], (err) => {
                 if (err) return res.status(500).send(err.message);
                 return res.status(201).send({
                     // Utilizador registado
@@ -107,8 +115,8 @@ exports.register = (req, res) => {
             });
         } else {
             // Inserir um utilizador User
-            sql = 'INSERT INTO user (username, password, nif, address, postal_code , city, phone, type) VALUES (?,?,?,?,?,?,?,?)';
-            db.run(sql, [username, hash, nif, address, postal_code, city, phone, type], (err) => {
+            sql = 'INSERT INTO user (username, password, nif, address, postal_code , email, city, phone, type) VALUES (?,?,?,?,?,?,?,?,?)';
+            db.run(sql, [username, hash, nif, address, postal_code, email, city, phone, type], (err) => {
                 if (err) return res.status(500).send(err.message);
                 return res.status(201).send({
                     // Utilizador registado
@@ -119,8 +127,9 @@ exports.register = (req, res) => {
                         nif: nif,
                         address: address,
                         postal_code: postal_code,
+                        email: email,
                         city: city,
-                        phone:phone,
+                        phone: phone,
                         type: type
                     },
                 });
