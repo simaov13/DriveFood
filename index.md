@@ -16,7 +16,7 @@ Base Dados SQLite3.
 
 ### Ficheiro Route
 
-Chama as funcoes do controller: Register, Login, Admin, Encomendas, Entregas, Restaurantes, Produtos, User.
+Chama as funções do controller: Register, Login, Admin, Encomendas, Entregas, Restaurantes, Produtos, User.
 
 ```markdown
 Exemplo de código:
