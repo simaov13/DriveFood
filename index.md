@@ -8,7 +8,7 @@ Register, Login, Admin, Encomendas, Entregas, Restaurantes, Produtos, User
 
 ### Ficheiro Config
 
-Ligação à base dados.
+
 
 ### Ficheiro BD
 
