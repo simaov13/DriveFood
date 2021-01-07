@@ -65,6 +65,7 @@
 	  form.example button {
 		float: left;
 		width: 15%;
+		height: 50px;
 		background: #ffe600;
 		color: white;
 		font-size: 17px;
@@ -567,7 +568,6 @@
 
 /* Button */
 
-	input[type="submit"],
 	input[type="reset"],
 	input[type="button"],
 	button,
@@ -665,7 +665,6 @@
 
 		}
 
-	input[type="submit"],
 	input[type="reset"],
 	input[type="button"],
 	button,
@@ -674,7 +673,6 @@
 		color: #000 !important;
 	}
 
-		input[type="submit"]:hover,
 		input[type="reset"]:hover,
 		input[type="button"]:hover,
 		button:hover,
@@ -682,7 +680,6 @@
 			background-color: white;
 		}
 
-		input[type="submit"]:active,
 		input[type="reset"]:active,
 		input[type="button"]:active,
 		button:active,
@@ -690,7 +687,6 @@
 			background-color: #e5e5e5;
 		}
 
-		input[type="submit"].alt,
 		input[type="reset"].alt,
 		input[type="button"].alt,
 		button.alt,
@@ -1762,7 +1758,7 @@
 	}
 
 		.banner input, .banner select, .banner textarea {
-			color: #ffffff;
+			color: #000;
 		}
 
 		.banner a {
@@ -2070,5 +2066,3 @@
 			}
 
 		}
-
-
