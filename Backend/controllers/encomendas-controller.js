@@ -44,7 +44,7 @@ exports.adicionarEncomenda = (req, res) => {
         let cancel_reason = req.body.cancel_reason;
 
         //se ele for diferente user dá erro, se nao executa
-        if (req.body.type != 'user') return res.status(406).send({ message: 'Tipo de utilizador inválido ("user"/"driver"/"merchant")' });        // Check if order exists
+        if (req.body.type != 'user') return res.status(406).send({ message: 'Tipo de utilizador inválido ("user"/"driver"/"merchant"/"admin")' });        // Check if order exists
 
         //verificar se a encomenda já existe
         let sql = 'SELECT id_order FROM product WHERE id_order = ?';
@@ -82,7 +82,7 @@ exports.adicionarEncomenda = (req, res) => {
 exports.editarEncomenda = (req, res) => {
     try {
         //se ele for diferente user dá erro, se nao executa
-        if (req.body.type != 'user') return res.status(406).send({ message: 'Tipo de utilizador inválido ("user"/"driver"/"merchant")' });        // Check if order exists
+        if (req.body.type != 'user') return res.status(406).send({ message: 'Tipo de utilizador inválido ("user"/"driver"/"merchant"/"admin")' });        // Check if order exists
         //update encomenda
         let sql = 'UPDATE order set username = ?, id_restaurante = ?, food_name = ?, food_qty = ?, paymenth_method = ? WHERE  id_encomenda = ?'
         db.get(sql, [username, id_restaurante, food_name, food_qty, payment_method], (err, result) => {
@@ -100,7 +100,7 @@ exports.editarEncomenda = (req, res) => {
 exports.editarEncomenda = (req, res) => {
     try {
         //se ele for diferente user dá erro, se nao executa
-        if (req.body.type != 'user') return res.status(406).send({ message: 'Tipo de utilizador inválido ("user"/"driver"/"merchant")' });        // Check if order exists
+        if (req.body.type != 'user') return res.status(406).send({ message: 'Tipo de utilizador inválido ("user"/"driver"/"merchant"/"admin")' });        // Check if order exists
         //update encomenda
         let sql = 'UPDATE order set username = ?, id_restaurante = ?, food_name = ?, food_qty = ?, paymenth_method = ? WHERE  id_encomenda = ?'
         db.get(sql, [username, id_restaurante, food_name, food_qty, payment_method], (err, result) => {
@@ -119,7 +119,7 @@ exports.editarEncomenda = (req, res) => {
 exports.eliminarEncomenda = (req, res) => {
     try {
         //se ele for diferente user dá erro, se nao executa
-        if (req.body.type != 'user') return res.status(406).send({ message: 'Tipo de utilizador inválido ("user"/"driver"/"merchant")' });
+        if (req.body.type != 'user') return res.status(406).send({ message: 'Tipo de utilizador inválido ("user"/"driver"/"merchant"/"admin")' });
 
         //Eliminar atraves do id
         let sql = 'DELETE * FROM encomenda WHERE id = ?';

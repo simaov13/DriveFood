@@ -46,7 +46,7 @@ exports.adicionarRestaurante = (req, res) => {
         let email = req.body.email;
 
         //se ele for diferente merchant dá erro, se nao executa
-        if (req.body.type != 'merchant') return res.status(406).send({ message: 'Tipo de utilizador inválido ("user"/"driver"/"merchant")' });
+        if (req.body.type != 'merchant') return res.status(406).send({ message: 'Tipo de utilizador inválido ("user"/"driver"/"merchant"/"admin")' });
         //verificar se restaurante já existe
         let sql = 'SELECT name FROM restaurante WHERE name = ?';
         db.get(sql, [name], (err, result) => {
@@ -55,7 +55,7 @@ exports.adicionarRestaurante = (req, res) => {
         });
 
         //se ele for diferente merchant dá erro, se nao executa
-        if (req.body.type != 'merchant')  return res.status(406).send({ message: 'Tipo de utilizador inválido ("user"/"driver"/"merchant")' });
+        if (req.body.type != 'merchant')  return res.status(406).send({ message: 'Tipo de utilizador inválido ("user"/"driver"/"merchant"/"admin")' });
        
         // criar restaurante
         sql = 'INSERT INTO restaurante (id_restaurante, name, image, location, phone, email) VALUES (?,?,?,?,?,?)';
@@ -83,7 +83,7 @@ exports.adicionarRestaurante = (req, res) => {
 exports.editarRestaurante = (req, res) => {
     try {
         //se ele for diferente merchant dá erro, se nao executa
-        if (req.body.type != 'merchant') return res.status(406).send({ message: 'Tipo de utilizador inválido ("user"/"driver"/"merchant")' });
+        if (req.body.type != 'merchant') return res.status(406).send({ message: 'Tipo de utilizador inválido ("user"/"driver"/"merchant"/"admin")' });
         //alterar restaurante
         let sql = 'UPDATE restaurante set name = ?, image = ?, location = ?, phone = ?, email = ? WHERE  id_restaurante = ?'
         db.get(sql, [name, image, location, phone, email], (err, result) => {
@@ -100,7 +100,7 @@ exports.editarRestaurante = (req, res) => {
 exports.eliminarRestaurante = (req, res) => {
     try {
         //se ele for diferente merchant dá erro, se nao executa
-        if (req.body.type != 'merchant') return res.status(406).send({ message: 'Tipo de utilizador inválido ("user"/"driver"/"merchant")' });
+        if (req.body.type != 'merchant') return res.status(406).send({ message: 'Tipo de utilizador inválido ("user"/"driver"/"merchant"/"admin")' });
         //verificar se existe
         let sql = 'SELECT id_restaurante FROM restaurante WHERE id_restaurante = ?';
         db.get(sql, [id_restaurante], (err, result) => {

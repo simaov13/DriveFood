@@ -50,7 +50,7 @@ exports.register = (req, res) => {
         //Não pode ser for diferente de 9
         if (!Number.isInteger(nif) && nif.length != 9) return res.status(406).send({ message: 'NIF inválido' });
         //Diferente de algum utilizador
-        if (type != 'user' && type != 'driver' && type != 'merchant') return res.status(406).send({ message: 'Tipo de utilizador inválido ("user"/"driver"/"merchant/admin")' });
+        if (type != 'user' && type != 'driver' && type != 'merchant') return res.status(406).send({ message: 'Tipo de utilizador inválido ("user"/"driver"/"merchant"/"admin")' });
         //Se tipo for driver
         if (type === 'driver') {
             //Veiculo Proprio
