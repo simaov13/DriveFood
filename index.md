@@ -1,6 +1,5 @@
 ## Bem Vindo ao nosso GitHub Pages
 
-<img src="./img/drive_food.png" />
 
 ### Ficheiro Controller
 
