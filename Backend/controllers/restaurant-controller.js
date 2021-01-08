@@ -7,13 +7,14 @@ exports.getRestaurantes = (req, res) => {
         let sql = 'SELECT * FROM restaurante';
 
         db.all(sql, [], (err, result) => {
-            if (err) return res.status(500).send(err.message);
+            if (err)  res.status(500).send(err.message);
 
-            return res.json(result);
+             res.json(result);
         });
     } catch (err) {
-        return res.status(500).send({ message: err.message });
+         res.status(500).send({ message: err.message });
     }
+    return;
 };
 
 //procurar um restaurante por um id
@@ -23,13 +24,14 @@ exports.getRestaurante = (req, res) => {
         let sql = 'SELECT * FROM restaurante WHERE id_restaurante = ?';
 
         db.get(sql, [req.params.id_restaurante], (err, result) => {
-            if (err) return res.status(500).send(err.message);
+            if (err)  res.status(500).send(err.message);
 
-            return res.json(result);
+             res.json(result);
         });
     } catch (err) {
-        return res.status(500).send({ message: err.message });
+         res.status(500).send({ message: err.message });
     }
+    return;
 };
 
 
@@ -46,22 +48,22 @@ exports.adicionarRestaurante = (req, res) => {
         let email = req.body.email;
 
         //se ele for diferente merchant dá erro, se nao executa
-        if (req.body.type != 'merchant') return res.status(406).send({ message: 'Tipo de utilizador inválido ("user"/"driver"/"merchant"/"admin")' });
+        if (req.body.type != 'merchant')  res.status(406).send({ message: 'Tipo de utilizador inválido ("user"/"driver"/"merchant"/"admin")' });
         //verificar se restaurante já existe
         let sql = 'SELECT name FROM restaurante WHERE name = ?';
         db.get(sql, [name], (err, result) => {
-            if (err) return res.status(500).send(err.message);
-            if (result) return res.status(409).send({ message: 'Restaurante já registado' });
+            if (err)  res.status(500).send(err.message);
+            if (result)  res.status(409).send({ message: 'Restaurante já registado' });
         });
 
         //se ele for diferente merchant dá erro, se nao executa
-        if (req.body.type != 'merchant')  return res.status(406).send({ message: 'Tipo de utilizador inválido ("user"/"driver"/"merchant"/"admin")' });
+        if (req.body.type != 'merchant')   res.status(406).send({ message: 'Tipo de utilizador inválido ("user"/"driver"/"merchant"/"admin")' });
        
         // criar restaurante
         sql = 'INSERT INTO restaurante (id_restaurante, name, image, location, phone, email) VALUES (?,?,?,?,?,?)';
         db.run(sql, [id_restaurante, name, image, location, phone, email], (err) => {
-            if (err) return res.status(500).send(err.message);
-            return res.status(201).send({
+            if (err)  res.status(500).send(err.message);
+             res.status(201).send({
                 message: 'Restaurante adicionado com sucesso',
                 user: {
                     id_restaurante: id_restaurante,
@@ -74,8 +76,9 @@ exports.adicionarRestaurante = (req, res) => {
             });
         });
     } catch (err) {
-        return res.status(500).send({ message: err.message });
+         res.status(500).send({ message: err.message });
     }
+    return;
 };
 
 
@@ -83,38 +86,40 @@ exports.adicionarRestaurante = (req, res) => {
 exports.editarRestaurante = (req, res) => {
     try {
         //se ele for diferente merchant dá erro, se nao executa
-        if (req.body.type != 'merchant') return res.status(406).send({ message: 'Tipo de utilizador inválido ("user"/"driver"/"merchant"/"admin")' });
+        if (req.body.type != 'merchant')  res.status(406).send({ message: 'Tipo de utilizador inválido ("user"/"driver"/"merchant"/"admin")' });
         //alterar restaurante
         let sql = 'UPDATE restaurante set name = ?, image = ?, location = ?, phone = ?, email = ? WHERE  id_restaurante = ?'
         db.get(sql, [name, image, location, phone, email], (err, result) => {
-            if (err) return res.status(500).send(err.message);
-            return res.json(result).send({ message: 'Restaurante editado com sucesso' });
+            if (err)  res.status(500).send(err.message);
+             res.json(result).send({ message: 'Restaurante editado com sucesso' });
 
         });
     } catch (err) {
         return res.status(500).send({ message: err.message });
     }
+    return;
 };
 
 //eliminar restaurante
 exports.eliminarRestaurante = (req, res) => {
     try {
         //se ele for diferente merchant dá erro, se nao executa
-        if (req.body.type != 'merchant') return res.status(406).send({ message: 'Tipo de utilizador inválido ("user"/"driver"/"merchant"/"admin")' });
+        if (req.body.type != 'merchant')  res.status(406).send({ message: 'Tipo de utilizador inválido ("user"/"driver"/"merchant"/"admin")' });
         //verificar se existe
         let sql = 'SELECT id_restaurante FROM restaurante WHERE id_restaurante = ?';
         db.get(sql, [id_restaurante], (err, result) => {
-            if (err) return res.status(500).send(err.message);
-            if (!result) return res.status(409).send({ message: 'Restaurante não existe' });
+            if (err)  res.status(500).send(err.message);
+            if (!result)  res.status(409).send({ message: 'Restaurante não existe' });
         });
         //eliminar restaurante
         let sql1 = 'DELETE * FROM restaurante WHERE id = ?';
         db.get(sql, [req.params.id_restaurante], (err, result) => {
-            if (err) return res.status(500).send(err.message);
+            if (err)  res.status(500).send(err.message);
 
-            return res.json(result);
+             res.json(result);
         });
     } catch (err) {
-        return res.status(500).send({ message: err.message });
+         res.status(500).send({ message: err.message });
     }
+    return;
 };

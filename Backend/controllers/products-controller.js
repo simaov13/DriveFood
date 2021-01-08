@@ -9,13 +9,14 @@ exports.getProducts = (req, res) => {
         let sql = 'SELECT * FROM product';
 
         db.all(sql, [], (err, result) => {
-            if (err) return res.status(500).send(err.message);
+            if (err) res.status(500).send(err.message);
 
-            return res.json(result);
+            res.json(result);
         });
     } catch (err) {
-        return res.status(500).send({ message: err.message });
+        res.status(500).send({ message: err.message });
     }
+    return;
 };
 
 
@@ -26,13 +27,14 @@ exports.getProduct = (req, res) => {
         let sql = 'SELECT * FROM product WHERE id = ?';
 
         db.get(sql, [req.params.id], (err, result) => {
-            if (err) return res.status(500).send(err.message);
+            if (err) res.status(500).send(err.message);
 
-            return res.json(result);
+            res.json(result);
         });
     } catch (err) {
-        return res.status(500).send({ message: err.message });
+        res.status(500).send({ message: err.message });
     }
+    return;
 };
 
 
@@ -55,34 +57,34 @@ exports.adicionarProduto = (req, res) => {
         //base dados
         let sql = 'SELECT name FROM product WHERE name = ?';
         db.get(sql, [name], (err, result) => {
-            if (err) return res.status(500).send(err.message);
-            if (result) return res.status(409).send({ message: 'Produto já existe' });
+            if (err) res.status(500).send(err.message);
+            if (result) res.status(409).send({ message: 'Produto já existe' });
         });
 
         // Verificar se username existe
         //base dados
         sql = 'SELECT username FROM user WHERE username = ?';
         db.get(sql, [username], (err, result) => {
-            if (err) return res.status(500).send(err.message);
-            if (!result) return res.status(409).send({ message: 'Utilizador já registado' });
+            if (err) res.status(500).send(err.message);
+            if (!result) res.status(409).send({ message: 'Utilizador já registado' });
         });
 
         //verificação do id restaurante 
         //base dados
         sql = 'SELECT username FROM user WHERE username = ?';
         db.get(sql, [username], (err, result) => {
-            if (err) return res.status(500).send(err.message);
+            if (err) res.status(500).send(err.message);
             //o id restaurante é igual ao resultado do id restaurante do utilizador 
-            if (result) return id_restaurante = result.id_restaurante;
+            if (result) id_restaurante = result.id_restaurante;
         });
 
 
         // Inserir produto na base dados
         sql = 'INSERT INTO product (id_produto, username, name, desc, image, preco, id_restaurante) VALUES (?,?,?,?,?,?,?)';
         db.run(sql, [id_produto, username, name, desc, image, preco, id_restaurante], (err) => {
-            if (err) return res.status(500).send(err.message);
+            if (err) res.status(500).send(err.message);
 
-            return res.status(201).send({
+            res.status(201).send({
                 //produto criado com sucesso
                 message: 'Produto criado com sucesso!',
                 user: {
@@ -97,8 +99,9 @@ exports.adicionarProduto = (req, res) => {
             });
         });
     } catch (err) {
-        return res.status(500).send({ message: err.message });
+        res.status(500).send({ message: err.message });
     }
+    return;
 };
 
 
@@ -108,12 +111,13 @@ exports.editarProduto = (req, res) => {
         //base dados
         let sql = 'UPDATE product set username = ?, name = ?, desc = ?, image = ?, preco = ?, id_restaurante = ? WHERE  id_produto = ?'
         db.get(sql, [req.params.id], (err, result) => {
-            if (err) return res.status(500).send(err.message);
-            return res.json(result).send({ message: 'Produto editado com sucesso' });
+            if (err) res.status(500).send(err.message);
+            res.json(result).send({ message: 'Produto editado com sucesso' });
         });
     } catch (err) {
-        return res.status(500).send({ message: err.message });
+        res.status(500).send({ message: err.message });
     }
+    return;
 };
 
 
@@ -125,17 +129,18 @@ exports.eliminarProduto = (req, res) => {
         //verificar se existe
         let sql = 'SELECT id_produto FROM product WHERE id_produto = ?';
         db.get(sql, [id_restaurante], (err, result) => {
-            if (err) return res.status(500).send(err.message);
-            if (!result) return res.status(409).send({ message: 'Produto não existe / não encontrado' });
+            if (err) res.status(500).send(err.message);
+            if (!result) res.status(409).send({ message: 'Produto não existe / não encontrado' });
         });
 
         //base dados
         let sql1 = 'DELETE * FROM product WHERE id_produto = ?';
-        db.get(sql, [req.params.id_produto], (err, result) => {
-            if (err) return res.status(500).send(err.message);
-            return res.json(result).send({ message: 'Produto eliminado com sucesso' });
+        db.get(sql1, [req.params.id_produto], (err, result) => {
+            if (err) res.status(500).send(err.message);
+            res.json(result).send({ message: 'Produto eliminado com sucesso' });
         });
     } catch (err) {
-        return res.status(500).send({ message: err.message });
+        res.status(500).send({ message: err.message });
     }
+    return;
 };

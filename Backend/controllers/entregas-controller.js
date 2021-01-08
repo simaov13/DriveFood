@@ -7,13 +7,14 @@ exports.getEntregas = (req, res) => {
         let sql = 'SELECT * FROM deliverie';
 
         db.all(sql, [], (err, result) => {
-            if (err) return res.status(500).send(err.message);
+            if (err) res.status(500).send(err.message);
 
-            return res.json(result);
+            res.json(result);
         });
     } catch (err) {
-        return res.status(500).send({ message: err.message });
+        res.status(500).send({ message: err.message });
     }
+    return;
 };
 
 //procurar uma entrega por id
@@ -23,13 +24,14 @@ exports.getEntrega = (req, res) => {
         let sql = 'SELECT * FROM deliverie WHERE id_deliverie = ?';
 
         db.get(sql, [req.params.id_deliverie], (err, result) => {
-            if (err) return res.status(500).send(err.message);
+            if (err) res.status(500).send(err.message);
 
-            return res.json(result);
+            res.json(result);
         });
     } catch (err) {
-        return res.status(500).send({ message: err.message });
+        res.status(500).send({ message: err.message });
     }
+    return;
 };
 
 
@@ -48,33 +50,33 @@ exports.adicionarEntrega = (req, res) => {
         //base dados
         let sql = 'SELECT id_entrega FROM deliverie WHERE id_entrega = ?';
         db.get(sql, [id_entrega], (err, result) => {
-            if (err) return res.status(500).send(err.message);
-            if (result) return res.status(409).send({ message: 'Entrega já existe' });
+            if (err) res.status(500).send(err.message);
+            if (result) res.status(409).send({ message: 'Entrega já existe' });
         });
 
         // Verificar se username existe
         //base dados
         sql = 'SELECT username FROM user WHERE username = ?';
         db.get(sql, [username], (err, result) => {
-            if (err) return res.status(500).send(err.message);
-            if (!result) return res.status(409).send({ message: 'Utilizador já registado' });
+            if (err) res.status(500).send(err.message);
+            if (!result) res.status(409).send({ message: 'Utilizador já registado' });
         });
 
         //verificação se o restaurante existe
         //base dados
         sql = 'SELECT id_restaurante FROM restaurante WHERE id_restaurante = ?';
         db.get(sql, [id_restaurante], (err, result) => {
-            if (err) return res.status(500).send(err.message);
+            if (err) res.status(500).send(err.message);
             //o id restaurante é igual ao resultado do id restaurante do utilizador 
-            if (result) return id_restaurante = result.id_restaurante;
+            if (result) id_restaurante = result.id_restaurante;
         });
 
 
         // Inserir entrega na base dados
         sql = 'INSERT INTO deliverie (id_produto, username, id_restaurante) VALUES (?,?,?)';
         db.run(sql, [id_produto], (err) => {
-            if (err) return res.status(500).send(err.message);
-            return res.status(201).send({
+            if (err) res.status(500).send(err.message);
+            res.status(201).send({
                 //produto criado com sucesso
                 message: 'Entrega criada com sucesso!',
                 user: {
@@ -85,6 +87,7 @@ exports.adicionarEntrega = (req, res) => {
             });
         });
     } catch (err) {
-        return res.status(500).send({ message: err.message });
+        res.status(500).send({ message: err.message });
     }
+    return;
 };

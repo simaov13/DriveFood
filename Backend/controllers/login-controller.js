@@ -21,7 +21,7 @@ exports.login = (req, res) => {
         //se os campos estiverem prenchidos
         if (!VerificarCampos) {
             db.get(sql, [username], (err, result) => {
-                if (err) return res.status(500).send(err.message);
+                if (err)  res.status(500).send(err.message);
                 //incripta a password
                 if (bcrypt.compareSync(password, result.password)) {
                     //Token
@@ -52,5 +52,6 @@ exports.login = (req, res) => {
     } catch (err) {
         return res.status(500).send({ message: err.message });
     }
+    return;
 };
 
