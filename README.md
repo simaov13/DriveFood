@@ -24,6 +24,6 @@ Ficheiro Route:
     Entregas;
     Restaurantes;
     Produtos;
-    User;
+   
 
   
