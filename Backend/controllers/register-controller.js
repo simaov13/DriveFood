@@ -97,6 +97,7 @@ exports.register = (req, res) => {
                     message: 'Utilizador registado com sucesso',
                     user: {
                         username: username,
+                        name: name,
                         password: hash,
                         email: email,
                         city: city,
@@ -119,6 +120,7 @@ exports.register = (req, res) => {
                     message: 'Utilizador registado com sucesso',
                     user: {
                         username: username,
+                        name: name,
                         email: email,
                         password: hash,
                         address: address,
@@ -141,6 +143,7 @@ exports.register = (req, res) => {
                     message: 'Utilizador registado com sucesso',
                     user: {
                         username: username,
+                        name: name,
                         password: hash,
                         nif: nif,
                         address: address,
