@@ -5,13 +5,14 @@ exports.getUsers = (req, res) => {
         let sql = 'SELECT * FROM user';
 
         db.all(sql, [], (err, result) => {
-            if (err) return res.status(500).send(err.message);
+            if (err) res.status(500).send(err.message);
 
-            return res.json(result);
+            res.json(result);
         });
     } catch (err) {
-        return res.status(500).send({ message: err.message });
+        res.status(500).send({ message: err.message });
     }
+    return;
 };
 
 //Um Administrador por ver um utilizador
@@ -20,13 +21,14 @@ exports.getUser = (req, res) => {
         let sql = 'SELECT * FROM user WHERE username = ?';
 
         db.get(sql, [req.params.username], (err, result) => {
-            if (err) return res.status(500).send(err.message);
+            if (err) res.status(500).send(err.message);
 
-            return res.json(result);
+            res.json(result);
         });
     } catch (err) {
-        return res.status(500).send({ message: err.message });
+        res.status(500).send({ message: err.message });
     }
+    return;
 };
 
 //Um Administrador pode eliminar um utilizador
@@ -35,13 +37,14 @@ exports.eliminarUtilizador = (req, res) => {
         //base dados
         let sql = 'DELETE * FROM user WHERE id = ?';
         db.get(sql, [req.params.id_utilizador], (err, result) => {
-            if (err) return res.status(500).send(err.message);
-            return res.json(result).send({ message: 'Utilizador eliminado com sucesso' });
+            if (err) res.status(500).send(err.message);
+            res.json(result).send({ message: 'Utilizador eliminado com sucesso' });
 
         });
     } catch (err) {
-        return res.status(500).send({ message: err.message });
+        res.status(500).send({ message: err.message });
     }
+    return;
 };
 
 
@@ -51,13 +54,14 @@ exports.getProdutos = (req, res) => {
         let sql = 'SELECT * FROM product';
 
         db.all(sql, [], (err, result) => {
-            if (err) return res.status(500).send(err.message);
+            if (err) res.status(500).send(err.message);
 
-            return res.json(result);
+            res.json(result);
         });
     } catch (err) {
-        return res.status(500).send({ message: err.message });
+        res.status(500).send({ message: err.message });
     }
+    return;
 };
 
 //O administrador tem acesso a todas as encomendas
@@ -66,13 +70,14 @@ exports.getEncomendas = (req, res) => {
         let sql = 'SELECT * FROM order';
 
         db.all(sql, [], (err, result) => {
-            if (err) return res.status(500).send(err.message);
+            if (err) res.status(500).send(err.message);
 
-            return res.json(result);
+            res.json(result);
         });
     } catch (err) {
-        return res.status(500).send({ message: err.message });
+        res.status(500).send({ message: err.message });
     }
+    return;
 };
 
 //O administrador tem acesso a todas as entregas
@@ -81,13 +86,14 @@ exports.getEntregas = (req, res) => {
         let sql = 'SELECT * FROM deliverie';
 
         db.all(sql, [], (err, result) => {
-            if (err) return res.status(500).send(err.message);
+            if (err) res.status(500).send(err.message);
 
-            return res.json(result);
+            res.json(result);
         });
     } catch (err) {
-        return res.status(500).send({ message: err.message });
+        res.status(500).send({ message: err.message });
     }
+    return;
 };
 
 
@@ -97,13 +103,14 @@ exports.getRestaurantes = (req, res) => {
         let sql = 'SELECT * FROM restaurante';
 
         db.all(sql, [], (err, result) => {
-            if (err) return res.status(500).send(err.message);
+            if (err) res.status(500).send(err.message);
 
-            return res.json(result);
+            res.json(result);
         });
     } catch (err) {
-        return res.status(500).send({ message: err.message });
+        res.status(500).send({ message: err.message });
     }
+    return;
 };
 
 //O administrador pode eiminar um restaurante
@@ -112,11 +119,12 @@ exports.eliminarRestaurante = (req, res) => {
         //eliminar restaurante
         let sql = 'DELETE * FROM restaurante WHERE id_restaurante = ?';
         db.get(sql, [req.params.id_restaurante], (err, result) => {
-            if (err) return res.status(500).send(err.message);
+            if (err) res.status(500).send(err.message);
 
-            return res.json(result);
+            res.json(result);
         });
     } catch (err) {
-        return res.status(500).send({ message: err.message });
+        res.status(500).send({ message: err.message });
     }
+    return;
 };
