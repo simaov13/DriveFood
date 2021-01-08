@@ -75,6 +75,10 @@ exports.register = (req, res) => {
             if (type_license != 'am' && type_license != 'a1' && type_license != 'a2' && type_license != 'b') {
                 return res.status(406).send({ message: 'Tipo de veiculo inválido ("am" /"a1" /"a2" /"b" )' })
             }
+             //Seguro de vida
+             if (security != 'sim' && security != 'não') {
+                return res.status(406).send({ message: 'Seguro de vida inválido ("sim" /"não")' });
+            }
         }
         //hash
         let hash = bcrypt.hashSync(password, 10);
