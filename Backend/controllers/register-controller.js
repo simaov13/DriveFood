@@ -42,6 +42,13 @@ exports.register = (req, res) => {
             if (result) return res.status(409).send({ message: 'Email já registado' });
         });
 
+        //verificar se nif ja existe 
+        let sql1 = 'SELECT phone FROM user WHERE phone = ?';
+        db.get(sql, [phone], (err, result) => {
+            if (err) return res.status(500).send(err.message);
+            if (result) return res.status(409).send({ message: 'Telemóvel já registado' });
+        });
+        
         // Verificações
         //Username maior que 5 caracteres
         if (username.length < 5) return res.status(411).send({ message: 'O nome de utilizador tem de ter 5 ou mais caracteres' });
