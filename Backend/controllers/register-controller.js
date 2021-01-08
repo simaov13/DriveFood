@@ -33,48 +33,58 @@ exports.register = (req, res) => {
         let sql = 'SELECT username FROM user WHERE username = ?';
         db.get(sql, [username], (err, result) => {
             if (err) res.status(500).send(err.message);
-            if (result) res.status(409).send({ message: 'Utilizador já registado' });
+            if (result) {
+                res.status(409).send({ message: 'Utilizador já registado' });
+                throw "error";
+            }
         });
 
         // verificar se email ja existe
         let sql1 = 'SELECT email FROM user WHERE email = ?';
         db.get(sql1, [email], (err, result) => {
             if (err) res.status(500).send(err.message);
-            if (result) res.status(409).send({ message: 'Email já registado' });
+            if (result) {
+                res.status(409).send({ message: 'Email já registado' });
+                throw "error";
+            }
         });
 
         //verificar se telemovel ja existe 
         let sql2 = 'SELECT phone FROM user WHERE phone = ?';
         db.get(sql2, [phone], (err, result) => {
             if (err) res.status(500).send(err.message);
-            if (result) res.status(409).send({ message: 'Telemóvel já registado' });
+            if (result) {
+                res.status(409).send({ message: 'Telemóvel já registado' });
+                throw "error";
+            }
         });
 
         //verificar se nif ja existe 
         let sql3 = 'SELECT nif FROM user WHERE nif = ?';
         db.get(sql3, [nif], (err, result) => {
             if (err) res.status(500).send(err.message);
-            if (result) res.status(409).send({ message: 'Nif já registado' });
+            if (result) {
+                res.status(409).send({ message: 'Nif já registado' });
+                throw "error";
+            }
         });
 
         // Verificações
         //Username maior que 5 caracteres
-        if (username.length < 5) return res.status(411).send({ message: 'O nome de utilizador tem de ter 5 ou mais caracteres' });
+        if (username.length < 5) res.status(411).send({ message: 'O nome de utilizador tem de ter 5 ou mais caracteres' });
         //Palavra passe maior que 8 caracteres
-        if (password.length < 8) return res.status(411).send({ message: 'A palavra-passe tem de ter 8 ou mais caracteres' });
+        if (password.length < 8) res.status(411).send({ message: 'A palavra-passe tem de ter 8 ou mais caracteres' });
         //Não pode ser for diferente de 9
-        if (!Number.isInteger(nif) && nif.length != 9) return res.status(406).send({ message: 'NIF inválido' });
+        if (!Number.isInteger(nif) && nif.length != 9) res.status(406).send({ message: 'NIF inválido' });
         //Não pode ser for diferente de 9
-        if (!Number.isInteger(phone) && nif.length != 9) return res.status(406).send({ message: 'Telemovel inválido' });
-        
+        if (!Number.isInteger(phone) && nif.length != 9) res.status(406).send({ message: 'Telemovel inválido' });
         //Diferente de algum utilizador
-        if (type != 'user' && type != 'driver' && type != 'merchant') return res.status(406).send({ message: 'Tipo de utilizador inválido ("user"/"driver"/"merchant"/"admin")' });
+        if (type != 'user' && type != 'driver' && type != 'merchant') res.status(406).send({ message: 'Tipo de utilizador inválido ("user"/"driver"/"merchant"/"admin")' });
         //Se tipo for driver
         if (type === 'driver') {
             //Veiculo Proprio
             if (vehicle != 'sim' && vehicle != 'não') {
                 res.status(406).send({ message: 'Veiculo Próprio inválido ("sim" /"não")' });
-
             }
             //Tipo de carta
             if (type_license != 'am' && type_license != 'a1' && type_license != 'a2' && type_license != 'b') {
@@ -84,13 +94,9 @@ exports.register = (req, res) => {
             if (security != 'sim' && security != 'não') {
                 res.status(406).send({ message: 'Seguro de vida inválido ("sim" /"não")' });
             }
-
         }
         //hash
         let hash = bcrypt.hashSync(password, 10);
-
-
-
 
         //utilizador tipo driver
         if (vehicle != null && type_license != null && phone != null && phone_security != null) {
@@ -143,23 +149,27 @@ exports.register = (req, res) => {
             // Inserir um utilizador User
             sql = 'INSERT INTO user (username, name, password, nif, address, postal_code , email, city, phone, type) VALUES (?,?,?,?,?,?,?,?,?,?)';
             db.run(sql, [username, name, hash, nif, address, postal_code, email, city, phone, type], (err) => {
-                if (err) res.status(500).send(err.message);
-                res.status(201).send({
-                    // Utilizador registado
-                    message: 'Utilizador registado com sucesso',
-                    user: {
-                        username: username,
-                        name: name,
-                        password: hash,
-                        nif: nif,
-                        address: address,
-                        postal_code: postal_code,
-                        email: email,
-                        city: city,
-                        phone: phone,
-                        type: type
-                    },
-                });
+                if (err) {
+                    res.status(500).send(err.message);
+                } else {
+                    res.status(201).send({
+                        // Utilizador registado
+                        message: 'Utilizador registado com sucesso',
+                        user: {
+                            username: username,
+                            name: name,
+                            password: hash,
+                            nif: nif,
+                            address: address,
+                            postal_code: postal_code,
+                            email: email,
+                            city: city,
+                            phone: phone,
+                            type: type
+                        },
+                    });
+                }
+
 
             });
         }
@@ -167,5 +177,7 @@ exports.register = (req, res) => {
         console.log(err);
         res.status(500).send({ message: err.message });
     }
+    db.close();
     return;
+    
 };
