@@ -42,13 +42,20 @@ exports.register = (req, res) => {
             if (result) return res.status(409).send({ message: 'Email já registado' });
         });
 
-        //verificar se nif ja existe 
+        //verificar se telemovel ja existe 
         let sql1 = 'SELECT phone FROM user WHERE phone = ?';
         db.get(sql, [phone], (err, result) => {
             if (err) return res.status(500).send(err.message);
             if (result) return res.status(409).send({ message: 'Telemóvel já registado' });
         });
-        
+
+         //verificar se nif ja existe 
+         let sql1 = 'SELECT nif FROM user WHERE nif = ?';
+         db.get(sql, [nif], (err, result) => {
+             if (err) return res.status(500).send(err.message);
+             if (result) return res.status(409).send({ message: 'Nif já registado' });
+         });
+
         // Verificações
         //Username maior que 5 caracteres
         if (username.length < 5) return res.status(411).send({ message: 'O nome de utilizador tem de ter 5 ou mais caracteres' });
@@ -78,8 +85,8 @@ exports.register = (req, res) => {
         //utilizador tipo driver
         if (vehicle != null && type_license != null && phone != null && phone_security != null) {
             // Inserir um utilizador Driver
-            sql = 'INSERT INTO user (username, email, password, city, phone, phone_security, vehicle, type_license, type) VALUES (?,?,?,?,?,?,?,?,?)';
-            db.run(sql, [username, email, hash, city, phone, phone_security, vehicle, type_license, type], (err) => {
+            sql = 'INSERT INTO user (username,name, email, password, city, phone, phone_security, vehicle, type_license, type) VALUES (?,?,?,?,?,?,?,?,?,?)';
+            db.run(sql, [username, name, email, hash, city, phone, phone_security, vehicle, type_license, type], (err) => {
                 if (err) return res.status(500).send(err.message);
                 return res.status(201).send({
                     // Utilizador registado
@@ -100,8 +107,8 @@ exports.register = (req, res) => {
             });
         } else if (description != null && logo != null && phone != null) {
             // Inserir um utilizador Merchant
-            sql = 'INSERT INTO user (username, email, password, address, city, phone, description, logo, type) VALUES (?,?,?,?,?,?,?,?,?)';
-            db.run(sql, [username, email, hash, address, city, phone, description, logo, type], (err) => {
+            sql = 'INSERT INTO user (username, name, email, password, address, city, phone, description, logo, type) VALUES (?,?,?,?,?,?,?,?,?,?)';
+            db.run(sql, [username,name, email, hash, address, city, phone, description, logo, type], (err) => {
                 if (err) return res.status(500).send(err.message);
                 return res.status(201).send({
                     // Utilizador registado
@@ -122,8 +129,8 @@ exports.register = (req, res) => {
             });
         } else {
             // Inserir um utilizador User
-            sql = 'INSERT INTO user (username, password, nif, address, postal_code , email, city, phone, type) VALUES (?,?,?,?,?,?,?,?,?)';
-            db.run(sql, [username, hash, nif, address, postal_code, email, city, phone, type], (err) => {
+            sql = 'INSERT INTO user (username, name, password, nif, address, postal_code , email, city, phone, type) VALUES (?,?,?,?,?,?,?,?,?,?)';
+            db.run(sql, [username, name, hash, nif, address, postal_code, email, city, phone, type], (err) => {
                 if (err) return res.status(500).send(err.message);
                 return res.status(201).send({
                     // Utilizador registado
