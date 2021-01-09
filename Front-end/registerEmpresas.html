@@ -114,12 +114,13 @@
                     <input class="form-control form-control-sm" id="logo" type="file" />
                 </div>
                 <div class=" column mb-3">
-                    <!--Time-->
-                    <i class="fa fa-clock"></i> <label for="time" class="form-label">Horário</label> <br>
-                    De <input type="time" id="hours-from" required>
-                     Até <input type="time" id="hours-to" required>
+                    <!--Type-->
+                    <i class="fa fa-users"></i> <label class="form-label" for="typeUser">Tipo de Utilizador</label>
+                    <select class="form-control" id="typeUser">
+                        <option value="" disabled selected hidden>Escolha o tipo de utilizador...</option>
+                        <option value="merchant">Empresa</a></option>
+                    </select>
                 </div>
-                
                 <button id="validarEmpresa" class="button_registar">Registar</button>
                 <!--<input type="submit" value="Registar" class="button_registar">-->
                 <br>
