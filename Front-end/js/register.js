@@ -10,6 +10,7 @@ $("#validar").click(function (e) {
         address: $("#address").val(),
         city: $("#city").val(),
         postal_code: $("#postal_code").val(),
+        phone:$("#phone").val(),
         type: $("#typeUser").val()
     };
     /*
@@ -120,6 +121,15 @@ function verifyNif() {
     var nif = document.getElementById("nif").value;
     //verificar nif igual a 9 caracteres
     if (nif.length != 9) {
+        document.getElementById("message").innerHTML = "Só aceitam 9 caracteres";
+        return true;
+    }
+}
+//verificar telemovel 
+function verifyNif() {
+    var nif = document.getElementById("phone").value;
+    //verificar nif igual a 9 caracteres
+    if (phone.length != 9) {
         document.getElementById("message").innerHTML = "Só aceitam 9 caracteres";
         return true;
     }
