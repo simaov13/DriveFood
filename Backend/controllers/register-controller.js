@@ -77,11 +77,13 @@ exports.register = (req, res) => {
         //utilizador tipo driver
         if (vehicle != null && type_license != null && phone_security != null) {
             // Inserir um utilizador Driver
-            sql = 'INSERT INTO user (username,name, email, password, city, phone, phone_security, vehicle, type_license, type) VALUES (?,?,?,?,?,?,?,?,?,?)';
-            db.run(sql, [username, name, email, hash, city, phone, phone_security, vehicle, type_license, type], (err) => {
+            console.log(type);
+            sql = 'INSERT INTO user (username, name, email, password, city, phone, nif, address, postal_code, type) VALUES (?,?,?,?,?,?,?,?,?,?)';
+            db.run(sql, [username, name, email, hash, city, phone, nif, address, postal_code, type], (err) => {
                 if (err) {
                     res.status(500).send(err.message)
                 } else {
+                    sql = 'INSERT INTO driver (phone_Security, vehicle, type_license) VALUES (?,?,?)';
                     res.status(201).send({
                         // Utilizador registado
                         message: 'Utilizador registado com sucesso',
@@ -91,22 +93,27 @@ exports.register = (req, res) => {
                             password: hash,
                             email: email,
                             city: city,
+                            nif: nif,
+                            address: address,
                             phone: phone,
+                            postal_code: postal_code,
                             phone_security: phone_security,
                             vehicle: vehicle,
                             type_license: type_license,
                             type: type
                         },
+
                     });
                 }
             });
-        } else if (description != null && logo != null && phone != null) {
+        } else if (description != null || logo != null) {
             // Inserir um utilizador Merchant
-            sql = 'INSERT INTO user (username, name, email, password, address, city, phone, description, logo, type) VALUES (?,?,?,?,?,?,?,?,?,?)';
-            db.run(sql, [username, name, email, hash, address, city, phone, description, logo, type], (err) => {
+            sql = 'INSERT INTO user (username, name, email, password, address, nif, city, postal_code, phone, type) VALUES (?,?,?,?,?,?,?,?,?,?)';
+            db.run(sql, [username, name, email, hash, address, nif, city, postal_code, phone, type], (err) => {
                 if (err) {
                     res.status(500).send(err.message);
                 } else {
+                    sql = 'INSERT INTO merchant (description, logo) VALUES (?,?)';
                     res.status(201).send({
                         // Utilizador registado
                         message: 'Utilizador registado com sucesso',
@@ -116,7 +123,9 @@ exports.register = (req, res) => {
                             email: email,
                             password: hash,
                             address: address,
+                            postal_code: postal_code,
                             city: city,
+                            nif:nif,
                             phone: phone,
                             description: description,
                             logo: logo,
