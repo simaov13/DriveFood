@@ -1,0 +1,57 @@
+* {
+    box-sizing: border-box;
+  }
+
+  .perfil-form {
+      width: 700px;
+      background-color: #f2f2f2;
+      border-radius: 8px;
+      font-family: "Poppins", sans-serif;
+      border: 1px solid #42464b;
+
+  }
+
+  input[type="text"],
+  input[type="password"],
+  input[type="email"],
+  select,
+  textarea {
+      background: #fff;
+      border-color: 1px solid #42464b;
+  }
+
+  label {
+      color: #000000;
+  }
+
+  input[type="submit"] {
+      all: initial;
+      font-family: "Poppins", sans-serif;
+      text-transform: uppercase;
+      text-align: center;
+      position: relative;
+      width: 70%;
+      height: 4rem;
+      margin: 2rem 0 2.2rem;
+      color: white;
+      background: #000000;
+      border-radius: 3rem;
+      cursor: pointer;
+      overflow: hidden;
+  }
+
+  /*.btn-primary {
+        color: #fff;
+        border-color: #0d6efd;
+        width: 100%;
+    }*/
+
+  .column {
+    float: left;
+    width: 50%;
+    padding: 10px;
+  }
+
+  .img-perfil {
+      border-radius: 50%
+  }
