@@ -1,17 +1,19 @@
 ## Bem Vindo ao nosso GitHub Pages
 
-### Ficheiro Controller
+### Criação do Ficheiros Controllers
 
-Register, Login, Admin, Encomendas, Entregas, Restaurantes, Produtos, User
+Controller: Register, Login, Admin, Encomendas, Entregas, Restaurantes, Produtos, User
 
-### Ficheiro Config
-
-Ligação à base dados
-
-### Ficheiro BD
-
-Base Dados SQLite3.
-
-### Ficheiro Route
+### Criação dos Routers
 
 Chama as funções do controller: Register, Login, Admin, Encomendas, Entregas, Restaurantes, Produtos, User.
+
+### Documentação do Projeto
+## Registar
+. Token
+. Adicionar utilizador tipo cliente.
+. Adicionar utilizador tipo Entregador,
+. Adicionar utilizador tipo Empresa.
+
+## Login
+.token: passa o tipo de utilizador e o id:utilizador
