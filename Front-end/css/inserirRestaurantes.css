@@ -3,7 +3,7 @@
 }
 
 body {
-    background-image: url("../img/food_1.jpg");
+    background-image: url("./img/food_1.jpg");
     background-color: #cccccc;
     background-size: 100%;
 }
@@ -21,7 +21,7 @@ body {
 
 .register-form {
     margin: 0 auto;
-    width: 700px;
+    width: 850px;
     margin-top: 204px;
     background-color: #f2f2f2;
     border-radius: 8px;
