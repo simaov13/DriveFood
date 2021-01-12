@@ -21,7 +21,6 @@ exports.getUsers = (req, res) => {
 exports.getUser = (req, res) => {
     try {
         let sql = 'SELECT * FROM user WHERE username = ?';
-
         db.get(sql, [req.params.username], (err, result) => {
             if (err) {
                 res.status(500).send(err.message);
@@ -39,7 +38,7 @@ exports.getUser = (req, res) => {
 exports.eliminarUtilizador = (req, res) => {
     try {
         //base dados
-        let sql = 'DELETE * FROM user WHERE id_utilizador = ?';
+        let sql = 'DELETE FROM user WHERE id_utilizador = ?';
         db.get(sql, [req.params.id_utilizador], (err, result) => {
             if (err) {
                 res.status(500).send(err.message);
@@ -131,7 +130,7 @@ exports.getRestaurantes = (req, res) => {
 exports.eliminarRestaurante = (req, res) => {
     try {
         //eliminar restaurante
-        let sql = 'DELETE * FROM restaurante WHERE id_restaurante = ?';
+        let sql = 'DELETE FROM restaurante WHERE id_restaurante = ?';
         db.get(sql, [req.params.id_restaurante], (err, result) => {
             if (err) {
                 res.status(500).send(err.message);

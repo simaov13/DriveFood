@@ -144,7 +144,7 @@ exports.eliminarProduto = (req, res) => {
         });
 
         //base dados
-        let sql1 = 'DELETE * FROM product WHERE id_produto = ?';
+        let sql1 = 'DELETE FROM product WHERE id_produto = ?';
         db.get(sql1, [req.params.id_produto], (err, result) => {
             if (err) {
                 res.status(500).send(err.message);
