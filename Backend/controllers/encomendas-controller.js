@@ -42,10 +42,11 @@ exports.adicionarEncomenda = (req, res) => {
         let food_name = req.body.food_name;
         let food_qty = req.body.food_qty;
         let payment_method = req.body.payment_method;
-        let cancel_reason = req.body.cancel_reason;
+        //let cancel_reason = req.body.cancel_reason;
 
         //se ele for diferente user dá erro, se nao executa
-        if (req.body.type != 'user') res.status(406).send({ message: 'Tipo de utilizador inválido ("user"/"driver"/"merchant"/"admin")' });        // Check if order exists
+        if (req.body.type != 'user') res.status(406).send({ message: 'Tipo de utilizador inválido ("user"/"driver"/"merchant"/"admin")' });
+        
 
         //verificar se a encomenda já existe
         let sql = 'SELECT id_order FROM product WHERE id_order = ?';
