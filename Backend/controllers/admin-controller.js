@@ -5,9 +5,11 @@ exports.getUsers = (req, res) => {
         let sql = 'SELECT * FROM user';
 
         db.all(sql, [], (err, result) => {
-            if (err) res.status(500).send(err.message);
-
-            res.json(result);
+            if (err) {
+                res.status(500).send(err.message);
+            } else {
+                res.json(result);
+            }
         });
     } catch (err) {
         res.status(500).send({ message: err.message });
@@ -21,9 +23,11 @@ exports.getUser = (req, res) => {
         let sql = 'SELECT * FROM user WHERE username = ?';
 
         db.get(sql, [req.params.username], (err, result) => {
-            if (err) res.status(500).send(err.message);
-
-            res.json(result);
+            if (err) {
+                res.status(500).send(err.message);
+            } else {
+                res.json(result);
+            }
         });
     } catch (err) {
         res.status(500).send({ message: err.message });
@@ -35,11 +39,13 @@ exports.getUser = (req, res) => {
 exports.eliminarUtilizador = (req, res) => {
     try {
         //base dados
-        let sql = 'DELETE * FROM user WHERE id = ?';
+        let sql = 'DELETE * FROM user WHERE id_utilizador = ?';
         db.get(sql, [req.params.id_utilizador], (err, result) => {
-            if (err) res.status(500).send(err.message);
-            res.json(result).send({ message: 'Utilizador eliminado com sucesso' });
-
+            if (err) {
+                res.status(500).send(err.message);
+            } else {
+                res.json(result).send({ message: 'Utilizador eliminado com sucesso' });
+            }
         });
     } catch (err) {
         res.status(500).send({ message: err.message });
@@ -54,9 +60,11 @@ exports.getProdutos = (req, res) => {
         let sql = 'SELECT * FROM product';
 
         db.all(sql, [], (err, result) => {
-            if (err) res.status(500).send(err.message);
-
-            res.json(result);
+            if (err) {
+                res.status(500).send(err.message);
+            } else {
+                res.json(result);
+            }
         });
     } catch (err) {
         res.status(500).send({ message: err.message });
@@ -70,9 +78,11 @@ exports.getEncomendas = (req, res) => {
         let sql = 'SELECT * FROM order';
 
         db.all(sql, [], (err, result) => {
-            if (err) res.status(500).send(err.message);
-
-            res.json(result);
+            if (err) {
+                res.status(500).send(err.message);
+            } else {
+                res.json(result);
+            }
         });
     } catch (err) {
         res.status(500).send({ message: err.message });
@@ -86,9 +96,11 @@ exports.getEntregas = (req, res) => {
         let sql = 'SELECT * FROM deliverie';
 
         db.all(sql, [], (err, result) => {
-            if (err) res.status(500).send(err.message);
-
-            res.json(result);
+            if (err) {
+                res.status(500).send(err.message);
+            } else {
+                res.json(result);
+            }
         });
     } catch (err) {
         res.status(500).send({ message: err.message });
@@ -103,9 +115,11 @@ exports.getRestaurantes = (req, res) => {
         let sql = 'SELECT * FROM restaurante';
 
         db.all(sql, [], (err, result) => {
-            if (err) res.status(500).send(err.message);
-
-            res.json(result);
+            if (err) {
+                res.status(500).send(err.message);
+            } else {
+                res.json(result);
+            }
         });
     } catch (err) {
         res.status(500).send({ message: err.message });
@@ -119,9 +133,11 @@ exports.eliminarRestaurante = (req, res) => {
         //eliminar restaurante
         let sql = 'DELETE * FROM restaurante WHERE id_restaurante = ?';
         db.get(sql, [req.params.id_restaurante], (err, result) => {
-            if (err) res.status(500).send(err.message);
-
-            res.json(result);
+            if (err) {
+                res.status(500).send(err.message);
+            } else {
+                res.json(result);
+            }
         });
     } catch (err) {
         res.status(500).send({ message: err.message });

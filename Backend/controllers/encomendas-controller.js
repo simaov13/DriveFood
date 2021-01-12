@@ -6,9 +6,12 @@ exports.getEncomendas = (req, res) => {
         //base dados
         let sql = 'SELECT * FROM order';
         db.all(sql, [], (err, result) => {
-            if (err) res.status(500).send(err.message);
+            if (err) {
+                res.status(500).send(err.message);
+            } else {
+                res.json(result);
+            }
 
-            res.json(result);
         });
     } catch (err) {
         res.status(500).send({ message: err.message });
@@ -20,11 +23,13 @@ exports.getEncomendas = (req, res) => {
 exports.getEncomenda = (req, res) => {
     try {
         //base dados
-        let sql = 'SELECT * FROM order WHERE id_order = ?';
+        let sql = 'SELECT * FROM order WHERE id_encomenda = ?';
         db.get(sql, [req.params.id_encomenda], (err, result) => {
-            if (err) res.status(500).send(err.message);
-
-            res.json(result);
+            if (err) {
+                res.status(500).send(err.message);
+            } else {
+                res.json(result);
+            }
         });
     } catch (err) {
         res.status(500).send({ message: err.message });
@@ -46,33 +51,41 @@ exports.adicionarEncomenda = (req, res) => {
 
         //se ele for diferente user dá erro, se nao executa
         if (req.body.type != 'user') res.status(406).send({ message: 'Tipo de utilizador inválido ("user"/"driver"/"merchant"/"admin")' });
-        
+
 
         //verificar se a encomenda já existe
         let sql = 'SELECT id_order FROM product WHERE id_order = ?';
         db.get(sql, [id_order], (err, result) => {
-            if (err) res.status(500).send(err.message);
-            //encomenda existe
-            if (result) res.status(409).send({ message: 'Encomenda já existe' });
+            if (err) {
+                res.status(500).send(err.message);
+            } else {
+                //encomenda existe
+                if (result) {
+                    res.status(409).send({ message: 'Encomenda já existe' });
+                }
+            }
+
         });
 
         // criar uma encomenda
         sql = 'INSERT INTO order (id_encomenda, username, id_restaurante, food_name, food_qty, payment_method) VALUES (?,?,?,?,?,?)';
         db.run(sql, [id_encomenda, username, id_restaurante, food_name, food_qty, payment_method], (err) => {
-            if (err) res.status(500).send(err.message);
-
-            res.status(201).send({
-                //encomenda criada
-                message: 'Encomenda criada com sucesso!',
-                user: {
-                    id_encomenda: id_encomenda,
-                    username: username,
-                    id_restaurante: id_restaurante,
-                    food_name: food_name,
-                    food_qty: food_qty,
-                    payment_method: payment_method
-                },
-            });
+            if (err) {
+                res.status(500).send(err.message);
+            } else {
+                res.status(201).send({
+                    //encomenda criada
+                    message: 'Encomenda criada com sucesso!',
+                    user: {
+                        id_encomenda: id_encomenda,
+                        username: username,
+                        id_restaurante: id_restaurante,
+                        food_name: food_name,
+                        food_qty: food_qty,
+                        payment_method: payment_method
+                    },
+                });
+            }
         });
     } catch (err) {
         res.status(500).send({ message: err.message });
@@ -89,10 +102,12 @@ exports.editarEncomenda = (req, res) => {
         //update encomenda
         let sql = 'UPDATE order set username = ?, id_restaurante = ?, food_name = ?, food_qty = ?, paymenth_method = ? WHERE  id_encomenda = ?'
         db.get(sql, [username, id_restaurante, food_name, food_qty, payment_method], (err, result) => {
-            if (err) res.status(500).send(err.message);
-            //encomenda editada 
-            res.json(result).send({ message: 'Encomenda editada com sucesso' });
-
+            if (err) {
+                res.status(500).send(err.message);
+            } else {
+                //encomenda editada 
+                res.json(result).send({ message: 'Encomenda editada com sucesso' });
+            }
         });
     } catch (err) {
         res.status(500).send({ message: err.message });
@@ -108,33 +123,35 @@ exports.editarEncomenda = (req, res) => {
         //update encomenda
         let sql = 'UPDATE order set username = ?, id_restaurante = ?, food_name = ?, food_qty = ?, paymenth_method = ? WHERE  id_encomenda = ?'
         db.get(sql, [username, id_restaurante, food_name, food_qty, payment_method], (err, result) => {
-            if (err) res.status(500).send(err.message);
-            //encomenda editada 
-            res.json(result).send({ message: 'Encomenda editada com sucesso' });
-
+            if (err) {
+                res.status(500).send(err.message);
+            } else {
+                //encomenda editada 
+                res.json(result).send({ message: 'Encomenda editada com sucesso' });
+            }
         });
     } catch (err) {
         res.status(500).send({ message: err.message });
     }
     return;
 };
-
 
 //eliminar/cancelar emcomenda atraves do utilizador
 exports.eliminarEncomenda = (req, res) => {
     try {
         //se ele for diferente user dá erro, se nao executa
         if (req.body.type != 'user') res.status(406).send({ message: 'Tipo de utilizador inválido ("user"/"driver"/"merchant"/"admin")' });
-
         //Eliminar atraves do id
-        let sql = 'DELETE * FROM encomenda WHERE id = ?';
+        let sql = 'DELETE * FROM encomenda WHERE id_encomenda = ?';
         db.get(sql, [req.params.id_encomenda], (err, result) => {
-            if (err) res.status(500).send(err.message);
-
-            res.status(201).send({
-                //encomenda cancelada
-                message: 'Encomenda cancelada com sucesso'
-            });
+            if (err) {
+                res.status(500).send(err.message);
+            } else {
+                res.status(201).send({
+                    //encomenda cancelada
+                    message: 'Encomenda cancelada com sucesso'
+                });
+            }
         });
     } catch (err) {
         res.status(500).send({ message: err.message });

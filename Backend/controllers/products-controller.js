@@ -111,8 +111,12 @@ exports.editarProduto = (req, res) => {
         //base dados
         let sql = 'UPDATE product set username = ?, name = ?, desc = ?, image = ?, preco = ?, id_restaurante = ? WHERE  id_produto = ?'
         db.get(sql, [req.params.id], (err, result) => {
-            if (err) res.status(500).send(err.message);
-            res.json(result).send({ message: 'Produto editado com sucesso' });
+            if (err) {
+                res.status(500).send(err.message);
+            } else {
+                res.json(result).send({ message: 'Produto editado com sucesso' });
+            }
+
         });
     } catch (err) {
         res.status(500).send({ message: err.message });
@@ -129,15 +133,25 @@ exports.eliminarProduto = (req, res) => {
         //verificar se existe
         let sql = 'SELECT id_produto FROM product WHERE id_produto = ?';
         db.get(sql, [id_restaurante], (err, result) => {
-            if (err) res.status(500).send(err.message);
-            if (!result) res.status(409).send({ message: 'Produto não existe / não encontrado' });
+            if (err) {
+                res.status(500).send(err.message);
+            } else {
+                if (!result) {
+                    res.status(409).send({ message: 'Produto não existe / não encontrado' });
+                }
+            }
+
         });
 
         //base dados
         let sql1 = 'DELETE * FROM product WHERE id_produto = ?';
         db.get(sql1, [req.params.id_produto], (err, result) => {
-            if (err) res.status(500).send(err.message);
-            res.json(result).send({ message: 'Produto eliminado com sucesso' });
+            if (err) {
+                res.status(500).send(err.message);
+            } else {
+                res.json(result).send({ message: 'Produto eliminado com sucesso' });
+            }
+
         });
     } catch (err) {
         res.status(500).send({ message: err.message });
