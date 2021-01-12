@@ -4,6 +4,7 @@ const db = require('../config/sqlite');
 
 //Registar
 exports.register = (req, res) => {
+
     try {
         // req.body
         //user
@@ -25,7 +26,6 @@ exports.register = (req, res) => {
         let description = req.body.description;
         let logo = req.body.logo;
         let approved = 0;
-
         // Verificações
         //Username maior que 5 caracteres
         if (username.length < 5) {
@@ -58,9 +58,9 @@ exports.register = (req, res) => {
             throw "Telemovel inválido";
         }
         //Diferente de algum utilizador
-        if (type != 'user' && type != 'driver' && type != 'merchant') {
+        if (type != 'user' && type != 'driver' && type != 'merchant' && type != 'admin' && type != 'superadmin') {
             res.status(406).send({
-                message: 'Tipo de utilizador inválido ("user"/"driver"/"merchant"/"admin")'
+                message: 'Tipo de utilizador inválido ("user"/"driver"/"merchant"/"admin/superadmin")'
             });
             throw 'Tipo de utilizador inválido';
         }
@@ -85,20 +85,19 @@ exports.register = (req, res) => {
         //hash
         let hash = bcrypt.hashSync(password, 10);
 
-
-
-
         //utilizador tipo driver
         if (vehicle != null && type_license != null && phone_security != null) {
             // Inserir um utilizador Driver
             sql = 'INSERT INTO user (username, name, email, password, city, phone, nif, address, postal_code, type) VALUES (?,?,?,?,?,?,?,?,?,?)';
-            db.run(sql, [username, name, email, hash, city, phone, nif, address, postal_code, type], (err) => {
+            db.run(sql, [username, name, email, hash, city, phone, nif, address, postal_code, type], function (err) {
                 if (err) {
                     res.status(500).send(err.message)
                 } else {
+                    //buscar o ultimo id da tabela user (ultima linha inserida)
+                    var id_utilizador = this.lastID;
                     //inserir na tabela driver
-                    sql1 = 'INSERT INTO driver (phone_security, vehicle, type_license) VALUES (?,?,?)';
-                    db.run(sql, [phone_security, vehicle, type_license], (err) => {
+                    sql1 = 'INSERT INTO driver (phone_security, vehicle, type_license, id_utilizador) VALUES (?,?,?,?)';
+                    db.run(sql1, [phone_security, vehicle, type_license, id_utilizador], function (err) {
                         //se erro
                         if (err) {
                             res.status(500).send(err.message)
@@ -128,16 +127,18 @@ exports.register = (req, res) => {
                 }
             });
         }
-        else if (description != null || logo != null) {
+        else if (type == 'merchant') {
             // Inserir um utilizador Merchant
             sql = 'INSERT INTO user (username, name, email, password, address, nif, city, postal_code, phone, type) VALUES (?,?,?,?,?,?,?,?,?,?)';
-            db.run(sql, [username, name, email, hash, address, nif, city, postal_code, phone, type], (err) => {
+            db.run(sql, [username, name, email, hash, address, nif, city, postal_code, phone, type], function (err) {
                 if (err) {
                     res.status(500).send(err.message);
                 } else {
+                    //buscar o ultimo id da tabela user (ultima linha inserida)
+                    var id_utilizador = this.lastID;
                     //inserir dados na tabela merchant
-                    sql = 'INSERT INTO merchant (description, logo) VALUES (?,?)';
-                    db.run(sql, [description, logo], (err) => {
+                    sql = 'INSERT INTO merchant (description, logo, id_utilizador) VALUES (?,?,?)';
+                    db.run(sql, [description, logo, id_utilizador], function (err) {
                         //se erro
                         if (err) {
                             res.status(500).send(err.message)
@@ -166,9 +167,11 @@ exports.register = (req, res) => {
                 }
             });
         } else {
+            //buscar o ultimo id da tabela user (ultima linha inserida)
+            var id_utilizador = this.lastID;
             // Inserir um utilizador User
             sql = 'INSERT INTO user (username, name, password, nif, address, postal_code , email, city, phone, type) VALUES (?,?,?,?,?,?,?,?,?,?)';
-            db.run(sql, [username, name, hash, nif, address, postal_code, email, city, phone, type], (err) => {
+            db.run(sql, [username, name, hash, nif, address, postal_code, email, city, phone, type], function (err) {
                 //se erro
                 if (err) {
                     res.status(500).send(err.message)
@@ -193,8 +196,37 @@ exports.register = (req, res) => {
                 }
             });
         };
+        //Se for um superAdmin criar um administrador
+        if (type == 'superadmin') {
+            sql = 'INSERT INTO user (username, name, password, nif, address, postal_code , email, city, phone, type) VALUES (?,?,?,?,?,?,?,?,?,?)';
+            db.run(sql, [username, name, hash, nif, address, postal_code, email, city, phone, type], function (err) {
+                //se erro
+                if (err) {
+                    res.status(500).send(err.message)
+                } else {
+                    //se nao cria
+                    res.status(201).send({
+                        // Utilizador registado
+                        message: 'Admin registado com sucesso',
+                        user: {
+                            username: username,
+                            name: name,
+                            password: hash,
+                            nif: nif,
+                            address: address,
+                            postal_code: postal_code,
+                            email: email,
+                            city: city,
+                            phone: phone,
+                            type: type
+                        },
+                    });
+                }
+            });
+        }
     } catch (err) {
         console.log(err);
     }
     return;
 };
+
