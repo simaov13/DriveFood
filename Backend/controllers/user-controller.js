@@ -16,22 +16,37 @@ exports.editarUtilizador = (req, res) => {
             });
         } else if (req.body.type == 'driver') {
             //alterar Condutor
-            let sql = 'UPDATE user set username = ?, name= ?, password = ?, address = ?, postal_code = ?, nif =?, city = ?, phone = ?, email = ?, phone_security =?, vehicle =?, type_license =? WHERE  id_utilizador = ?'
-            db.get(sql, [username,name, password, address, postal_code, nif, city, phone, email, phone_security, vehicle, type_license ], (err, result) => {
+            let sql = 'UPDATE user set username = ?, name= ?, password = ?, address = ?, postal_code = ?, nif =?, city = ?, phone = ?, email = ? WHERE  id_utilizador = ?'
+            db.get(sql, [username, name, password, address, postal_code, nif, city, phone, email], (err, result) => {
                 if (err) {
                     res.status(500).send(err.message);
                 } else {
-                    res.json(result).send({ message: 'Condutor editado com sucesso' });
+                    let sql = 'UPDATE driver set  phone_security =?, vehicle =?, type_license =? WHERE  id_utilizador = ?'
+                    db.get(sql, [phone_security, vehicle, type_license], (err, result) => {
+                        if (err) {
+                            res.status(500).send(err.message);
+                        } else {
+                            res.json(result).send({ message: 'Condutor editado com sucesso' });
+                        }
+                    });
                 }
+
             });
-        }else{
-            //alterar Empresa
-            let sql = 'UPDATE user set username = ?, name =?, password = ?, address = ?, nif =?,postal_code = ?, city = ?, phone = ?, email =?, description =?, logo =? WHERE  id_utilizador = ?'
-            db.get(sql, [username, name, password, address, nif, postal_code, city, phone, email, description, logo], (err, result) => {
+        } else {
+            //alterar Empresa 
+            let sql = 'UPDATE user set username = ?, name =?, password = ?, address = ?, nif, postal_code = ?, city = ?, phone = ?, email =? WHERE  id_utilizador = ?'
+            db.get(sql, [username, name, password, address, postal_code, city, phone, email], (err, result) => {
                 if (err) {
                     res.status(500).send(err.message);
                 } else {
-                    res.json(result).send({ message: 'Empresa editado com sucesso' });
+                    let sql = 'UPDATE merchant set  description =?, logo =? WHERE  id_utilizador = ?'
+                    db.get(sql, [description, logo], (err, result) => {
+                        if (err) {
+                            res.status(500).send(err.message);
+                        } else {
+                            res.json(result).send({ message: 'Empresa editado com sucesso' });
+                        }
+                    });
                 }
             });
         }
