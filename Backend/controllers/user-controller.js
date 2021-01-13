@@ -60,7 +60,7 @@ exports.editarUtilizador = (req, res) => {
         } else {
             //alterar Empresa 
             let sql = 'UPDATE user set username = ?, name =?, password = ?, address = ?, nif = ?, postal_code = ?, city = ?, phone = ?, email =? WHERE  id_utilizador = ?'
-            db.run(sql, [username, name, hash, address,nif, postal_code, city, phone, email, id_utilizador], (err) => {
+            db.run(sql, [username, name, hash, address, nif, postal_code, city, phone, email, id_utilizador], (err) => {
                 if (err) {
                     res.status(500).send(err.message);
                 } else {
@@ -74,6 +74,16 @@ exports.editarUtilizador = (req, res) => {
                     });
                 }
             });
+        } if (type == 'admin') {
+            //alterar utilizador
+            let sql = 'UPDATE user set username = ?, name = ?, password = ?, nif = ?, address = ?, postal_code = ?, city = ?, phone = ?, email =? WHERE  id_utilizador = ?'
+            db.run(sql, [username, name, hash, nif, address, postal_code, city, phone, email, id_utilizador], (err) => {
+                if (err) {
+                    res.status(500).send(err.message);
+                } else {
+                    res.status(200).send({ message: 'Administrador editado com sucesso' });
+                }
+            });
         }
     } catch (err) {
         res.status(500).send({ message: err.message });
@@ -85,16 +95,27 @@ exports.editarUtilizador = (req, res) => {
 exports.eliminarUtilizador = (req, res) => {
     try {
         //se ele for diferente user dá erro, se nao executa
-        if (req.body.type != 'user') res.status(406).send({ message: 'Tipo de utilizador inválido ("user"/"driver"/"merchant/admin/superadmin")' });
-        //eliminar user
-        let sql = 'DELETE FROM user WHERE id_utilizador = ?';
-        db.get(sql, [req.params.id_utilizador], (err, result) => {
-            if (err) {
-                res.status(500).send(err.message);
-            } else {
-                res.status(200).send({ message: 'Utilizador eliminado com sucesso' });
-            }
-        });
+        if (type == 'user') {
+            //eliminar user
+            let sql = 'DELETE FROM user WHERE id_utilizador = ?';
+            db.get(sql, [req.params.id_utilizador], (err, result) => {
+                if (err) {
+                    res.status(500).send(err.message);
+                } else {
+                    res.status(200).send({ message: 'Utilizador eliminado com sucesso' });
+                }
+            });
+        } else if (type == 'admin') {
+            //eliminar user
+            let sql = 'DELETE FROM user WHERE id_utilizador = ?';
+            db.get(sql, [req.params.id_utilizador], (err, result) => {
+                if (err) {
+                    res.status(500).send(err.message);
+                } else {
+                    res.status(200).send({ message: 'Administrador eliminado com sucesso' });
+                }
+            });
+        }
     } catch (err) {
         res.status(500).send({ message: err.message });
     }

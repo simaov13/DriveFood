@@ -206,7 +206,7 @@ exports.register = (req, res) => {
                     //se nao cria
                     res.status(201).send({
                         // Utilizador registado
-                        message: 'Admin registado com sucesso',
+                        message: 'Administrador registado com sucesso',
                         user: {
                             username: username,
                             name: name,
