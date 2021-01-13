@@ -154,7 +154,7 @@ exports.eliminarRestaurante = (req, res) => {
 
         //eliminar restaurante
         let sql1 = 'DELETE FROM restaurante WHERE id_restaurante = ?';
-        db.get(sql, [req.params.id_restaurante], (err, result) => {
+        db.get(sql1, [req.params.id_restaurante], (err, result) => {
             if (err) {
                 res.status(500).send(err.message);
             } else {

@@ -52,7 +52,6 @@ exports.adicionarEncomenda = (req, res) => {
         //se ele for diferente user dá erro, se nao executa
         if (req.body.type != 'user') res.status(406).send({ message: 'Tipo de utilizador inválido ("user"/"driver"/"merchant"/"admin")' });
 
-
         //verificar se a encomenda já existe
         let sql = 'SELECT id_order FROM product WHERE id_order = ?';
         db.get(sql, [id_order], (err, result) => {
@@ -97,37 +96,24 @@ exports.adicionarEncomenda = (req, res) => {
 //editar encomenda
 exports.editarEncomenda = (req, res) => {
     try {
-        //se ele for diferente user dá erro, se nao executa
-        if (req.body.type != 'user') res.status(406).send({ message: 'Tipo de utilizador inválido ("user"/"driver"/"merchant"/"admin")' });        // Check if order exists
-        //update encomenda
-        let sql = 'UPDATE order set username = ?, id_restaurante = ?, food_name = ?, food_qty = ?, paymenth_method = ? WHERE  id_encomenda = ?'
-        db.get(sql, [username, id_restaurante, food_name, food_qty, payment_method], (err, result) => {
-            if (err) {
-                res.status(500).send(err.message);
-            } else {
-                //encomenda editada 
-                res.json(result).send({ message: 'Encomenda editada com sucesso' });
-            }
-        });
-    } catch (err) {
-        res.status(500).send({ message: err.message });
-    }
-    return;
-};
+        // req.body
+        let id_encomenda = req.body.id_encomenda;
+        let username = req.body.username;
+        let id_restaurante = req.body.id_restaurante;
+        let food_name = req.body.food_name;
+        let food_qty = req.body.food_qty;
+        let payment_method = req.body.payment_method;
 
-//editar encomenda
-exports.editarEncomenda = (req, res) => {
-    try {
         //se ele for diferente user dá erro, se nao executa
-        if (req.body.type != 'user') res.status(406).send({ message: 'Tipo de utilizador inválido ("user"/"driver"/"merchant"/"admin")' });        // Check if order exists
+        if (req.body.type != 'user') res.status(406).send({ message: 'Tipo de utilizador inválido ("user"/"driver"/"merchant"/"admin")' });       
         //update encomenda
         let sql = 'UPDATE order set username = ?, id_restaurante = ?, food_name = ?, food_qty = ?, paymenth_method = ? WHERE  id_encomenda = ?'
-        db.get(sql, [username, id_restaurante, food_name, food_qty, payment_method], (err, result) => {
+        db.get(sql, [username, id_restaurante, food_name, food_qty, payment_method, id_encomenda], (err) => {
             if (err) {
                 res.status(500).send(err.message);
             } else {
                 //encomenda editada 
-                res.json(result).send({ message: 'Encomenda editada com sucesso' });
+                res.status(200).send({ message: 'Encomenda editada com sucesso' });
             }
         });
     } catch (err) {
