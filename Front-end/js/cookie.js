@@ -46,7 +46,7 @@ $.ajax({
         setCookie("tokenSession",token,1);
         var urlRedirect = url;
         //redireciona para o index.html
-        window-location.replace(urlRedirect + "index.html");
+        window.location.replace(urlRedirect + "index.html");
     },
     error : function (jqXHR, textStatus, err){
         console.log(jqXHR);
