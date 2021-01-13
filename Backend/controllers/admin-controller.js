@@ -43,7 +43,7 @@ exports.eliminarUtilizador = (req, res) => {
             if (err) {
                 res.status(500).send(err.message);
             } else {
-                res.json(result).send({ message: 'Utilizador eliminado com sucesso' });
+                res.status(200).send({ message: 'Utilizador eliminado com sucesso' });
             }
         });
     } catch (err) {
