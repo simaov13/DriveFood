@@ -4,7 +4,6 @@ const db = require('../config/sqlite');
 
 //Registar
 exports.register = (req, res) => {
-
     try {
         // req.body
         //user
@@ -25,7 +24,7 @@ exports.register = (req, res) => {
         //merchant
         let description = req.body.description;
         let logo = req.body.logo;
-        let approved = 0;
+        
         // Verificações
         //Username maior que 5 caracteres
         if (username.length < 5) {
