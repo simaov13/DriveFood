@@ -8,6 +8,22 @@
     border: 1px solid #42464b;
 }
 
+input[type="submit"] {
+  all: initial;
+  font-family: "Poppins", sans-serif;
+  text-transform: uppercase;
+  text-align: center;
+  position: relative;
+  width: 400px;
+  height: 4rem;
+  color: white;
+  background: #000000;
+  border-radius: 3rem;
+  cursor: pointer;
+  overflow: hidden;
+  border: none;
+}
+
 .tabela_pedido {
     text-align: center;
 }

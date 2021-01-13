@@ -49,41 +49,42 @@
             <h2 align="center">Pedido - #123456789</h2>
             <div style="padding-bottom: 20px; padding-top: 20px;">
             </div>
-            <form class="container" action="#">
-                <div class="table-responsive">
+            <form class="container" method="POST" action="pedidos.html">
+                <div class="table">
                     <table class="tabela_pedido table table-hover">
                         <div class="row">
                             <div class="col-75">
                               <div class="container">
-                                <form action="/action_page.php">
+                                <form>
                                 
                                   <div class="row">
                                     <div class="col-50">
                                       <h3>Detalhes</h3>
                                       <label for="fname"><i class="fa fa-user"></i> Nome</label>
-                                      <input type="text" id="fname" name="firstname" value="Zé António">
+                                      <input type="text" id="fname" name="firstname" value="Zé António" readonly>
                                       <label for="email"><i class="fa fa-envelope"></i> Email</label>
-                                      <input type="text" id="email" name="email" value="zeantonio@gmail.com">
+                                      <input type="text" id="email" name="email" value="zeantonio@gmail.com" readonly>
                                       <label for="adr"><i class="fa fa-home"></i> Morada</label>
-                                      <input type="text" id="adr" name="address" value="Rua do IPCA">
+                                      <input type="text" id="adr" name="address" value="Rua do IPCA" readonly>
                                       <div class="row">
                                         <div class="col-50">
                                         <label for="city"><i class="fa fa-institution"></i> Cidade</label>
-                                          <input type="text" id="state" name="state" value="Braga">
+                                          <input type="text" id="state" name="state" value="Braga" readonly>
                                         </div>
                                         <div class="col-50">
                                           <label for="zip"><i class="fa fa-archive"></i>Código-Postal</label>
-                                          <input type="text" id="zip" name="zip" value="4705-222">
+                                          <input type="text" id="zip" name="zip" value="4705-222" readonly>                                         
                                         </div>
+                                        <a target="_blank" rel="noopener noreferrer" href="https://www.google.com/maps?q=IPCA Barcelos">Ver Localização no Google Maps</a><br>
                                       </div>
                                     </div>
                                   </div>
                                 </form>
                               </div>
-                            </div>
-                            <hr>
+                            </div>               
                             <div>
                               <div class="container">
+                                <hr>
                                 <h4>Produtos <span class="price" style="color:black"><i class="fa fa-shopping-cart"></i> <b style="color:black">4</b></span></h4>
                                 <p><a href="#">Hamburguer</a> <span class="price">15€</span></p>
                                 <p><a href="#">Bebida</a> <span class="price">5€</span></p>
@@ -92,11 +93,12 @@
                                 <hr>
                                 <p>Total <span class="price" style="color:black"><b style="color:black">30€</b></span></p>
                               </div>
-                            </div>
-                          </div>
-                    </table>
+                            </div>                    
+                          </div>                         
+                    </table>                   
                 </div>
-            </form>
+                <center><input type="submit" value="Voltar aos Pedidos" class="button_pedido"></center>                  
+            </form>           
         </div>
     </div>
     <!-- Scripts -->
