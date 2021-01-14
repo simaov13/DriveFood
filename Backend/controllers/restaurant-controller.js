@@ -54,11 +54,12 @@ exports.adicionarRestaurante = (req, res) => {
         let phone = req.body.phone;
         let email = req.body.email;
         let city = req.body.city;
-        let type_restaurante = req.body.type_restaurante;
-
+        let type_restaurant = req.body.type_restaurant;
+        const token = req.headers.authorization.split(' ')[1];
+        var decoded = jwt.verify(token, 'Token');
 
         //Diferente de um tipo de restaurante
-        if (type_restaurante != 'Hamburger' && type_restaurante != 'Pizaria' && type_restaurante != 'Chinês' && type_restaurante != 'Japonês' && type_restaurante != 'Rodizio') {
+        if (type_restaurant != 'Hamburger' && type_restaurant != 'Pizaria' && type_restaurant != 'Chinês' && type_restaurant != 'Japonês' && type_restaurant != 'Rodizio') {
             res.status(406).send({
                 message: 'Tipo de restaurante inválido ("Hamburger"/"Pizaria"/"Chinês"/"Japones"/"Rodizio")'
             });
@@ -66,7 +67,7 @@ exports.adicionarRestaurante = (req, res) => {
         }
 
         //se ele for diferente merchant dá erro, se nao executa
-        if (type == 'merchant') {
+        if (decoded.type == 'merchant') {
             //verificar se restaurante já existe
             let sql = 'SELECT name FROM restaurante WHERE name = ?';
             db.get(sql, [name], (err, result) => {
@@ -80,9 +81,8 @@ exports.adicionarRestaurante = (req, res) => {
 
             });
         }
+
         var id_utilizador = req.params.id_utilizador;
-        const token = req.headers.authorization.split(' ')[1];
-        var decoded = jwt.verify(token, process.env.PRIVATE_KEY);
         //verificar o tipo de utilizador
         if (decoded.type != "merchant") {
             let response = {
@@ -93,8 +93,8 @@ exports.adicionarRestaurante = (req, res) => {
                 }
             }
         } else {
-            sql = 'INSERT INTO restaurante (name, image, address, phone, email,type_restaurante) VALUES (?,?,?,?,?,?)';
-            db.run(sql, [name, image, address, phone, email, type_restaurante], (err) => {
+            sql = 'INSERT INTO restaurante (name, image, address, phone, email,type_restaurant) VALUES (?,?,?,?,?,?)';
+            db.run(sql, [name, image, address, phone, email, type_restaurant], function (err) {
                 if (err) {
                     res.status(500).send(err.message);
                 } else {
@@ -106,14 +106,11 @@ exports.adicionarRestaurante = (req, res) => {
                             address: address,
                             phone: phone,
                             email: email,
-                            type_restaurante: type_restaurante
+                            type_restaurant: type_restaurant
                         },
                     });
                 }
-
             });
-            //typeUser is incorrect
-            res.status(401).json(response)
         }
     } catch (err) {
         res.status(500).send({ message: err.message });
@@ -132,12 +129,25 @@ exports.editarRestaurante = (req, res) => {
         let address = req.body.address;
         let phone = req.body.phone;
         let email = req.body.email;
+        let type_restaurant = req.body.type_restaurant;
+        const token = req.headers.authorization.split(' ')[1];
+        var decoded = jwt.verify(token, 'Token');
 
         //se ele for diferente merchant dá erro, se nao executa
-        if (type == 'merchant') {
+        var id_utilizador = req.params.id_utilizador;
+        //verificar o tipo de utilizador
+        if (decoded.type != "merchant") {
+            let response = {
+                message: "failed",
+                request: {
+                    type: 'GET',
+                    description: 'Obter Informação da Empresa'
+                }
+            }
+        } else {
             //alterar restaurante
-            let sql = 'UPDATE restaurante set name = ?, image = ?, address = ?, phone = ?, email = ? WHERE  id_restaurante = ?'
-            db.get(sql, [name, image, address, phone, email, id_restaurante], (err) => {
+            let sql = 'UPDATE restaurante set name = ?, image = ?, address = ?, phone = ?, email = ?, type_restaurant = ? WHERE  id_restaurante = ?'
+            db.run(sql, [name, image, address, phone, email, type_restaurant, id_restaurante], (err) => {
                 if (err) {
                     res.status(500).send(err.message);
                 } else {
