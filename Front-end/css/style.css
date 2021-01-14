@@ -2172,3 +2172,7 @@ body.is-mobile .banner > article {
         padding: 3rem 0 1rem 0;
     }
 }
+
+#cart_shop {
+    height: 30px;
+}
