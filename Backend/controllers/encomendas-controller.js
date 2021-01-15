@@ -47,7 +47,7 @@ exports.adicionarEncomenda = (req, res) => {
         let food_name = req.body.food_name;
         let food_qty = req.body.food_qty;
         let payment_method = req.body.payment_method;
-        //let cancel_reason = req.body.cancel_reason;
+        //token
         const token = req.headers.authorization.split(' ')[1];
         var decoded = jwt.verify(token, 'Token');
 
@@ -84,9 +84,10 @@ exports.adicionarEncomenda = (req, res) => {
                     description: 'Obter Informação do tipo de utilizador'
                 }
             }
-        } else {// criar uma encomenda
+        } else {
+            // criar uma encomenda
             sql = 'INSERT INTO order (id_encomenda, username, id_restaurante, food_name, food_qty, payment_method) VALUES (?,?,?,?,?,?)';
-            db.run(sql, [id_encomenda, username, id_restaurante, food_name, food_qty, payment_method], (err) => {
+            db.run(sql, [id_encomenda, username, id_restaurante, food_name, food_qty, payment_method], function (err) {
                 if (err) {
                     res.status(500).send(err.message);
                 } else {
@@ -139,7 +140,7 @@ exports.editarEncomenda = (req, res) => {
         } else {
             //update encomenda
             let sql = 'UPDATE order set username = ?, id_restaurante = ?, food_name = ?, food_qty = ?, paymenth_method = ? WHERE  id_encomenda = ?'
-            db.get(sql, [username, id_restaurante, food_name, food_qty, payment_method, id_encomenda], (err) => {
+            db.run(sql, [username, id_restaurante, food_name, food_qty, payment_method, id_encomenda], (err) => {
                 if (err) {
                     res.status(500).send(err.message);
                 } else {
@@ -159,13 +160,14 @@ exports.eliminarEncomenda = (req, res) => {
     try {
         let id_encomenda = req.body.id_encomenda;
         console.log(id_encomenda);
+        //token
         const token = req.headers.authorization.split(' ')[1];
         var decoded = jwt.verify(token, 'Token');
 
         //se ele for diferente merchant dá erro, se nao executa
         var id_utilizador = req.params.id_utilizador;
         //verificar o tipo de utilizador
-        if (decoded.type != "merchant") {
+        if (decoded.type != "user" || decoded.type != "admin") {
             let response = {
                 message: "failed",
                 request: {
@@ -182,7 +184,7 @@ exports.eliminarEncomenda = (req, res) => {
                 } else {
                     res.status(201).send({
                         //encomenda cancelada
-                        message: 'Encomenda cancelada com sucesso'
+                        message: 'Encomenda eliminada com sucesso'
                     });
                 }
             });
