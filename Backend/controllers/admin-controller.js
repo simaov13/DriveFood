@@ -1,4 +1,6 @@
 const db = require('../config/sqlite');
+//inicio do ficheiro
+const jwt = require("jsonwebtoken");
 //Um Administrador pode ver todos os utilizadores
 exports.getUsers = (req, res) => {
     try {
@@ -37,15 +39,29 @@ exports.getUser = (req, res) => {
 //Um Administrador pode eliminar um utilizador
 exports.eliminarUtilizador = (req, res) => {
     try {
-        //base dados
-        let sql = 'DELETE FROM user WHERE id_utilizador = ?';
-        db.get(sql, [req.params.id_utilizador], (err, result) => {
-            if (err) {
-                res.status(500).send(err.message);
-            } else {
-                res.status(200).send({ message: 'Utilizador eliminado com sucesso' });
+        const token = req.headers.authorization.split(' ')[1];
+        var decoded = jwt.verify(token, 'Token');
+        var id_utilizador = req.params.id_utilizador;
+        //verificar o tipo de utilizador
+        if (decoded.type != "admin" || decoded.type != "user") {
+            let response = {
+                message: "failed",
+                request: {
+                    type: 'GET',
+                    description: 'Obter Informação do Utilizador'
+                }
             }
-        });
+        } else {
+            //base dados
+            let sql = 'DELETE FROM user WHERE id_utilizador = ?';
+            db.get(sql, [req.params.id_utilizador], (err, result) => {
+                if (err) {
+                    res.status(500).send(err.message);
+                } else {
+                    res.status(200).send({ message: 'Utilizador eliminado com sucesso' });
+                }
+            });
+        }
     } catch (err) {
         res.status(500).send({ message: err.message });
     }
