@@ -66,6 +66,14 @@ exports.adicionarEncomenda = (req, res) => {
             });
         }
 
+        //Verificar tipo de pagamento
+        if (payment_method != 'dinheiro' && payment_method != 'cartão' && payment_method != 'mbway') {
+            res.status(406).send({
+                message: 'Tipo de pagamento inválido ("dinheiro"/"cartão"/"mbway")'
+            });
+            throw 'Tipo de pagamento inválido';
+        }
+
         var id_utilizador = req.params.id_utilizador;
         //verificar o tipo de utilizador
         if (decoded.type != "admin" || decoded.type != 'user') {
@@ -73,7 +81,7 @@ exports.adicionarEncomenda = (req, res) => {
                 message: "failed",
                 request: {
                     type: 'GET',
-                    description: 'Obter Informação da Empresa'
+                    description: 'Obter Informação do tipo de utilizador'
                 }
             }
         } else {// criar uma encomenda
