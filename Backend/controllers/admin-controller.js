@@ -145,15 +145,32 @@ exports.getRestaurantes = (req, res) => {
 //O administrador pode eiminar um restaurante
 exports.eliminarRestaurante = (req, res) => {
     try {
-        //eliminar restaurante
-        let sql = 'DELETE FROM restaurante WHERE id_restaurante = ?';
-        db.get(sql, [req.params.id_restaurante], (err, result) => {
-            if (err) {
-                res.status(500).send(err.message);
-            } else {
-                res.json(result);
+        let id_restaurante = req.body.id_restaurante;
+        const token = req.headers.authorization.split(' ')[1];
+        var decoded = jwt.verify(token, 'Token');
+
+        //se ele for diferente merchant dá erro, se nao executa
+        var id_utilizador = req.params.id_utilizador;
+        //verificar o tipo de utilizador
+        if (decoded.type != "admin" || decoded.type != "merchant") {
+            let response = {
+                message: "failed",
+                request: {
+                    type: 'GET',
+                    description: 'Obter Informação do Utilizador ou Empresa'
+                }
             }
-        });
+        } else {
+            //eliminar restaurante
+            let sql = 'DELETE FROM restaurante WHERE id_restaurante = ?';
+            db.get(sql, [req.params.id_restaurante], (err, result) => {
+                if (err) {
+                    res.status(500).send(err.message);
+                } else {
+                    res.json(result);
+                }
+            });
+        }
     } catch (err) {
         res.status(500).send({ message: err.message });
     }
