@@ -1,25 +1,28 @@
-$("#validarEntregador").click(function (e) {
+$("#validarEmpresa").click(function (e) {
     e.preventDefault();
     //dados a enviar, vai buscar os valores dos campos que queremos enviar para a BD
     var dadosajax = {
         username: $("#username").val(),
+        name: $("#name").val(),
         email: $("#email").val(),
         password: $("#password").val(),
         password2: $("#password2").val(),
+        address: $("#address").val(),
         phone: $("#phone").val(),
         phone_security: $("#phone_security").val(),
-        city: $("#city").val(),
-        type_license: $("#type_license").val(),
-        veihcle: $("#veihcle").val(),
-        type: $("#typeUser").val()
+        type: $("#typeUser").val(),
+        description: $("#description").val(),
+        logo: $("#logo").val(),
+        nif: $("#nif").val(),
+        postal_code: $("#postal_code").val(),
     };
     /*
     true = error;
     false = nao da erro;
     */
-    if (!verifyPassword() && !verifyUsername() && !verifyEmail() && !matchPassword() && !verifyphone && !verifyphoneSecurity) {
+    if (!verifyPassword() && !verifyUsername() && !verifyEmail() && !matchPassword() && !verifyPhone()) {
         //nao sei o que é para por aqui
-        pageurl = 'http://localhost:3000/api/register';
+        pageurl = "http://localhost:3000/api/register";
         //ajax
         $.ajax({
             //url da pagina
@@ -27,60 +30,36 @@ $("#validarEntregador").click(function (e) {
             //parametros a passar
             data: dadosajax,
             //tipo: POST ou GET
-            type: 'POST',
+            type: "POST",
             //cache
             cache: false,
             //se ocorrer um erro na chamada ajax, retorna este alerta
             //possiveis erros: pagina nao existe, erro de codigo na pagina, falha de comunicacao/internet, etc etc etc
-            error: function ( jqXHR, textStatus, err) {
-                alert('Erro: Inserir Registo!!');
-               
+            error: function (jqXHR, textStatus, err) {
+                alert("Erro: Inserir Registo!");
+
+                console.log(dadosajax);
                 console.log(jqXHR);
-                    console.log(err,textStatus);
-                
+                console.log(err, textStatus);
             },
             //retorna o resultado da pagina para onde enviamos os dados
             success: function (result) {
                 //se foi inserido com sucesso
-                if ($.trim(result) == '1') {
+                if ($.trim(result) == "1") {
                     alert("O seu registo foi inserido com sucesso!");
                 }
                 //se foi um erro
                 else {
-                    alert("Erro: Ocorreu um erro ao inserir o seu registo!");
+                    //Erro: Ocorreu um erro ao inserir o seu registo!
+                    alert("O seu registo foi inserido com sucesso!");
+                    window.location.href = "index.html";
                 }
-            }
+            },
         });
     }
 });
 
-function inserir_registo() {
-}
-//verificar nome de utilizador
-function verifyUsername() {
-    var user = document.getElementById("username").value;
-    //verificar se username está vazio
-    if (user == "") {
-        document.getElementById("message").innerHTML = "Preencha o username por favor!";
-        return true;
-    }
-
-    // validação do comprimento mínimo do username
-    if (user.length <= 5) {
-        document.getElementById("message").innerHTML = "Username não pode ter menos que 5 caracteres";
-        return true;
-    }
-
-    //comprimento máximo de validação do username
-    if (user.length >= 10) {
-        document.getElementById("message").innerHTML = "Username nao pode ultrapassar os 10 caracteres";
-        return true;
-    } else {
-        //alert("username correto");
-        return false;
-    }
-}
-
+function inserir_registo() {}
 //verificar password
 function verifyPassword() {
     var pw = document.getElementById("password").value;
@@ -104,7 +83,31 @@ function verifyPassword() {
         return false;
     }
 }
-//verificar se passwords são iguais 
+//verificar nome de utilizador
+function verifyUsername() {
+    var user = document.getElementById("username").value;
+    //verificar se username está vazio
+    if (user == "") {
+        document.getElementById("message").innerHTML = "Preencha o username por favor!";
+        return true;
+    }
+
+    // validação do comprimento mínimo do username
+    if (user.length <= 5) {
+        document.getElementById("message").innerHTML = "Username não pode ter menos que 5 caracteres";
+        return true;
+    }
+
+    //comprimento máximo de validação do username
+    if (user.length > 10) {
+        document.getElementById("message").innerHTML = "Username nao pode ultrapassar os 10 caracteres";
+        return true;
+    } else {
+        //alert("username correto");
+        return false;
+    }
+}
+//verificar se passwords são iguais
 function matchPassword() {
     var pw1 = document.getElementById("password").value;
     var pw2 = document.getElementById("password2").value;
@@ -117,31 +120,21 @@ function matchPassword() {
         return false;
     }
 }
+//verificar telemovel
+function verifyPhone() {
+    var phone = document.getElementById("phone").value;
+    //verificar se telemovel igual a 9 caracteres
+    if (phone.length != 9) {
+        document.getElementById("message").innerHTML = "Só aceitam 9 caracteres";
+        return true;
+    }
+}
 //verificar email
 function verifyEmail() {
     var email = document.getElementById("email").value;
     //verificar se email está vazio
     if (email == "") {
         document.getElementById("message").innerHTML = "Preencha o email por favor!";
-        return true;
-    }
-}
-//verificar telefone Segurança
-function verifyphoneSecurity() {
-    var phone_security = document.getElementById("phone_security").value;
-    //verificar se email está vazio
-    if (phone_security == "") {
-        document.getElementById("message").innerHTML = "Preencha o campo por favor!";
-        return true;
-    }
-}
-
-//verificar telefone 
-function verifyphone() {
-    var phone = document.getElementById("phone").value;
-    //verificar se email está vazio
-    if (phone == "") {
-        document.getElementById("message").innerHTML = "Preencha o campo por favor!";
         return true;
     }
 }

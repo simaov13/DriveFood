@@ -1,4 +1,4 @@
-$("#validar").click(function (e) {
+$("#validarEmpresa").click(function (e) {
     e.preventDefault();
     //dados a enviar, vai buscar os valores dos campos que queremos enviar para a BD
     var dadosajax = {
@@ -7,18 +7,20 @@ $("#validar").click(function (e) {
         email: $("#email").val(),
         password: $("#password").val(),
         password2: $("#password2").val(),
-        nif: $("#nif").val(),
         address: $("#address").val(),
         city: $("#city").val(),
-        postal_code: $("#postal_code").val(),
         phone: $("#phone").val(),
         type: $("#typeUser").val(),
+        description: $("#description").val(),
+        logo: $("#logo").val(),
+        nif: $("#nif").val(),
+        postal_code: $("#postal_code").val(),
     };
     /*
     true = error;
     false = nao da erro;
     */
-    if (!verifyPassword() && !verifyUsername() && !verifyEmail() && !matchPassword() && !verifyNif() && !verifyPhone()) {
+    if (!verifyPassword() && !verifyUsername() && !verifyEmail() && !matchPassword() && !verifyPhone()) {
         //nao sei o que é para por aqui
         pageurl = "http://localhost:3000/api/register";
         //ajax
@@ -97,7 +99,7 @@ function verifyUsername() {
     }
 
     //comprimento máximo de validação do username
-    if (user.length >= 10) {
+    if (user.length > 10) {
         document.getElementById("message").innerHTML = "Username nao pode ultrapassar os 10 caracteres";
         return true;
     } else {
@@ -116,15 +118,6 @@ function matchPassword() {
         return true;
     } else {
         return false;
-    }
-}
-//verificar nif
-function verifyNif() {
-    var nif = document.getElementById("nif").value;
-    //verificar nif igual a 9 caracteres
-    if (nif.length != 9) {
-        document.getElementById("message").innerHTML = "Só aceitam 9 caracteres";
-        return true;
     }
 }
 //verificar telemovel

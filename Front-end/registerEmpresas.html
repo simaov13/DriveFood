@@ -47,14 +47,24 @@
             <form class="container" action="#">
                 <div class="column mb-3">
                     <!-- username-->
+                    <i class="fa fa-user"></i> <label for="nome" class="form-label">Username</label>
+                    <input type="text" class="form-control" id="username" placeholder="Escreva o username..." required>
+                </div>
+                <div class="column mb-3">
+                    <!-- username-->
                     <i class="fa fa-user"></i> <label for="nome" class="form-label">Nome Empresa</label>
-                    <input type="text" class="form-control" id="username" placeholder="Escreva o nome..." required>
+                    <input type="text" class="form-control" id="name" placeholder="Escreva o nome..." required>
                 </div>
                 <div class="column mb-3">
                     <!-- email-->
                     <i class="fa fa-envelope"></i> <label for="email" class="form-label">Email</label>
                     <input type="email" class="form-control" id="email" placeholder="Escreva o email..."
                         aria-describedby="emailHelp" required>
+                </div>
+                <div class="column mb-3">
+                    <!-- phone-->
+                    <i class="fa fa-phone"></i> <label for="phone" class="form-label">Contacto</label>
+                    <input type="text" class="form-control" id="phone" placeholder="Escreva o número..." required>
                 </div>
                 <div class="column mb-3">
                     <!-- password-->
@@ -65,29 +75,30 @@
                 <div class="column mb-3">
                     <!-- password-->
                     <i class="fa fa-lock"></i> <label for="password" class="form-label">Repetir Password</label>
-                    <input type="password" class="form-control" id="password" placeholder="Repita a password..."
+                    <input type="password" class="form-control" id="password2" placeholder="Repita a password..."
                         required>
-                </div>
-                <div class="column mb-3">
-                    <!-- phone-->
-                    <i class="fa fa-phone"></i> <label for="phone" class="form-label">Contacto</label>
-                    <input type="text" class="form-control" id="phone" placeholder="Escreva o número..." required>
                 </div>
                 <div class="column mb-3">
                     <!-- adress-->
                     <i class="fa fa-home"></i> <label for="adress" class="form-label">Morada</label>
-                    <input type="text" class="form-control" id="adress" placeholder="Escreva a morada..." required>
+                    <input type="text" class="form-control" id="address" placeholder="Escreva a morada..." required>
                 </div>
                 <div class="column mb-3">
                     <!-- city-->
-                    <i class="fa fa-id-card"></i> <label for="nif" class="form-label">Cidade</label>
-                    <input type="text" class="form-control" id="city" placeholder="Escreva a cidade.." required>
+                    <i class="fa fa-archive"></i> <label for="postal_code" class="form-label">Código-Postal</label>
+                    <input type="text" class="form-control" id="postal_code" placeholder="Escreva o código-postal..." required>
+                </div>
+                <div class="column mb-3">
+                    <!-- city-->
+                    <i class="fa fa-building"></i> <label for="nif" class="form-label">Cidade</label>
+                    <input type="text" class="form-control" id="city" placeholder="Escreva a cidade..." required>
                 </div>
                 <div class="column mb-3">
                     <!-- phone-->
-                    <i class="fa fa-phone"></i> <label for="phone" class="form-label">Telemóvel</label>
-                    <input type="text" class="form-control" id="phone" placeholder="Escreva o seu número..." required>
+                    <i class="fa fa-id-card"></i> <label for="nif" class="form-label">Nif</label>
+                    <input type="text" class="form-control" id="nif" placeholder="Escreva o NIF..." required>
                 </div>
+                <br>
                 <div class="mb-3">
                     <!--Description-->
                     <i class="fa fa-align-justify"></i> <label for="description" class="form-label">Descrição</label>
@@ -104,6 +115,7 @@
                     De <input type="time" id="hours-from" required>
                      Até <input type="time" id="hours-to" required>
                 </div>
+                <input type="text" class="form-control" id="typeUser" value="merchant" hidden>
                 
                 <button id="validarEmpresa" class="button_registar">Registar</button>
                 <!--<input type="submit" value="Registar" class="button_registar">-->
@@ -121,7 +133,6 @@
     <script src="./js/skel.min.js"></script>
     <script src="./js/util.js"></script>
     <script src="./js/main.js"></script>
-    <script src="./js/login.js"></script>
     <script src="./js/registerEmpresas.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"
         integrity="sha384-q2kxQ16AaE6UbzuKqyBE9/u/KzioAlnx2maXQHiDX9d4/zp8Ok3f+M7DPm+Ib6IU" crossorigin="anonymous">
