@@ -10,8 +10,8 @@ $("#validar").click(function (e) {
         address: $("#address").val(),
         city: $("#city").val(),
         postal_code: $("#postal_code").val(),
-        phone:$("#phone").val(),
-        type: $("#typeUser").val()
+        phone: $("#phone").val(),
+        type: $("#typeUser").val(),
     };
     /*
     true = error;
@@ -19,7 +19,7 @@ $("#validar").click(function (e) {
     */
     if (!verifyPassword() && !verifyUsername() && !verifyEmail() && !matchPassword() && !verifyNif()) {
         //nao sei o que é para por aqui
-        pageurl = 'http://localhost:3000/api/register';
+        pageurl = "http://localhost:3000/api/register";
         //ajax
         $.ajax({
             //url da pagina
@@ -27,35 +27,33 @@ $("#validar").click(function (e) {
             //parametros a passar
             data: dadosajax,
             //tipo: POST ou GET
-            type: 'POST',
+            type: "POST",
             //cache
             cache: false,
             //se ocorrer um erro na chamada ajax, retorna este alerta
             //possiveis erros: pagina nao existe, erro de codigo na pagina, falha de comunicacao/internet, etc etc etc
-            error: function ( jqXHR, textStatus, err) {
-                alert('Erro: Inserir Registo!!');
-               
+            error: function (jqXHR, textStatus, err) {
+                alert("Erro: Inserir Registo!!");
+
                 console.log(jqXHR);
-                    console.log(err,textStatus);
-                
+                console.log(err, textStatus);
             },
             //retorna o resultado da pagina para onde enviamos os dados
             success: function (result) {
                 //se foi inserido com sucesso
-                if ($.trim(result) == '1') {
+                if ($.trim(result) == "1") {
                     alert("O seu registo foi inserido com sucesso!");
                 }
                 //se foi um erro
                 else {
                     alert("Erro: Ocorreu um erro ao inserir o seu registo!");
                 }
-            }
+            },
         });
     }
 });
 
-function inserir_registo() {
-}
+function inserir_registo() {}
 //verificar password
 function verifyPassword() {
     var pw = document.getElementById("password").value;
@@ -103,7 +101,7 @@ function verifyUsername() {
         return false;
     }
 }
-//verificar se passwords são iguais 
+//verificar se passwords são iguais
 function matchPassword() {
     var pw1 = document.getElementById("password").value;
     var pw2 = document.getElementById("password2").value;
@@ -125,7 +123,7 @@ function verifyNif() {
         return true;
     }
 }
-//verificar telemovel 
+//verificar telemovel
 function verifyNif() {
     var nif = document.getElementById("phone").value;
     //verificar nif igual a 9 caracteres
