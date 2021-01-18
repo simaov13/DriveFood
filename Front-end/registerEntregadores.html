@@ -51,14 +51,24 @@
             <form class="container" action="#">
                 <div class="column mb-3">
                     <!-- username-->
-                    <i class="fa fa-user"></i> <label for="nome" class="form-label">Nome</label>
-                    <input type="text" class="form-control" id="username" placeholder="Escreva o seu nome..." required>
+                    <i class="fa fa-user"></i> <label for="nome" class="form-label">Username</label>
+                    <input type="text" class="form-control" id="username" placeholder="Escreva o username..." required>
+                </div>
+                <div class="column mb-3">
+                    <!-- username-->
+                    <i class="fa fa-user"></i> <label for="nome" class="form-label">Nome Próprio</label>
+                    <input type="text" class="form-control" id="name" placeholder="Escreva o nome..." required>
                 </div>
                 <div class="column mb-3">
                     <!-- email-->
                     <i class="fa fa-envelope"></i> <label for="email" class="form-label">Email</label>
                     <input type="email" class="form-control" id="email" placeholder="Escreva o seu email..."
                         aria-describedby="emailHelp" required>
+                </div>
+                <div class="column mb-3">
+                    <!-- nif-->
+                    <i class="fa fa-id-card"></i> <label for="nif" class="form-label">Nif</label>
+                    <input type="text" class="form-control" id="nif" placeholder="Escreva o NIF..." required>
                 </div>
                 <div class="column mb-3">
                     <!-- password-->
@@ -86,9 +96,18 @@
                 </div>
                 <div class="column mb-3">
                     <!-- city-->
-                    <i class="fa fa-building"></i> <label for="city" class="form-label">Cidade que deseja
-                        trabalhar</label>
+                    <i class="fa fa-building"></i> <label for="city" class="form-label">Morada</label>
+                    <input type="text" class="form-control" id="address" placeholder="Escreva a morada..." required>
+                </div>
+                <div class="column mb-3">
+                    <!-- city-->
+                    <i class="fa fa-building"></i> <label for="nif" class="form-label">Cidade</label>
                     <input type="text" class="form-control" id="city" placeholder="Escreva a cidade..." required>
+                </div>
+                <div class="column mb-3">
+                    <!-- postalcode-->
+                    <i class="fa fa-archive"></i> <label for="postal_code" class="form-label">Código-Postal</label>
+                    <input type="text" class="form-control" id="postal_code" placeholder="Escreva o código-postal..." required>
                 </div>
                 <div class="column mb-3">
                     <!-- type_license-->
@@ -110,10 +129,10 @@
                 <div class="column mb-3">
                     <!-- type_vehicle-->
                     <i class="fa fa-car"></i> <label for="veiculo_pessoal" class="form-label">Tem veiculo pessoal?</label>
-                    <select class="form-control" name="veiculo_pessoal" id="type_vehicle">
+                    <select class="form-control" name="veiculo_pessoal" id="vehicle">
                         <option value="" disabled selected hidden>Por favor escolha...</option>
                         <option value="sim">Sim</option>
-                        <option value="nao">Não</option>
+                        <option value="não">Não</option>
                     </select>
                 </div>
                 <div class="column mb-3">
@@ -121,8 +140,8 @@
                     <i class="fa fa-file-contract"></i></i> <label for="seguro" class="form-label">Tem seguro de entregador?</label>
                     <select class="form-control" name="seguro" id="seguro">
                         <option value="" disabled selected hidden>Por favor escolha...</option>
-                        <option value="S">Sim</option>
-                        <option value="N">Não</option>
+                        <option value="sim">Sim</option>
+                        <option value="não">Não</option>
                     </select>
                 </div>
                 <div class="column mb-3">
@@ -130,6 +149,7 @@
                     <i class="fa fa-upload"></i> <label for="logotipo" class="form-label">Foto de Perfil</label>
                     <input class="form-control form-control-sm" id="logo" type="file" />
                 </div>
+                <input type="text" class="form-control" id="typeUser" value="driver" hidden>
                 <button id="validarEntregador" class="button_registar">Registar</button>
                 <!-- <input type="submit" value="Registar" class="button_registar"> -->
                 <br>
@@ -147,17 +167,16 @@
     <script src="./js/skel.min.js"></script>
     <script src="./js/util.js"></script>
     <script src="./js/main.js"></script>
-    <script src="./js/login.js"></script>
     <script src="./js/registerEntregador.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"
         integrity="sha384-q2kxQ16AaE6UbzuKqyBE9/u/KzioAlnx2maXQHiDX9d4/zp8Ok3f+M7DPm+Ib6IU" crossorigin="anonymous">
-    </script>
+        </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.min.js"
         integrity="sha384-pQQkAEnwaBkjpqZ8RU1fF1AKtTcHJwFl3pblpTlHXybJjHpMYo79HY3hIi4NKxyj" crossorigin="anonymous">
-    </script>
+        </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous">
-    </script>
+        </script>
 
 </body>
 
