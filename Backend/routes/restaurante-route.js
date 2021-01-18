@@ -12,6 +12,6 @@ router.post('/restaurante', restauranteController.adicionarRestaurante);
 //alterar
 router.put('/restaurante/:id_restaurante',restauranteController.editarRestaurante);
 //eliminar
-router.delete('/restaurante/:id_restaurante/:type', restauranteController.eliminarRestaurante);
+router.delete('/restaurante/:id_restaurante', restauranteController.eliminarRestaurante);
 
 module.exports = router;

@@ -81,7 +81,6 @@ exports.adicionarRestaurante = (req, res) => {
 
             });
         }
-
         var id_utilizador = req.params.id_utilizador;
         //verificar o tipo de utilizador
         if (decoded.type != "merchant") {
@@ -163,30 +162,41 @@ exports.editarRestaurante = (req, res) => {
 //eliminar restaurante
 exports.eliminarRestaurante = (req, res) => {
     try {
+        // req.body
+        let id_restaurante = req.body.id_restaurante;
+        const token = req.headers.authorization.split(' ')[1];
+        var decoded = jwt.verify(token, 'Token');
+
         //se ele for diferente merchant dá erro, se nao executa
-        if (req.body.type != 'merchant') {
+        var id_utilizador = req.params.id_utilizador;
+        //verificar o tipo de utilizador
+        if (decoded.type != "merchant") {
+            let response = {
+                message: "failed",
+                request: {
+                    type: 'GET',
+                    description: 'Obter Informação da Empresa'
+                }
+            }
+        } else {
             //verificar se existe
             let sql = 'SELECT id_restaurante FROM restaurante WHERE id_restaurante = ?';
-            db.get(sql, [id_restaurante], (err, result) => {
+            db.get(sql, [id_restaurante], (err) => {
                 if (err) {
-                    res.status(500).send(err.message);
+                    res.status(409).send({ message: 'Restaurante não existe' });
                 } else {
-                    if (!result) {
-                        res.status(409).send({ message: 'Restaurante não existe' });
-                    }
+                    //eliminar restaurante
+                    let sql1 = 'DELETE FROM restaurante WHERE id_restaurante = ?';
+                    db.get(sql1, [req.params.id_restaurante], (err) => {
+                        if (err) {
+                            res.status(500).send(err.message);
+                        } else {
+                            res.status(200).send({ message: 'Restaurante eliminado com sucesso' });
+                        }
+                    });
                 }
             });
         }
-        //eliminar restaurante
-        let sql1 = 'DELETE FROM restaurante WHERE id_restaurante = ?';
-        db.get(sql1, [req.params.id_restaurante], (err, result) => {
-            if (err) {
-                res.status(500).send(err.message);
-            } else {
-                res.json(result);
-            }
-
-        });
     } catch (err) {
         res.status(500).send({ message: err.message });
     }
