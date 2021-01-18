@@ -66,6 +66,11 @@
                         aria-describedby="emailHelp" required>
                 </div>
                 <div class="column mb-3">
+                    <!-- nif-->
+                    <i class="fa fa-id-card"></i> <label for="nif" class="form-label">Nif</label>
+                    <input type="text" class="form-control" id="nif" placeholder="Escreva o NIF..." required>
+                </div>
+                <div class="column mb-3">
                     <!-- password-->
                     <i class="fa fa-lock"></i> <label for="password" class="form-label">Password</label>
                     <input type="password" class="form-control" id="password" placeholder="Escreva a sua password..."
@@ -95,6 +100,16 @@
                     <input type="text" class="form-control" id="address" placeholder="Escreva a morada..." required>
                 </div>
                 <div class="column mb-3">
+                    <!-- city-->
+                    <i class="fa fa-building"></i> <label for="nif" class="form-label">Cidade</label>
+                    <input type="text" class="form-control" id="city" placeholder="Escreva a cidade..." required>
+                </div>
+                <div class="column mb-3">
+                    <!-- postalcode-->
+                    <i class="fa fa-archive"></i> <label for="postal_code" class="form-label">Código-Postal</label>
+                    <input type="text" class="form-control" id="postal_code" placeholder="Escreva o código-postal..." required>
+                </div>
+                <div class="column mb-3">
                     <!-- type_license-->
                     <i class="fa fa-id-card-o"></i> <label for="type_license" class="form-label">Tipo de carta de
                         condução</label>
@@ -114,10 +129,10 @@
                 <div class="column mb-3">
                     <!-- type_vehicle-->
                     <i class="fa fa-car"></i> <label for="veiculo_pessoal" class="form-label">Tem veiculo pessoal?</label>
-                    <select class="form-control" name="veiculo_pessoal" id="type_vehicle">
+                    <select class="form-control" name="veiculo_pessoal" id="vehicle">
                         <option value="" disabled selected hidden>Por favor escolha...</option>
                         <option value="sim">Sim</option>
-                        <option value="nao">Não</option>
+                        <option value="não">Não</option>
                     </select>
                 </div>
                 <div class="column mb-3">
@@ -125,8 +140,8 @@
                     <i class="fa fa-file-contract"></i></i> <label for="seguro" class="form-label">Tem seguro de entregador?</label>
                     <select class="form-control" name="seguro" id="seguro">
                         <option value="" disabled selected hidden>Por favor escolha...</option>
-                        <option value="S">Sim</option>
-                        <option value="N">Não</option>
+                        <option value="sim">Sim</option>
+                        <option value="não">Não</option>
                     </select>
                 </div>
                 <div class="column mb-3">

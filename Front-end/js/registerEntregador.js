@@ -1,4 +1,4 @@
-$("#validarEmpresa").click(function (e) {
+$("#validarEntregador").click(function (e) {
     e.preventDefault();
     //dados a enviar, vai buscar os valores dos campos que queremos enviar para a BD
     var dadosajax = {
@@ -8,11 +8,13 @@ $("#validarEmpresa").click(function (e) {
         password: $("#password").val(),
         password2: $("#password2").val(),
         address: $("#address").val(),
+        city: $("#city").val(),
         phone: $("#phone").val(),
         phone_security: $("#phone_security").val(),
+        type_license: $("#type_license").val(),
+        vehicle: $("#vehicle").val(),
         type: $("#typeUser").val(),
-        description: $("#description").val(),
-        logo: $("#logo").val(),
+        seguro: $("#seguro").val(),
         nif: $("#nif").val(),
         postal_code: $("#postal_code").val(),
     };
