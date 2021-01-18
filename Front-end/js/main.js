@@ -4,6 +4,9 @@
 	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
 */
 
+var data = sessionStorage.getItem('tokenSession');
+console.log(data);
+
 var settings = {
     banner: {
         // Indicators (= the clickable dots at the bottom).
