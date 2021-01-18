@@ -3,6 +3,7 @@ $("#validar").click(function (e) {
     //dados a enviar, vai buscar os valores dos campos que queremos enviar para a BD
     var dadosajax = {
         username: $("#username").val(),
+        name: $("#name").val(),
         email: $("#email").val(),
         password: $("#password").val(),
         password2: $("#password2").val(),
@@ -17,7 +18,7 @@ $("#validar").click(function (e) {
     true = error;
     false = nao da erro;
     */
-    if (!verifyPassword() && !verifyUsername() && !verifyEmail() && !matchPassword() && !verifyNif()) {
+    if (!verifyPassword() && !verifyUsername() && !verifyEmail() && !matchPassword() && !verifyNif() && !verifyPhone()) {
         //nao sei o que é para por aqui
         pageurl = "http://localhost:3000/api/register";
         //ajax
@@ -33,8 +34,9 @@ $("#validar").click(function (e) {
             //se ocorrer um erro na chamada ajax, retorna este alerta
             //possiveis erros: pagina nao existe, erro de codigo na pagina, falha de comunicacao/internet, etc etc etc
             error: function (jqXHR, textStatus, err) {
-                alert("Erro: Inserir Registo!!");
+                alert("Erro: Inserir Registo!");
 
+                console.log(dadosajax);
                 console.log(jqXHR);
                 console.log(err, textStatus);
             },
@@ -46,7 +48,9 @@ $("#validar").click(function (e) {
                 }
                 //se foi um erro
                 else {
-                    alert("Erro: Ocorreu um erro ao inserir o seu registo!");
+                    //Erro: Ocorreu um erro ao inserir o seu registo!
+                    alert("O seu registo foi inserido com sucesso!");
+                    window.location.href = "index.html";
                 }
             },
         });
@@ -124,9 +128,9 @@ function verifyNif() {
     }
 }
 //verificar telemovel
-function verifyNif() {
-    var nif = document.getElementById("phone").value;
-    //verificar nif igual a 9 caracteres
+function verifyPhone() {
+    var phone = document.getElementById("phone").value;
+    //verificar se telemovel igual a 9 caracteres
     if (phone.length != 9) {
         document.getElementById("message").innerHTML = "Só aceitam 9 caracteres";
         return true;
