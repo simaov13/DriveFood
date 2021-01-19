@@ -84,6 +84,8 @@ exports.adicionarEncomenda = (req, res) => {
                     description: 'Obter Informação do tipo de utilizador'
                 }
             }
+            //error
+            res.status(400).send(response);
         } else {
             // criar uma encomenda
             sql = 'INSERT INTO order (id_encomenda, username, id_restaurante, food_name, food_qty, payment_method) VALUES (?,?,?,?,?,?)';
@@ -137,6 +139,8 @@ exports.editarEncomenda = (req, res) => {
                     description: 'Obter Informação do Tipo de utilizador'
                 }
             }
+            //error
+            res.status(400).send(response);
         } else {
             //update encomenda
             let sql = 'UPDATE order set username = ?, id_restaurante = ?, food_name = ?, food_qty = ?, paymenth_method = ? WHERE  id_encomenda = ?'

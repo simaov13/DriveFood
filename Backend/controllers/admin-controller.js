@@ -51,6 +51,8 @@ exports.eliminarUtilizador = (req, res) => {
                     description: 'Obter Informação do Utilizador'
                 }
             }
+            //error
+            res.status(400).send(response);
         } else {
             //base dados
             let sql = 'DELETE FROM user WHERE id_utilizador = ?';
@@ -160,6 +162,8 @@ exports.eliminarRestaurante = (req, res) => {
                     description: 'Obter Informação do Utilizador ou Empresa'
                 }
             }
+            //error
+            res.status(400).send(response);
         } else {
             //eliminar restaurante
             let sql = 'DELETE FROM restaurante WHERE id_restaurante = ?';

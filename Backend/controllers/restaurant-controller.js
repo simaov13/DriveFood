@@ -91,6 +91,8 @@ exports.adicionarRestaurante = (req, res) => {
                     description: 'Obter Informação da Empresa'
                 }
             }
+            //error
+            res.status(400).send(response);
         } else {
             sql = 'INSERT INTO restaurante (name, image, address, phone, email,type_restaurant) VALUES (?,?,?,?,?,?)';
             db.run(sql, [name, image, address, phone, email, type_restaurant], function (err) {
@@ -143,6 +145,8 @@ exports.editarRestaurante = (req, res) => {
                     description: 'Obter Informação da Empresa'
                 }
             }
+            //error
+            res.status(400).send(response);
         } else {
             //alterar restaurante
             let sql = 'UPDATE restaurante set name = ?, image = ?, address = ?, phone = ?, email = ?, type_restaurant = ? WHERE  id_restaurante = ?'
@@ -178,6 +182,8 @@ exports.eliminarRestaurante = (req, res) => {
                     description: 'Obter Informação da Empresa'
                 }
             }
+            //error
+            res.status(400).send(response);
         } else {
             //verificar se existe
             let sql = 'SELECT id_restaurante FROM restaurante WHERE id_restaurante = ?';
