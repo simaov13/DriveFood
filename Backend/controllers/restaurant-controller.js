@@ -80,38 +80,39 @@ exports.adicionarRestaurante = (req, res) => {
                 }
 
             });
-        }
-        var id_utilizador = req.params.id_utilizador;
-        //verificar o tipo de utilizador
-        if (decoded.type != "merchant") {
-            let response = {
-                message: "failed",
-                request: {
-                    type: 'GET',
-                    description: 'Obter Informação da Empresa'
-                }
-            }
-            //error
-            res.status(400).send(response);
         } else {
-            sql = 'INSERT INTO restaurante (name, image, address, phone, email,type_restaurant) VALUES (?,?,?,?,?,?)';
-            db.run(sql, [name, image, address, phone, email, type_restaurant], function (err) {
-                if (err) {
-                    res.status(500).send(err.message);
-                } else {
-                    res.status(201).send({
-                        message: 'Restaurante adicionado com sucesso',
-                        user: {
-                            name: name,
-                            image: image,
-                            address: address,
-                            phone: phone,
-                            email: email,
-                            type_restaurant: type_restaurant
-                        },
-                    });
+            var id_utilizador = req.params.id_utilizador;
+            //verificar o tipo de utilizador
+            if (decoded.type != "merchant") {
+                let response = {
+                    message: "failed",
+                    request: {
+                        type: 'GET',
+                        description: 'Obter Informação da Empresa'
+                    }
                 }
-            });
+                //error
+                res.status(400).send(response);
+            } else {
+                sql = 'INSERT INTO restaurante (name, image, address, phone, email,type_restaurant) VALUES (?,?,?,?,?,?)';
+                db.run(sql, [name, image, address, phone, email, type_restaurant], function (err) {
+                    if (err) {
+                        res.status(500).send(err.message);
+                    } else {
+                        res.status(201).send({
+                            message: 'Restaurante adicionado com sucesso',
+                            user: {
+                                name: name,
+                                image: image,
+                                address: address,
+                                phone: phone,
+                                email: email,
+                                type_restaurant: type_restaurant
+                            },
+                        });
+                    }
+                });
+            }
         }
     } catch (err) {
         res.status(500).send({ message: err.message });
