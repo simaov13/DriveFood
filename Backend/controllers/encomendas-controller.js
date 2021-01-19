@@ -175,6 +175,8 @@ exports.eliminarEncomenda = (req, res) => {
                     description: 'Obter Informação do Tipo de Utilizador'
                 }
             }
+            //error
+            res.status(400).send(response);
         } else {
             //Eliminar atraves do id
             let sql = 'DELETE FROM encomenda WHERE id_encomenda = ?';
