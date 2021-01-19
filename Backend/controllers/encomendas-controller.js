@@ -1,10 +1,14 @@
+const bcrypt = require('bcrypt');
+//base dados
 const db = require('../config/sqlite');
+//inicio do ficheiro
+const jwt = require("jsonwebtoken");
 
 //procurar todas as encomendas
 exports.getEncomendas = (req, res) => {
     try {
         //base dados
-        let sql = 'SELECT * FROM order';
+        let sql = 'SELECT * FROM encomenda';
         db.all(sql, [], (err, result) => {
             if (err) {
                 res.status(500).send(err.message);
@@ -23,7 +27,7 @@ exports.getEncomendas = (req, res) => {
 exports.getEncomenda = (req, res) => {
     try {
         //base dados
-        let sql = 'SELECT * FROM order WHERE id_encomenda = ?';
+        let sql = 'SELECT * FROM encomenda WHERE id_encomenda = ?';
         db.get(sql, [req.params.id_encomenda], (err, result) => {
             if (err) {
                 res.status(500).send(err.message);
@@ -41,19 +45,19 @@ exports.getEncomenda = (req, res) => {
 exports.adicionarEncomenda = (req, res) => {
     try {
         // req.body
-        let id_order = req.body.id_order;
-        let username = req.body.username;
-        let id_restaurante = req.body.id_restaurante;
-        let food_name = req.body.food_name;
-        let food_qty = req.body.food_qty;
+        let id_encomenda = req.body.id_encomenda;
+        let id_utilizador = req.body.id_utilizador;
+        let id_produto = req.body.id_produto;
+        let quantity = req.body.quantity;
         let payment_method = req.body.payment_method;
+        let id_restaurante = req.body.id_restaurante;
         //token
         const token = req.headers.authorization.split(' ')[1];
         var decoded = jwt.verify(token, 'Token');
 
         //verificar se a encomenda já existe
         if (decoded.type == 'user' || decoded.type == 'admin') {
-            let sql = 'SELECT id_order FROM product WHERE id_order = ?';
+            let sql = 'SELECT id_encomenda FROM encomenda WHERE id_encomenda = ?';
             db.get(sql, [id_order], (err, result) => {
                 if (err) {
                     res.status(500).send(err.message);
@@ -65,7 +69,6 @@ exports.adicionarEncomenda = (req, res) => {
                 }
             });
         }
-
         //Verificar tipo de pagamento
         if (payment_method != 'dinheiro' && payment_method != 'cartão' && payment_method != 'mbway') {
             res.status(406).send({
@@ -88,8 +91,8 @@ exports.adicionarEncomenda = (req, res) => {
             res.status(400).send(response);
         } else {
             // criar uma encomenda
-            sql = 'INSERT INTO order (id_encomenda, username, id_restaurante, food_name, food_qty, payment_method) VALUES (?,?,?,?,?,?)';
-            db.run(sql, [id_encomenda, username, id_restaurante, food_name, food_qty, payment_method], function (err) {
+            sql = 'INSERT INTO encomenda (id_encomenda, id_utilizador, id_restaurante, payment_method) VALUES (?,?,?,?)';
+            db.run(sql, [id_encomenda, id_utilizador, id_restaurante, payment_method], function (err) {
                 if (err) {
                     res.status(500).send(err.message);
                 } else {
@@ -98,10 +101,8 @@ exports.adicionarEncomenda = (req, res) => {
                         message: 'Encomenda criada com sucesso!',
                         user: {
                             id_encomenda: id_encomenda,
-                            username: username,
+                            id_utilizador: id_utilizador,
                             id_restaurante: id_restaurante,
-                            food_name: food_name,
-                            food_qty: food_qty,
                             payment_method: payment_method
                         },
                     });
@@ -122,9 +123,8 @@ exports.editarEncomenda = (req, res) => {
         let id_encomenda = req.body.id_encomenda;
         let username = req.body.username;
         let id_restaurante = req.body.id_restaurante;
-        let food_name = req.body.food_name;
-        let food_qty = req.body.food_qty;
         let payment_method = req.body.payment_method;
+        // token e decoded
         const token = req.headers.authorization.split(' ')[1];
         var decoded = jwt.verify(token, 'Token');
 
@@ -143,8 +143,8 @@ exports.editarEncomenda = (req, res) => {
             res.status(400).send(response);
         } else {
             //update encomenda
-            let sql = 'UPDATE order set username = ?, id_restaurante = ?, food_name = ?, food_qty = ?, paymenth_method = ? WHERE  id_encomenda = ?'
-            db.run(sql, [username, id_restaurante, food_name, food_qty, payment_method, id_encomenda], (err) => {
+            let sql = 'UPDATE order set id_utilizador = ?, id_restaurante = ?, paymenth_method = ? WHERE  id_encomenda = ?'
+            db.run(sql, [id_utilizador, id_restaurante, payment_method, id_encomenda], (err) => {
                 if (err) {
                     res.status(500).send(err.message);
                 } else {
@@ -184,11 +184,11 @@ exports.eliminarEncomenda = (req, res) => {
         } else {
             //Eliminar atraves do id
             let sql = 'DELETE FROM encomenda WHERE id_encomenda = ?';
-            db.get(sql, [req.params.id_encomenda], (err, result) => {
+            db.get(sql, [req.params.id_encomenda], (err) => {
                 if (err) {
                     res.status(500).send(err.message);
                 } else {
-                    res.status(201).send({
+                    res.status(200).send({
                         //encomenda cancelada
                         message: 'Encomenda eliminada com sucesso'
                     });

@@ -108,7 +108,7 @@ exports.eliminarUtilizador = (req, res) => {
         } else if (type == 'admin') {
             //eliminar user
             let sql = 'DELETE FROM user WHERE id_utilizador = ?';
-            db.get(sql, [req.params.id_utilizador], (err, result) => {
+            db.get(sql, [req.params.id_utilizador], (err) => {
                 if (err) {
                     res.status(500).send(err.message);
                 } else {

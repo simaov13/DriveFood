@@ -193,11 +193,11 @@ exports.eliminarProduto = (req, res) => {
 
             //eliminar produto
             let sql1 = 'DELETE FROM product WHERE id_produto = ?';
-            db.get(sql1, [req.params.id_produto], (err, result) => {
+            db.get(sql1, [req.params.id_produto], (err) => {
                 if (err) {
                     res.status(500).send(err.message);
                 } else {
-                    res.json(result).send({ message: 'Produto eliminado com sucesso' });
+                    res.status(200).send({ message:  'Produto eliminado com sucesso' });
                 }
 
             });
