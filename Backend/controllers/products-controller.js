@@ -119,7 +119,7 @@ exports.editarProduto = (req, res) => {
         let description = req.body.description;
         let price = req.body.price;
         let logo = req.body.price;
-        let id_restaurante = req.body.id_restaurante;
+        //let id_restaurante = req.body.id_restaurante;
         //token e decoded
         const token = req.headers.authorization.split(' ')[1];
         var decoded = jwt.verify(token, 'Token');

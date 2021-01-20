@@ -15,7 +15,6 @@ exports.getEncomendas = (req, res) => {
             } else {
                 res.json(result);
             }
-
         });
     } catch (err) {
         res.status(500).send({ message: err.message });
@@ -58,7 +57,7 @@ exports.adicionarEncomenda = (req, res) => {
         //verificar se a encomenda já existe
         if (decoded.type == 'user' || decoded.type == 'admin') {
             let sql = 'SELECT id_encomenda FROM encomenda WHERE id_encomenda = ?';
-            db.get(sql, [id_order], (err, result) => {
+            db.get(sql, [id_encomenda], (err, result) => {
                 if (err) {
                     res.status(500).send(err.message);
                 } else {
@@ -69,6 +68,23 @@ exports.adicionarEncomenda = (req, res) => {
                 }
             });
         }
+
+          //verificar se a encomenda já existe
+          if (decoded.type == 'user' || decoded.type == 'admin') {
+            let sql = 'SELECT id_produto FROM product WHERE id_produto = ?';
+            db.get(sql, [id_produto], (err, result) => {
+                if (err) {
+                    res.status(500).send(err.message);
+                } else {
+                    //encomenda existe
+                    if (!result) {
+                        res.status(409).send({ message: 'Produto não existe' });
+                    }
+                }
+            });
+        }
+        
+
         //Verificar tipo de pagamento
         if (payment_method != 'dinheiro' && payment_method != 'cartão' && payment_method != 'mbway') {
             res.status(406).send({
@@ -76,10 +92,9 @@ exports.adicionarEncomenda = (req, res) => {
             });
             throw 'Tipo de pagamento inválido';
         }
-
         //var id_utilizador = req.params.id_utilizador;
         //verificar o tipo de utilizador
-        if (decoded.type != "admin" || decoded.type != 'user') {
+        if (decoded.type != "admin" && decoded.type != 'user') {
             let response = {
                 message: "failed",
                 request: {
@@ -91,8 +106,8 @@ exports.adicionarEncomenda = (req, res) => {
             res.status(400).send(response);
         } else {
             // criar uma encomenda
-            sql = 'INSERT INTO encomenda (id_produto, id_utilizador, id_restaurante, payment_method) VALUES (?,?,?,?)';
-            db.run(sql, [id_produto, id_utilizador, id_restaurante, payment_method], function (err) {
+            sql = 'INSERT INTO encomenda (id_produto, quantity, id_restaurante, payment_method) VALUES (?,?,?,?)';
+            db.run(sql, [id_produto, quantity, id_restaurante, payment_method], function (err) {
                 if (err) {
                     res.status(500).send(err.message);
                 } else {
@@ -102,7 +117,7 @@ exports.adicionarEncomenda = (req, res) => {
                         user: {
                             id_encomenda: id_encomenda,
                             id_produto:id_produto,
-                            id_utilizador: id_utilizador,
+                            quantity: quantity,
                             id_restaurante: id_restaurante,
                             payment_method: payment_method
                         },
@@ -163,16 +178,13 @@ exports.editarEncomenda = (req, res) => {
 //eliminar/cancelar emcomenda atraves do utilizador
 exports.eliminarEncomenda = (req, res) => {
     try {
+        //req id_encomenda
         let id_encomenda = req.body.id_encomenda;
-        console.log(id_encomenda);
         //token
         const token = req.headers.authorization.split(' ')[1];
         var decoded = jwt.verify(token, 'Token');
-
         //se ele for diferente merchant dá erro, se nao executa
-        var id_utilizador = req.params.id_utilizador;
-        //verificar o tipo de utilizador
-        if (decoded.type != "user" || decoded.type != "admin") {
+        if (decoded.type != "user" && decoded.type != "admin") {
             let response = {
                 message: "failed",
                 request: {
