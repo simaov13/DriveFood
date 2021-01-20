@@ -4,8 +4,8 @@ const router = express.Router();
 const entregasController = require('../controllers/entregas-controller');
 
 //todas as entregas
-router.get('/entrega', entregasController.getEntregas);
+router.get('/entregas', entregasController.getEntregas);
 //uma entrega
-router.get('/entrega/:id_deliverie', entregasController.getEntrega);
+router.get('/entrega/:id_entrega', entregasController.getEntrega);
 
 module.exports = router;

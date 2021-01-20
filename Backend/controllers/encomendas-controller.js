@@ -77,7 +77,7 @@ exports.adicionarEncomenda = (req, res) => {
             throw 'Tipo de pagamento inválido';
         }
 
-        var id_utilizador = req.params.id_utilizador;
+        //var id_utilizador = req.params.id_utilizador;
         //verificar o tipo de utilizador
         if (decoded.type != "admin" || decoded.type != 'user') {
             let response = {
@@ -91,8 +91,8 @@ exports.adicionarEncomenda = (req, res) => {
             res.status(400).send(response);
         } else {
             // criar uma encomenda
-            sql = 'INSERT INTO encomenda (id_encomenda, id_utilizador, id_restaurante, payment_method) VALUES (?,?,?,?)';
-            db.run(sql, [id_encomenda, id_utilizador, id_restaurante, payment_method], function (err) {
+            sql = 'INSERT INTO encomenda (id_produto, id_utilizador, id_restaurante, payment_method) VALUES (?,?,?,?)';
+            db.run(sql, [id_produto, id_utilizador, id_restaurante, payment_method], function (err) {
                 if (err) {
                     res.status(500).send(err.message);
                 } else {
@@ -101,6 +101,7 @@ exports.adicionarEncomenda = (req, res) => {
                         message: 'Encomenda criada com sucesso!',
                         user: {
                             id_encomenda: id_encomenda,
+                            id_produto:id_produto,
                             id_utilizador: id_utilizador,
                             id_restaurante: id_restaurante,
                             payment_method: payment_method

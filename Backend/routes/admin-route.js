@@ -6,18 +6,18 @@ const adminController = require('../controllers/admin-controller');
 //admin ve os utilizadores
 router.get('/users', adminController.getUsers);
 //admin ve o utilizador
-router.get('/user/:username', adminController.getUser);
+router.get('/admin/:id_utilizador', adminController.getUser);
 //admin elimina um utilizador.
-router.delete('/user/:id_utilizador', adminController.eliminarUtilizador);
+router.delete('/admin/:id_utilizador', adminController.eliminarUtilizador);
 //admin ve todos os produtos
-router.get('/user/produtos', adminController.getProdutos);
+router.get('/admin/produtos', adminController.getProdutos);
 //admin ve todas as encomendas
-router.get('/user/encomendas', adminController.getEncomendas);
+router.get('/admin/encomendas', adminController.getEncomendas);
 //admin ve todas as entregas
-router.get('/user/entregas', adminController.getEntregas);
+router.get('/admin/entregas', adminController.getEntregas);
 //admin ve todos os restaurantes
-router.get('/user/restaurantes', adminController.getRestaurantes);
+router.get('/admin/restaurantes', adminController.getRestaurantes);
 //admin ve todos os restaurantes
-router.delete('/user/restaurantes/id_restaurante', adminController.eliminarRestaurante);
+router.delete('/admin/restaurantes/id_restaurante', adminController.eliminarRestaurante);
 
 module.exports = router;

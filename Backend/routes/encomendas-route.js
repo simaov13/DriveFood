@@ -4,7 +4,7 @@ const router = express.Router();
 const encomendaController = require('../controllers/encomendas-controller');
 
 //todas as encomendas
-router.get('/encomenda', encomendaController.getEncomendas);
+router.get('/encomendas', encomendaController.getEncomendas);
 //uma encomenda
 router.get('/encomenda/:id_encomenda', encomendaController.getEncomenda);
 //adicionar

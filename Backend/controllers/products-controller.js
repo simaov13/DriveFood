@@ -25,9 +25,9 @@ exports.getProducts = (req, res) => {
 exports.getProduct = (req, res) => {
     try {
         //base dados
-        let sql = 'SELECT * FROM product WHERE id = ?';
+        let sql = 'SELECT * FROM product WHERE id_produto = ?';
 
-        db.get(sql, [req.params.id], (err, result) => {
+        db.get(sql, [req.params.id_produto], (err, result) => {
             if (err) res.status(500).send(err.message);
 
             res.json(result);
@@ -48,15 +48,13 @@ exports.adicionarProduto = (req, res) => {
         let description = req.body.description;
         let price = req.body.price;
         let logo = req.body.price;
-        //define a variavel
-        let id_restaurante;
+        let id_restaurante = req.body.id_restaurante;
         //token / decoded
         const token = req.headers.authorization.split(' ')[1];
         var decoded = jwt.verify(token, 'Token');
 
         //se ele for diferente merchant dá erro, se nao executa
         if (decoded.type == 'merchant') {
-
             // Verificar se produto ja existe
             let sql = 'SELECT id_produto FROM product WHERE id_produto = ?';
             db.get(sql, [id_produto], (err, result) => {
@@ -68,42 +66,43 @@ exports.adicionarProduto = (req, res) => {
                     }
                 }
             });
-        } else {
-            //se ele for diferente merchant dá erro, se nao executa
-            var id_utilizador = req.params.id_utilizador;
-            //verificar o tipo de utilizador
-            if (decoded.type != "merchant") {
-                let response = {
-                    message: "failed",
-                    request: {
-                        type: 'GET',
-                        description: 'Obter Informação da Empresa'
-                    }
+        }
+
+        //se ele for diferente merchant dá erro, se nao executa
+        var id_utilizador = req.params.id_utilizador;
+        //verificar o tipo de utilizador
+        if (decoded.type != "merchant") {
+            let response = {
+                message: "failed",
+                request: {
+                    type: 'POST',
+                    description: 'Obter Informação da Empresa'
                 }
-                //error
-                res.status(400).send(response);
-            } else {
-                // Inserir produto na base dados
-                sql = 'INSERT INTO product (id_produto, name, description, logo, price, id_restaurante) VALUES (?,?,?,?,?,?)';
-                db.run(sql, [id_produto, name, description, logo, price, id_restaurante], function (err) {
-                    if (err) {
-                        res.status(500).send(err.message);
-                    } else {
-                        res.status(201).send({
-                            //produto criado com sucesso
-                            message: 'Produto criado com sucesso!',
-                            user: {
-                                id_produto: id_produto,
-                                name: name,
-                                description: description,
-                                logo: logo,
-                                price: price,
-                                id_restaurante: id_restaurante
-                            },
-                        });
-                    }
-                });
             }
+            //error
+            res.status(400).send(response);
+        } else {
+            // Inserir produto na base dados
+            sql = 'INSERT INTO product (name, description, logo, price, id_restaurante) VALUES (?,?,?,?,?)';
+            db.run(sql, [name, description, logo, price, id_restaurante], function (err) {
+                if (err) {
+                    res.status(500).send(err.message);
+                    console.log(err);
+                } else {
+                    res.status(201).send({
+                        //produto criado com sucesso
+                        message: 'Produto criado com sucesso!',
+                        user: {
+                            id_produto: id_produto,
+                            name: name,
+                            description: description,
+                            logo: logo,
+                            price: price,
+                            id_restaurante: id_restaurante
+                        },
+                    });
+                }
+            });
         }
     } catch (err) {
         res.status(500).send({ message: err.message });
@@ -120,6 +119,7 @@ exports.editarProduto = (req, res) => {
         let description = req.body.description;
         let price = req.body.price;
         let logo = req.body.price;
+        let id_restaurante = req.body.id_restaurante;
         //token e decoded
         const token = req.headers.authorization.split(' ')[1];
         var decoded = jwt.verify(token, 'Token');
@@ -131,7 +131,7 @@ exports.editarProduto = (req, res) => {
             let response = {
                 message: "failed",
                 request: {
-                    type: 'GET',
+                    type: 'PUT',
                     description: 'Obter Informação da Empresa'
                 }
             }
@@ -139,8 +139,8 @@ exports.editarProduto = (req, res) => {
             res.status(400).send(response);
         } else {
             //update ao produto
-            let sql1 = 'UPDATE product set  name = ?, description = ?, logo = ?, price = ? WHERE  id_produto = ?'
-            db.run(sql1, [name, description, logo, price, id_produto], (err) => {
+            let sql = 'UPDATE product set name = ?, description = ?, logo = ?, price = ? WHERE id_produto = ?'
+            db.run(sql, [name, description, logo, price, id_produto], (err) => {
                 if (err) {
                     res.status(500).send(err.message);
                 } else {
@@ -158,7 +158,6 @@ exports.editarProduto = (req, res) => {
 //procura o id 
 exports.eliminarProduto = (req, res) => {
     try {
-
         // req.body
         let id_produto = req.body.id_produto;
         //token e decoded
@@ -188,18 +187,15 @@ exports.eliminarProduto = (req, res) => {
                         res.status(409).send({ message: 'Produto não encontrado' });
                     }
                 }
-
             });
-
             //eliminar produto
             let sql1 = 'DELETE FROM product WHERE id_produto = ?';
             db.get(sql1, [req.params.id_produto], (err) => {
                 if (err) {
                     res.status(500).send(err.message);
                 } else {
-                    res.status(200).send({ message:  'Produto eliminado com sucesso' });
+                    res.status(200).send({ message: 'Produto eliminado com sucesso' });
                 }
-
             });
         }
     } catch (err) {

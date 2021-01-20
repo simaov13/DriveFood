@@ -10,7 +10,7 @@ router.get('/produto/:id_produto', produtosController.getProduct);
 //adiocionar
 router.post('/produto', produtosController.adicionarProduto);
 //alterar
-router.put('/produto/:name', produtosController.editarProduto);
+router.put('/produto/:id_produto', produtosController.editarProduto);
 //Eliminar
 router.delete('/produto/:id_produto', produtosController.eliminarProduto);
 
