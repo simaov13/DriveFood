@@ -1,6 +1,7 @@
 const bcrypt = require('bcrypt');
 const db = require('../config/sqlite');
-
+//inicio do ficheiro
+const jwt = require("jsonwebtoken");
 
 //Registar
 exports.register = (req, res) => {
@@ -195,8 +196,23 @@ exports.register = (req, res) => {
                 }
             });
         };
-        //Se for um superAdmin criar um administrador
-        if (type == 'superadmin') {
+        const token = req.headers.authorization.split(' ')[1];
+        var decoded = jwt.verify(token, 'Token');
+        //se ele for diferente merchant dá erro, se nao executa
+        var id_utilizador = req.params.id_utilizador;
+        //verificar o tipo de utilizador
+        if (decoded.type != "superadmin") {
+            let response = {
+                message: "failed",
+                request: {
+                    type: 'GET',
+                    description: 'Obter Informação da Empresa'
+                }
+            }
+            //error
+            res.status(400).send(response);
+        } else {
+            //inserir administrador
             sql = 'INSERT INTO user (username, name, password, nif, address, postal_code , email, city, phone, type) VALUES (?,?,?,?,?,?,?,?,?,?)';
             db.run(sql, [username, name, hash, nif, address, postal_code, email, city, phone, type], function (err) {
                 //se erro
@@ -222,7 +238,7 @@ exports.register = (req, res) => {
                     });
                 }
             });
-        }
+        };
     } catch (err) {
         console.log(err);
     }
