@@ -21,3 +21,18 @@
     padding: 10px;
     color: green;
 }
+
+#entregue {
+    background-color: green;
+    color: white;
+}
+
+#pendente {
+    background-color: yellow;
+    color: black;
+}
+
+#recusado {
+    background-color: red;
+    color: white;
+}
