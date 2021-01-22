@@ -150,6 +150,7 @@ exports.editarProduto = (req, res) => {
         let description = req.body.description;
         let price = req.body.price;
         let logo = req.body.price;
+        let id_restaurante = req.body.id_restaurante;
         //let id_restaurante = req.body.id_restaurante;
         //token e decoded
         const token = req.headers.authorization.split(' ')[1];
@@ -171,8 +172,8 @@ exports.editarProduto = (req, res) => {
             throw "err";
         } else {
             //update ao produto
-            let sql = 'UPDATE product set name = ?, description = ?, logo = ?, price = ? WHERE id_produto = ?'
-            db.run(sql, [name, description, logo, price, id_produto], (err) => {
+            let sql = 'UPDATE product set name = ?, description = ?, logo = ?, price = ? , id_restaurante = ? WHERE id_produto = ?'
+            db.run(sql, [name, description, logo, price, id_restaurante , id_produto], (err) => {
                 if (err) {
                     res.status(500).send(err.message);
                 } else {
