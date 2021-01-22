@@ -99,3 +99,17 @@ Foi criado apenas um superadmin e será o único a permitir a criação de admin
 <p> URL</h2><h2>Criar Utilizador Cliente<p>
 <br>
 <p>localhost:3000/api/register</p>
+  
+     **Status:** `201 CREATED` <br />
+   ```json
+  {
+     "message": "Cliente registado com sucesso!",
+     "data": {
+        "id": 1,
+        "name": "a",
+        "email": "a@picand.go",
+        "type": 1
+     },
+     "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTIsIm5hbWUiOiJhIiwiZW1haWwiOiJhQHBpY2FuZC5nbyIsInR5cGUiOjEsImlhdCI6MTYwOTY0NzUxMywiZXhwIjoxNjA5NzMzOTEzfQ.GXFDN99-TdOuUo4bGd71g1SgI7GKgynkH4OlHXg9O0w"
+  }
+   ```
