@@ -66,22 +66,22 @@ Aplicação de Venda de Produtos Alimentares
 </ul>
 
 -------------------------------------------------------------
-<h1>Login e Register</h1>
+## Login e Register
 <br />
-<p>Esta coleção terá os requests relacionados com o iniciar sessão (login) e registar utilizadores (register).<p>
+Esta coleção terá os requests relacionados com o iniciar sessão (login) e registar utilizadores (register).
 
-<h1>SuperAdmin</h1>
+## SuperAdmin</h1>
 <br />
-<p>As funções dentro desta pasta só podem ser executadas pelos utilizador do tipo "superadmin".
-Foi criado apenas um superadmin e será o único a permitir a criação de administradores.</p>
+As funções dentro desta pasta só podem ser executadas pelos utilizador do tipo "superadmin".
+Foi criado apenas um superadmin e será o único a permitir a criação de administradores.
 
-<h2> POST</h2><h2>Login<h2>
+## POST Login
 <br>
-<p>Este request é para iniciar sessão.</p>
-<p>Campos obrigatórios:</p>
+Este request é para iniciar sessão
+Campos obrigatórios:
 <ul>
-    <li>Username: Nome do Utilizador(Aceita texto)</li>
-    <li>Password: Password do Utilizador(Aceita texto)</li>
+    Username: Nome do Utilizador(Aceita texto)</li>
+    Password: Password do Utilizador(Aceita texto)</li>
 </ul>
 <br>
 <p> URL</h2><h2>Criar Utilizador Cliente<p>
