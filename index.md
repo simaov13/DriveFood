@@ -110,9 +110,9 @@ _____________________________________________________
 - [x] type: text
 
 <br />
-**URl**
+URl <br />
    localhost:3000/api/register <br />  
-**Sucesso:**
+Sucesso:
 **Status:** `201 CREATED` <br />
 
 ```json
@@ -142,13 +142,14 @@ if (err) {
 _____________________________________________
 
 ### Registar Utilizador tipo Condutor <br /><br />
-**Descrição:**
+
    `Registar um utilizador tipo Condutor.`
 <br />
  **Método:**
    `POST`
 <br />
-**Body [raw]:** 
+
+ **Body [raw]:** 
 
 - [x] id_utilizador: integer
 - [x] username: text
@@ -165,9 +166,8 @@ _____________________________________________
 - [x] vehicle: text,
 - [x] type: text
 
-
 <br />
- **URl**
+   **URl** <br />
    localhost:3000/api/register <br /> 
    **Status:** `201 CREATED` <br />
 
@@ -202,10 +202,10 @@ ___________________________________________
 
 ###  Registar Utilizador tipo Empresa <br /><br />
  **Descrição:**
-   Registar um utilizador tipo Empresa.
+   `Registar um utilizador tipo Empresa.`
 <br />
  **Método:**
-   POST
+   `POST`
 <br />
  **Body [raw]:**
 <br />
@@ -225,9 +225,9 @@ ___________________________________________
 
 <br />
 
- **URl**
+   **URl** <br />
    localhost:3000/api/register <br /> 
-   **Status:** `201 CREATED` <br /
+   **Status:** `201 CREATED` <br />
    
 ```json
 {
