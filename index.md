@@ -92,25 +92,67 @@ Foi criado apenas um superadmin e será o único a permitir a criação de admin
 <br>
 <img align="right" src="login.png" alt="login" width="500" height="auto">
 
+<br />
 
-<h2> POST</h2><h2>Criar Utilizador Cliente<h2>
-<br>
-<p>Este request é para criar um cliente.</p>
-<br>
-<p> URL</h2><h2>Criar Utilizador Cliente<p>
-<br>
-<p>localhost:3000/api/register</p>
-  
+_____________________________________________
+
+<br />
+
+### / Registar Utilizador tipo Cliente <br /><br />
+
+* **Descrição:**
+   `Registar um cliente.`
+<br />
+* **Método:**
+   `POST`
+<br />
+* **Body [raw]:**   
+   `id_utilizador: integer`\
+   `username: text`\
+   `password: text`\
+   `name: text`\
+   `nif: numeric`\
+   `email: text`\
+   `phone: integer`\
+   `address: text`\
+   `city: text`\
+   `postal_code: integer`\
+   `type: text`\
+<br />
+   * **URl**
+   `localhost:3000/api/register`
+<br />  
+  ```json
+{
+     "username": "testefinal",
+     "name": "testefinal",
+     "password": "passteste",
+     "email":"testefinal@testeUser.com",
+     "city":"Barcelos",
+     "nif": 145678270,
+     "address":"Rua Principal, IPCA",
+     "phone": 967845376,
+     "postal_code": "4775-333",
+     "type" : "user"
+}
+   ```
+<br />
+
      **Status:** `201 CREATED` <br />
    ```json
-  {
-     "message": "Cliente registado com sucesso!",
-     "data": {
-        "id": 1,
-        "name": "a",
-        "email": "a@picand.go",
-        "type": 1
-     },
-     "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTIsIm5hbWUiOiJhIiwiZW1haWwiOiJhQHBpY2FuZC5nbyIsInR5cGUiOjEsImlhdCI6MTYwOTY0NzUxMywiZXhwIjoxNjA5NzMzOTEzfQ.GXFDN99-TdOuUo4bGd71g1SgI7GKgynkH4OlHXg9O0w"
-  }
+{
+    "message": "Cliente registado com sucesso",
+    "user": {
+        "username": "testefinal",
+        "name": "testefinal",
+        "password": "$2b$10$j2XKXKmlmGGORckBUIOuEu4bFljlo76TWgVyKMSfsXXWRDsm6csAi",
+        "nif": 145678270,
+        "address": "Rua Principal, IPCA",
+        "postal_code": "4775-333",
+        "email": "testefinal@testeUser.com",
+        "city": "Barcelos",
+        "phone": 967845376,
+        "type": "user"
+    }
+}
    ```
