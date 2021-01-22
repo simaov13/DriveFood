@@ -1,14 +1,14 @@
 ## DriveFood
 Aplicação de Venda de Produtos Alimentares
-<br>
+<br />
 -----------------------------------------------------
-<br>
-<br>
+<br />
+<br />
 <img align="center" src="drive_food1.png" alt="DriveFood" width="200" height="auto">
 
-<h1> REST API - Documentação </h1>
+### REST API - Documentação 
 
-<h2>Rotas</h2>
+### Rotas
 <ul>
   <li>Admin-route</li>
   <li>Encomenda-route</li>
@@ -22,7 +22,7 @@ Aplicação de Venda de Produtos Alimentares
 
 ------------------------------------------------------------
 
-<h2>Controller</h2>
+ ### Controller
 <ul>
   <li>Admin-controller</li>
   <li>Encomenda-controller</li>
@@ -36,28 +36,28 @@ Aplicação de Venda de Produtos Alimentares
 
 ------------------------------------------------------------
 
-<h2>Config</h2>
+### Config
 <ul>
     <li>Ficheiro sqlite</li>
 </ul>
 
 ------------------------------------------------------------
 
-<h2>Db</h2>
+### Db
 <ul>
     <li>Ficheiro drivefood</li>
 </ul>
 
 ------------------------------------------------------------
 
-<h2>Node_Modules</h2>
+### Node_Modules
 <ul>
     <li>Ficheiros node_modules</li>
 </ul>
 
 ------------------------------------------------------------
 
-<h2>Backend</h2>
+### Backend
 <ul>
     <li>Ficheiro app</li>
     <li>Ficheiro package</li>
@@ -208,7 +208,9 @@ ___________________________________________
    `POST`
 <br />
  **Body [raw]:**
+ 
 <br />
+
 - [x] id_utilizador: integer  <br />
 - [x] name: text 
 - [x] username: text 
@@ -266,6 +268,7 @@ ___________________________________________
 <br />
  **Body [raw]:**   
 <ul>
+  
 - [x] id_utilizador: integer
 - [x] name: text
 - [x] username: text
@@ -277,7 +280,9 @@ ___________________________________________
 - [x] address: text
 - [x] city: text
 - [x] type: text
+
 </ul>
+
 <br />
 
  **URl** <br />
