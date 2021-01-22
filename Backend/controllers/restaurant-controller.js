@@ -55,6 +55,7 @@ exports.adicionarRestaurante = (req, res) => {
         let email = req.body.email;
         let city = req.body.city;
         let type_restaurant = req.body.type_restaurant;
+        //token
         const token = req.headers.authorization.split(' ')[1];
         var decoded = jwt.verify(token, 'Token');
 
@@ -69,8 +70,8 @@ exports.adicionarRestaurante = (req, res) => {
         //se ele for diferente merchant dá erro, se nao executa
         if (decoded.type == 'merchant') {
             //verificar se restaurante já existe
-            let sql = 'SELECT name FROM restaurante WHERE name = ?';
-            db.get(sql, [name], (err, result) => {
+            let sql = 'SELECT id_restaurante FROM restaurante WHERE id_restaurante = ?';
+            db.get(sql, [id_restaurante], (err, result) => {
                 if (err) {
                     res.status(500).send(err.message);
                 } else {
@@ -78,41 +79,40 @@ exports.adicionarRestaurante = (req, res) => {
                         res.status(409).send({ message: 'Restaurante já registado' });
                     }
                 }
-
             });
-        } else {
-            var id_utilizador = req.params.id_utilizador;
-            //verificar o tipo de utilizador
-            if (decoded.type != "merchant") {
-                let response = {
-                    message: "failed",
-                    request: {
-                        type: 'GET',
-                        description: 'Obter Informação da Empresa'
-                    }
+        }
+
+        var id_utilizador = req.params.id_utilizador;
+        //verificar o tipo de utilizador
+        if (decoded.type != "merchant") {
+            let response = {
+                message: "failed",
+                request: {
+                    type: 'GET',
+                    description: 'Obter Informação da Empresa'
                 }
-                //error
-                res.status(400).send(response);
-            } else {
-                sql = 'INSERT INTO restaurante (name, image, address, phone, email,type_restaurant) VALUES (?,?,?,?,?,?)';
-                db.run(sql, [name, image, address, phone, email, type_restaurant], function (err) {
-                    if (err) {
-                        res.status(500).send(err.message);
-                    } else {
-                        res.status(201).send({
-                            message: 'Restaurante adicionado com sucesso',
-                            user: {
-                                name: name,
-                                image: image,
-                                address: address,
-                                phone: phone,
-                                email: email,
-                                type_restaurant: type_restaurant
-                            },
-                        });
-                    }
-                });
             }
+            //error
+            res.status(400).send(response);
+        } else {
+            sql = 'INSERT INTO restaurante (name, image, address, phone, email,type_restaurant) VALUES (?,?,?,?,?,?)';
+            db.run(sql, [name, image, address, phone, email, type_restaurant], function (err) {
+                if (err) {
+                    res.status(500).send(err.message);
+                } else {
+                    res.status(201).send({
+                        message: 'Restaurante adicionado com sucesso',
+                        user: {
+                            name: name,
+                            image: image,
+                            address: address,
+                            phone: phone,
+                            email: email,
+                            type_restaurant: type_restaurant
+                        },
+                    });
+                }
+            });
         }
     } catch (err) {
         res.status(500).send({ message: err.message });

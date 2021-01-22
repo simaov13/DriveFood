@@ -10,9 +10,11 @@ exports.getProducts = (req, res) => {
         let sql = 'SELECT * FROM product';
 
         db.all(sql, [], (err, result) => {
-            if (err) res.status(500).send(err.message);
-
-            res.json(result);
+            if (err) {
+                res.status(500).send(err.message);
+            } else {
+                res.json(result);
+            }
         });
     } catch (err) {
         res.status(500).send({ message: err.message });
@@ -67,40 +69,54 @@ exports.adicionarProduto = (req, res) => {
                 }
             });
         }
-
         //se ele for diferente merchant dá erro, se nao executa
-        var id_utilizador = req.params.id_utilizador;
-        //verificar o tipo de utilizador
-        if (decoded.type != "merchant") {
-            let response = {
-                message: "failed",
-                request: {
-                    type: 'POST',
-                    description: 'Obter Informação da Empresa'
-                }
-            }
-            //error
-            res.status(400).send(response);
-        } else {
-            // Inserir produto na base dados
-            sql = 'INSERT INTO product (name, description, logo, price, id_restaurante) VALUES (?,?,?,?,?)';
-            db.run(sql, [name, description, logo, price, id_restaurante], function (err) {
+        if (decoded.type == 'merchant') {
+            // Verificar se produto ja existe
+            let sql = 'SELECT id_restaurante FROM product WHERE id_restaurante = ?';
+            db.get(sql, [id_restaurante], (err, result) => {
                 if (err) {
                     res.status(500).send(err.message);
-                    console.log(err);
                 } else {
-                    res.status(201).send({
-                        //produto criado com sucesso
-                        message: 'Produto criado com sucesso!',
-                        user: {
-                            id_produto: id_produto,
-                            name: name,
-                            description: description,
-                            logo: logo,
-                            price: price,
-                            id_restaurante: id_restaurante
-                        },
-                    });
+                    if (!result) {
+                        res.status(409).send({ message: 'Restaurante não existe' });
+                    } else {
+                        //se ele for diferente merchant dá erro, se nao executa
+                        var id_utilizador = req.params.id_utilizador;
+                        //verificar o tipo de utilizador
+                        if (decoded.type != "merchant") {
+                            let response = {
+                                message: "failed",
+                                request: {
+                                    type: 'POST',
+                                    description: 'Obter Informação da Empresa'
+                                }
+                            }
+                            //error
+                            res.status(400).send(response);
+                        } else {
+                            // Inserir produto na base dados
+                            sql = 'INSERT INTO product (name, description, logo, price, id_restaurante) VALUES (?,?,?,?,?)';
+                            db.run(sql, [name, description, logo, price, id_restaurante], function (err) {
+                                if (err) {
+                                    res.status(500).send(err.message);
+                                    console.log(err);
+                                } else {
+                                    res.status(201).send({
+                                        //produto criado com sucesso
+                                        message: 'Produto criado com sucesso!',
+                                        user: {
+                                            id_produto: id_produto,
+                                            name: name,
+                                            description: description,
+                                            logo: logo,
+                                            price: price,
+                                            id_restaurante: id_restaurante
+                                        },
+                                    });
+                                }
+                            });
+                        }
+                    }
                 }
             });
         }
@@ -185,18 +201,20 @@ exports.eliminarProduto = (req, res) => {
                 } else {
                     if (!result) {
                         res.status(409).send({ message: 'Produto não encontrado' });
+                    } else {
+                        //eliminar produto
+                        let sql1 = 'DELETE FROM product WHERE id_produto = ?';
+                        db.get(sql1, [req.params.id_produto], (err) => {
+                            if (err) {
+                                res.status(500).send(err.message);
+                            } else {
+                                res.status(200).send({ message: 'Produto eliminado com sucesso' });
+                            }
+                        });
                     }
                 }
             });
-            //eliminar produto
-            let sql1 = 'DELETE FROM product WHERE id_produto = ?';
-            db.get(sql1, [req.params.id_produto], (err) => {
-                if (err) {
-                    res.status(500).send(err.message);
-                } else {
-                    res.status(200).send({ message: 'Produto eliminado com sucesso' });
-                }
-            });
+
         }
     } catch (err) {
         res.status(500).send({ message: err.message });
