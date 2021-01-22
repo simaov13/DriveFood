@@ -83,17 +83,10 @@ Campos obrigatórios:
     Username: Nome do Utilizador(Aceita texto)</li>
     Password: Password do Utilizador(Aceita texto)</li>
 </ul>
-<br>
-<p> URL</h2><h2>Criar Utilizador Cliente<p>
-<br />
-<p>localhost:3000/api/register</p>
 <br />
 <h3>Body Raw<h3>
+_____________________________________________________
 <br />
-_____________________________________________
-
-<br />
-
 ### / Registar Utilizador tipo Cliente <br /><br />
 
 * **Descrição:**
@@ -104,7 +97,6 @@ _____________________________________________
 <br />
 * **Body [raw]:** 
 
-<ul>
 - [x] id_utilizador: integer
 - [x] username: text
 - [x] password: text
@@ -116,7 +108,6 @@ _____________________________________________
 - [x] city: text
 - [x] postal_code: integer
 - [x] type: text
-</ul>
 
 <br />
 * **URl**
@@ -160,7 +151,7 @@ _____________________________________________
    `POST`
 <br />
 * **Body [raw]:** 
-<ul>
+
 - [x] id_utilizador: integer
 - [x] username: text
 - [x] password: text
@@ -175,7 +166,7 @@ _____________________________________________
 - [x] type_license: text,
 - [x] vehicle: text,
 - [x] type: text
-</ul>
+
 
 <br />
 * **URl**
@@ -220,8 +211,7 @@ ___________________________________________
 <br />
 * **Body [raw]:**
 
-<ul>
-- [x] id_utilizador: integer 
+- [x] id_utilizador: integer  <br />
 - [x] name: text 
 - [x] username: text 
 - [x] password: text 
@@ -234,7 +224,6 @@ ___________________________________________
 - [x] description: integer
 - [x] logo: text, 
 - [x] type: text
-</ul>
 
 <br />
 * **URl**
