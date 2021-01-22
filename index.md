@@ -80,23 +80,22 @@ Foi criado apenas um superadmin e será o único a permitir a criação de admin
 Este request é para iniciar sessão
 Campos obrigatórios:
 <ul>
-    Username: Nome do Utilizador(Aceita texto)</li>
-    Password: Password do Utilizador(Aceita texto)</li>
+    Username: Nome do Utilizador(Aceita texto) <br />
+    Password: Password do Utilizador(Aceita texto) <br />
 </ul>
 <br />
-<h3>Body Raw<h3>
+
+Body Raw
 _____________________________________________________
 <br />
-### Registar Utilizador tipo Cliente <br /><br />
-
+### Registar Utilizador tipo Condutor <br /><br />
 **Descrição:**
-   Registar um cliente.
+   `Registar um cliente.`
 <br />
  **Método:**
-   POST
+   `POST`
 <br />
  **Body [raw]:** 
-
 - [x] id_utilizador: integer
 - [x] username: text
 - [x] password: text
@@ -110,10 +109,11 @@ _____________________________________________________
 - [x] type: text
 
 <br />
-URl <br />
-   localhost:3000/api/register <br />  
-Sucesso:
-**Status:** `201 CREATED` <br />
+
+
+   **URl** <br />
+   localhost:3000/api/register <br /> 
+   **Status:** `201 CREATED` <br />
 
 ```json
 {
@@ -142,7 +142,7 @@ if (err) {
 _____________________________________________
 
 ### Registar Utilizador tipo Condutor <br /><br />
-
+**Descrição:**
    `Registar um utilizador tipo Condutor.`
 <br />
  **Método:**
