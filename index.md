@@ -67,11 +67,11 @@ Aplicação de Venda de Produtos Alimentares
 
 -------------------------------------------------------------
 <h1>Login e Register</h1>
-<br>
+<br />
 <p>Esta coleção terá os requests relacionados com o iniciar sessão (login) e registar utilizadores (register).<p>
 
 <h1>SuperAdmin</h1>
-<br>
+<br />
 <p>As funções dentro desta pasta só podem ser executadas pelos utilizador do tipo "superadmin".
 Foi criado apenas um superadmin e será o único a permitir a criação de administradores.</p>
 
@@ -85,15 +85,11 @@ Foi criado apenas um superadmin e será o único a permitir a criação de admin
 </ul>
 <br>
 <p> URL</h2><h2>Criar Utilizador Cliente<p>
-<br>
-<p>localhost:3000/api/register</p>
-<br>
-<h3>Body Raw<h3>
-<br>
-<img align="right" src="login.png" alt="login" width="500" height="auto">
-
 <br />
-
+<p>localhost:3000/api/register</p>
+<br />
+<h3>Body Raw<h3>
+<br />
 _____________________________________________
 
 <br />
@@ -218,19 +214,19 @@ ___________________________________________
    `POST`
 <br />
 * **Body [raw]:**   
-- [x] id_utilizador: integer
-- [x] name: text
-- [x] username: text
-- [x] password: text
-- [x] name: text
-- [x] nif: numeric
-- [x] email: text
-- [x] phone: integer
-- [x] address: text
-- [x] city: text
-- [x] description: integer
-- [x] logo: text, 
-- [x] type: text
+- [x] id_utilizador: integer \
+- [x] name: text \
+- [x] username: text \
+- [x] password: text \
+- [x] name: text\
+- [x] nif: numeric\
+- [x] email: text\
+- [x] phone: integer\
+- [x] address: text\
+- [x] city: text\
+- [x] description: integer\
+- [x] logo: text, \
+- [x] type: text\
 
 <br />
 * **URl**
