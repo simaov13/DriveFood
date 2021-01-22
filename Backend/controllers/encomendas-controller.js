@@ -31,7 +31,18 @@ exports.getEncomenda = (req, res) => {
             if (err) {
                 res.status(500).send(err.message);
             } else {
-                res.json(result);
+                res.status(201).send({
+                    // Utilizador registado
+                    message: 'Encomenda',
+                    encomenda: {
+                        id_produto: row.id_produto,
+                        name: row.name,
+                        description: row.description,
+                        logo: row.logo,
+                        price: row.price,
+                        id_restaurante: row.id_restaurante
+                    },
+                });
             }
         });
     } catch (err) {
@@ -60,19 +71,18 @@ exports.adicionarEncomenda = (req, res) => {
             db.get(sql, [id_encomenda], (err, result) => {
                 if (err) {
                     res.status(500).send(err.message);
+                    throw "err";
                 } else {
                     //encomenda existe
                     if (result) {
                         res.status(409).send({ message: 'Encomenda já existe' });
+                        throw "err";
                     }
                 }
             });
-        }
-
-          //verificar se a encomenda já existe
-          if (decoded.type == 'user' || decoded.type == 'admin') {
-            let sql = 'SELECT id_produto FROM product WHERE id_produto = ?';
-            db.get(sql, [id_produto], (err, result) => {
+            //verificar se a produto existe
+            let sql1 = 'SELECT id_produto FROM product WHERE id_produto = ?';
+            db.get(sql1, [id_produto], (err, result) => {
                 if (err) {
                     res.status(500).send(err.message);
                 } else {
@@ -83,8 +93,6 @@ exports.adicionarEncomenda = (req, res) => {
                 }
             });
         }
-        
-
         //Verificar tipo de pagamento
         if (payment_method != 'dinheiro' && payment_method != 'cartão' && payment_method != 'mbway') {
             res.status(406).send({
@@ -104,19 +112,21 @@ exports.adicionarEncomenda = (req, res) => {
             }
             //error
             res.status(400).send(response);
+            throw "err";
         } else {
             // criar uma encomenda
             sql = 'INSERT INTO encomenda (id_produto, quantity, id_restaurante, payment_method) VALUES (?,?,?,?)';
             db.run(sql, [id_produto, quantity, id_restaurante, payment_method], function (err) {
                 if (err) {
                     res.status(500).send(err.message);
+                    throw "err";
                 } else {
                     res.status(201).send({
                         //encomenda criada
                         message: 'Encomenda criada com sucesso!',
                         user: {
                             id_encomenda: id_encomenda,
-                            id_produto:id_produto,
+                            id_produto: id_produto,
                             quantity: quantity,
                             id_restaurante: id_restaurante,
                             payment_method: payment_method
@@ -145,7 +155,6 @@ exports.editarEncomenda = (req, res) => {
         var decoded = jwt.verify(token, 'Token');
 
         var id_utilizador = req.params.id_utilizador;
-        consple.log(id_utilizador);
         //verificar o tipo de utilizador
         if (decoded.type != "user" || decoded.type != "admin") {
             let response = {
@@ -157,6 +166,7 @@ exports.editarEncomenda = (req, res) => {
             }
             //error
             res.status(400).send(response);
+            throw "err";
         } else {
             //update encomenda
             let sql = 'UPDATE order set id_utilizador = ?, id_restaurante = ?, paymenth_method = ? WHERE  id_encomenda = ?'
@@ -165,12 +175,22 @@ exports.editarEncomenda = (req, res) => {
                     res.status(500).send(err.message);
                 } else {
                     //encomenda editada 
-                    res.status(200).send({ message: 'Encomenda editada com sucesso' });
+                    res.status(200).send({
+                        //encomenda criada
+                        message: 'Encomenda editada com sucesso!',
+                        encomenda: {
+                            id_encomenda: id_encomenda,
+                            id_produto: id_produto,
+                            quantity: quantity,
+                            id_restaurante: id_restaurante,
+                            payment_method: payment_method
+                        },
+                    });
                 }
             });
         }
     } catch (err) {
-        res.status(500).send({ message: err.message });
+        console.log(err);
     }
     return;
 };
@@ -180,36 +200,41 @@ exports.eliminarEncomenda = (req, res) => {
     try {
         //req id_encomenda
         let id_encomenda = req.body.id_encomenda;
-        //token
-        const token = req.headers.authorization.split(' ')[1];
-        var decoded = jwt.verify(token, 'Token');
-        //se ele for diferente merchant dá erro, se nao executa
-        if (decoded.type != "user" && decoded.type != "admin") {
-            let response = {
-                message: "failed",
-                request: {
-                    type: 'GET',
-                    description: 'Obter Informação do Tipo de Utilizador'
+        //verificação do token
+        const tokenUnsplited = req.headers.authorization;
+        if (tokenUnsplited) {
+            //token
+            const token = req.headers.authorization.split(' ')[1];
+            var decoded = jwt.verify(token, 'Token');
+            //se ele for diferente merchant dá erro, se nao executa
+            if (decoded.type != "user" && decoded.type != "admin") {
+                let response = {
+                    message: "failed",
+                    request: {
+                        type: 'GET',
+                        description: 'Obter Informação do Tipo de Utilizador'
+                    }
                 }
+                //error
+                res.status(400).send(response);
+            } else {
+                //Eliminar atraves do id
+                let sql = 'DELETE FROM encomenda WHERE id_encomenda = ?';
+                db.get(sql, [req.params.id_encomenda], (err) => {
+                    if (err) {
+                        res.status(500).send(err.message);
+                        throw "err";
+                    } else {
+                        res.status(200).send({
+                            //encomenda eliminada
+                            message: 'Encomenda eliminada com sucesso'
+                        });
+                    }
+                });
             }
-            //error
-            res.status(400).send(response);
-        } else {
-            //Eliminar atraves do id
-            let sql = 'DELETE FROM encomenda WHERE id_encomenda = ?';
-            db.get(sql, [req.params.id_encomenda], (err) => {
-                if (err) {
-                    res.status(500).send(err.message);
-                } else {
-                    res.status(200).send({
-                        //encomenda cancelada
-                        message: 'Encomenda eliminada com sucesso'
-                    });
-                }
-            });
         }
     } catch (err) {
-        res.status(500).send({ message: err.message });
+        console.log(err);
     }
     return;
 };

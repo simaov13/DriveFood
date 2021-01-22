@@ -25,7 +25,7 @@ exports.register = (req, res) => {
         //merchant
         let description = req.body.description;
         let logo = req.body.logo;
-        
+
         // Verificações
         //Username maior que 5 caracteres
         if (username.length < 5) {
@@ -167,78 +167,84 @@ exports.register = (req, res) => {
                 }
             });
         } else {
-            //buscar o ultimo id da tabela user (ultima linha inserida)
-            var id_utilizador = this.lastID;
-            // Inserir um utilizador User
-            sql = 'INSERT INTO user (username, name, password, nif, address, postal_code , email, city, phone, type) VALUES (?,?,?,?,?,?,?,?,?,?)';
-            db.run(sql, [username, name, hash, nif, address, postal_code, email, city, phone, type], function (err) {
-                //se erro
-                if (err) {
-                    res.status(500).send(err.message)
+            //verificar se existe token
+            const tokenUnsplited = req.headers.authorization;
+            if (tokenUnsplited) {
+                //token
+                const token = req.headers.authorization.split(' ')[1];
+                var decoded = jwt.verify(token, 'Token');
+                //se ele for diferente merchant dá erro, se nao executa
+                var id_utilizador = req.params.id_utilizador;
+                //verificar o tipo de utilizador
+                if (decoded.type != "superadmin") {
+                    let response = {
+                        message: "failed",
+                        request: {
+                            type: 'GET',
+                            description: 'Obter Informação da Empresa'
+                        }
+                    }
+                    //error
+                    res.status(400).send(response);
                 } else {
-                    //se nao cria
-                    res.status(201).send({
-                        // Utilizador registado
-                        message: 'Cliente registado com sucesso',
-                        user: {
-                            username: username,
-                            name: name,
-                            password: hash,
-                            nif: nif,
-                            address: address,
-                            postal_code: postal_code,
-                            email: email,
-                            city: city,
-                            phone: phone,
-                            type: type
-                        },
+                    //inserir administrador
+                    sql = 'INSERT INTO user (username, name, password, nif, address, postal_code , email, city, phone, type) VALUES (?,?,?,?,?,?,?,?,?,?)';
+                    db.run(sql, [username, name, hash, nif, address, postal_code, email, city, phone, type], function (err) {
+                        //se erro
+                        if (err) {
+                            res.status(500).send(err.message)
+                        } else {
+                            //se nao cria
+                            res.status(201).send({
+                                // Utilizador registado
+                                message: 'Administrador registado com sucesso',
+                                user: {
+                                    username: username,
+                                    name: name,
+                                    password: hash,
+                                    nif: nif,
+                                    address: address,
+                                    postal_code: postal_code,
+                                    email: email,
+                                    city: city,
+                                    phone: phone,
+                                    type: type
+                                },
+                            });
+                        }
                     });
-                }
-            });
-        };
-        const token = req.headers.authorization.split(' ')[1];
-        var decoded = jwt.verify(token, 'Token');
-        //se ele for diferente merchant dá erro, se nao executa
-        var id_utilizador = req.params.id_utilizador;
-        //verificar o tipo de utilizador
-        if (decoded.type != "superadmin") {
-            let response = {
-                message: "failed",
-                request: {
-                    type: 'GET',
-                    description: 'Obter Informação da Empresa'
-                }
-            }
-            //error
-            res.status(400).send(response);
-        } else {
-            //inserir administrador
-            sql = 'INSERT INTO user (username, name, password, nif, address, postal_code , email, city, phone, type) VALUES (?,?,?,?,?,?,?,?,?,?)';
-            db.run(sql, [username, name, hash, nif, address, postal_code, email, city, phone, type], function (err) {
-                //se erro
-                if (err) {
-                    res.status(500).send(err.message)
-                } else {
-                    //se nao cria
-                    res.status(201).send({
-                        // Utilizador registado
-                        message: 'Administrador registado com sucesso',
-                        user: {
-                            username: username,
-                            name: name,
-                            password: hash,
-                            nif: nif,
-                            address: address,
-                            postal_code: postal_code,
-                            email: email,
-                            city: city,
-                            phone: phone,
-                            type: type
-                        },
-                    });
-                }
-            });
-        };
+                };
+            } else {
+                //buscar o ultimo id da tabela user (ultima linha inserida)
+                var id_utilizador = this.lastID;
+                // Inserir um utilizador User
+                sql = 'INSERT INTO user (username, name, password, nif, address, postal_code , email, city, phone, type) VALUES (?,?,?,?,?,?,?,?,?,?)';
+                db.run(sql, [username, name, hash, nif, address, postal_code, email, city, phone, type], function (err) {
+                    //se erro
+                    if (err) {
+                        res.status(500).send(err.message)
+                    } else {
+                        //se nao cria
+                        res.status(201).send({
+                            // Utilizador registado
+                            message: 'Cliente registado com sucesso',
+                            user: {
+                                username: username,
+                                name: name,
+                                password: hash,
+                                nif: nif,
+                                address: address,
+                                postal_code: postal_code,
+                                email: email,
+                                city: city,
+                                phone: phone,
+                                type: type
+                            },
+                        });
+                    }
+                });
+            };
+        }
     } catch (err) {
         console.log(err);
     }
