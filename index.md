@@ -4,7 +4,7 @@ Aplicação de Venda de Produtos Alimentares
 -----------------------------------------------------
 <br>
 <br>
-<img align="center" src="drive_food.png" alt="DriveFood" width="200" height="auto">
+<img align="center" src="drive_food1.png" alt="DriveFood" width="200" height="auto">
 
 <h1> REST API - Documentação </h1>
 
