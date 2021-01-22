@@ -70,7 +70,7 @@ Aplicação de Venda de Produtos Alimentares
 <br />
 Esta coleção terá os requests relacionados com o iniciar sessão (login) e registar utilizadores (register).
 
-## SuperAdmin</h1>
+## SuperAdmin
 <br />
 As funções dentro desta pasta só podem ser executadas pelos utilizador do tipo "superadmin".
 Foi criado apenas um superadmin e será o único a permitir a criação de administradores.
@@ -87,15 +87,15 @@ Campos obrigatórios:
 <h3>Body Raw<h3>
 _____________________________________________________
 <br />
-### / Registar Utilizador tipo Cliente <br /><br />
+### Registar Utilizador tipo Cliente <br /><br />
 
-* **Descrição:**
-   `Registar um cliente.`
+**Descrição:**
+   Registar um cliente.
 <br />
-* **Método:**
-   `POST`
+ **Método:**
+   POST
 <br />
-* **Body [raw]:** 
+ **Body [raw]:** 
 
 - [x] id_utilizador: integer
 - [x] username: text
@@ -111,7 +111,7 @@ _____________________________________________________
 
 <br />
 * **URl**
-   `localhost:3000/api/register` <br />  
+   localhost:3000/api/register <br />  
 
 * **Sucesso:**
 
@@ -143,14 +143,14 @@ if (err) {
 ```
 _____________________________________________
 
-### / Registar Utilizador tipo Condutor <br /><br />
-* **Descrição:**
+### Registar Utilizador tipo Condutor <br /><br />
+**Descrição:**
    `Registar um utilizador tipo Condutor.`
 <br />
-* **Método:**
+ **Método:**
    `POST`
 <br />
-* **Body [raw]:** 
+**Body [raw]:** 
 
 - [x] id_utilizador: integer
 - [x] username: text
@@ -169,8 +169,8 @@ _____________________________________________
 
 
 <br />
-* **URl**
-   `localhost:3000/api/register` <br /> 
+ **URl**
+   localhost:3000/api/register <br /> 
    **Status:** `201 CREATED` <br />
 
 ```json
@@ -193,7 +193,7 @@ _____________________________________________
     }
 }
 ```
-* **Erro** <br />
+**Erro** <br />
 ```
 if (err) {
   res.status(500).send(err.message);
@@ -202,15 +202,15 @@ if (err) {
 ```
 ___________________________________________
 
-### / Registar Utilizador tipo Empresa <br /><br />
-* **Descrição:**
-   `Registar um utilizador tipo Empresa.`
+###  Registar Utilizador tipo Empresa <br /><br />
+ **Descrição:**
+   Registar um utilizador tipo Empresa.
 <br />
-* **Método:**
-   `POST`
+ **Método:**
+   POST
 <br />
-* **Body [raw]:**
-
+ **Body [raw]:**
+<br />
 - [x] id_utilizador: integer  <br />
 - [x] name: text 
 - [x] username: text 
@@ -226,9 +226,11 @@ ___________________________________________
 - [x] type: text
 
 <br />
-* **URl**
-   `localhost:3000/api/register` <br /> 
-   **Status:** `201 CREATED` <br />
+
+ **URl**
+   localhost:3000/api/register <br /> 
+   **Status:** `201 CREATED` <br /
+   
 ```json
 {
     "message": "Empresa registada com sucesso",
@@ -247,7 +249,7 @@ ___________________________________________
     }
 }
 ```
-* **Erro** <br />
+ **Erro** <br />
 ```
 if (err) {
   res.status(500).send(err.message);
@@ -258,13 +260,13 @@ if (err) {
 ___________________________________________
 
 ### / Registar Utilizador tipo Administrador <br /><br />
-* **Descrição:**
+ **Descrição:**
    `Registar um utilizador tipo Administrador.`
 <br />
 * **Método:**
    `POST`
 <br />
-* **Body [raw]:**   
+ **Body [raw]:**   
 <ul>
 - [x] id_utilizador: integer
 - [x] name: text
@@ -279,9 +281,10 @@ ___________________________________________
 - [x] type: text
 </ul>
 <br />
-* **URl**
-   `localhost:3000/api/register` <br /> 
-   **Status:** `201 CREATED` <br />
+
+ **URl**
+   localhost:3000/api/register <br /> 
+   **Status:** `201 CREATED` <br /
 
 ```json
    {
@@ -300,14 +303,14 @@ ___________________________________________
     }
 }
 ```  
-  * **Erro** <br />
+**Erro** <br />
 ```
 if (err) {
   res.status(500).send(err.message);
   throw err;
 } 
 ```
-* **Verificação Token ** <br />
+**Verificação Token ** <br />
 ```
     //verificar se existe token
     const tokenUnsplited = req.headers.authorization;
