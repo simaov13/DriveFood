@@ -102,7 +102,9 @@ _____________________________________________
 * **Método:**
    `POST`
 <br />
-* **Body [raw]:**   
+* **Body [raw]:** 
+<ul>
+
 - [x] id_utilizador: integer
 - [x] username: text
 - [x] password: text
@@ -114,7 +116,7 @@ _____________________________________________
 - [x] city: text
 - [x] postal_code: integer
 - [x] type: text
-
+</ul>
 <br />
 * **URl**
    `localhost:3000/api/register` <br />  
