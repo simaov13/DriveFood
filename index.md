@@ -66,6 +66,7 @@ Aplicação de Venda de Produtos Alimentares
 </ul>
 
 -------------------------------------------------------------
+
 ## Login e Register
 <br />
 Esta coleção terá os requests relacionados com o iniciar sessão (login) e registar utilizadores (register).
@@ -85,9 +86,10 @@ Campos obrigatórios:
 </ul>
 <br />
 
-###Body Raw<br /><br />
+Body Raw <br /><br />
 _____________________________________________________
 <br />
+
 ### Registar Utilizador tipo Condutor <br /><br />
 **Descrição:**
    `Registar um cliente.`
@@ -96,6 +98,7 @@ _____________________________________________________
    `POST`
 <br />
  **Body [raw]:** 
+ 
 - [x]  id_utilizador: integer
 - [x]  username: text
 - [x]  password: text
@@ -338,3 +341,49 @@ if (err) {
     }
 ```
 ___________________________________________
+
+###  Login de um Utilizadot <br /><br />
+ **Descrição:**
+   `Login de um utilizador.`
+<br />
+ **Campos Obrigatórios:**
+   <ul>
+    Username: Nome do Utilizador(Aceita texto) <br />
+    Password: Password do Utilizador(Aceita texto) <br />
+</ul>
+<br />
+ **Método:**
+   `POST`
+<br />
+ **Body [raw]:**
+ <ul>
+  
+- [x] username : text, <br />
+- [x] password : text <br /> 
+
+</ul>
+
+<br />
+
+ **URl** <br />
+   localhost:3000/api/login <br /> 
+   **Status:** `200` <br />
+   
+  ```
+  {
+    "username":"admin",
+    "password":"passteste"
+  }
+  ```
+  <br />
+  **Resposta:** <br />
+  ```json
+  {
+    "message": "Autenticado com sucesso",
+    "user": {
+        "type": "admin",
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwidHlwZSI6ImFkbWluIiwiaWF0IjoxNjExMzU3NzA1LCJleHAiOjE2MTE0NDQxMDV9.G1UHQNjr6qK3T73NE57jxrvHjD2SGimzHkr1rldrgJc"
+    }
+}
+    ```
+  
