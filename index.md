@@ -107,17 +107,17 @@ _____________________________________________
    `POST`
 <br />
 * **Body [raw]:**   
-> - id_utilizador: integer
-> - username: text
-> - password: text
-> - name: text
-> - nif: numeric
-> - email: text
-> - phone: integer
-> - address: text
-> - city: text
-> - postal_code: integer
-> - type: text
+- [x] id_utilizador: integer
+- [x] username: text
+- [x] password: text
+- [x] name: text
+- [x] nif: numeric
+- [x] email: text
+- [x] phone: integer
+- [x] address: text
+- [x] city: text
+- [x] postal_code: integer
+- [x] type: text
 
 <br />
 * **URl**
@@ -161,20 +161,20 @@ _____________________________________________
    `POST`
 <br />
 * **Body [raw]:**   
-> - id_utilizador: integer
-> - username: text
-> - password: text
-> - name: text
-> - nif: numeric
-> - email: text
-> - phone: integer
-> - address: text
-> - city: text
-> - postal_code: integer
-> - phone_security: text, 
-> - type_license: text,
-> - vehicle: text,
-> - type: text
+- [x] id_utilizador: integer
+- [x] username: text
+- [x] password: text
+- [x] name: text
+- [x] nif: numeric
+- [x] email: text
+- [x] phone: integer
+- [x] address: text
+- [x] city: text
+- [x] postal_code: integer
+- [x] phone_security: text, 
+- [x] type_license: text,
+- [x] vehicle: text,
+- [x] type: text
 
 <br />
 * **URl**
@@ -218,19 +218,19 @@ ___________________________________________
    `POST`
 <br />
 * **Body [raw]:**   
-> - id_utilizador: integer
-> - name: text
-> - username: text
-> - password: text
-> - name: text
-> - nif: numeric
-> - email: text
-> - phone: integer
-> - address: text
-> - city: text
-> - description: integer
-> - logo: text, 
-> - type: text
+- [x] id_utilizador: integer
+- [x] name: text
+- [x] username: text
+- [x] password: text
+- [x] name: text
+- [x] nif: numeric
+- [x] email: text
+- [x] phone: integer
+- [x] address: text
+- [x] city: text
+- [x] description: integer
+- [x] logo: text, 
+- [x] type: text
 
 <br />
 * **URl**
@@ -272,17 +272,17 @@ ___________________________________________
    `POST`
 <br />
 * **Body [raw]:**   
-> - id_utilizador: integer
-> - name: text
-> - username: text
-> - password: text
-> - name: text
-> - nif: numeric
-> - email: text
-> - phone: integer
-> - address: text
-> - city: text
-> - type: text
+- [x] id_utilizador: integer
+- [x] name: text
+- [x] username: text
+- [x] password: text
+- [x] name: text
+- [x] nif: numeric
+- [x] email: text
+- [x] phone: integer
+- [x] address: text
+- [x] city: text
+- [x] type: text
 
 <br />
 * **URl**
