@@ -85,7 +85,7 @@ Campos obrigatórios:
 </ul>
 <br />
 
-Body Raw
+###Body Raw<br /><br />
 _____________________________________________________
 <br />
 ### Registar Utilizador tipo Condutor <br /><br />
@@ -96,17 +96,17 @@ _____________________________________________________
    `POST`
 <br />
  **Body [raw]:** 
-- [x] id_utilizador: integer
-- [x] username: text
-- [x] password: text
-- [x] name: text
-- [x] nif: numeric
-- [x] email: text
-- [x] phone: integer
-- [x] address: text
-- [x] city: text
-- [x] postal_code: integer
-- [x] type: text
+- [x]  id_utilizador: integer
+- [x]  username: text
+- [x]  password: text
+- [x]  name: text
+- [x]  nif: numeric
+- [x]  email: text
+- [x]  phone: integer
+- [x]  address: text
+- [x]  city: text
+- [x]  postal_code: integer
+- [x]  type: text
 
 <br />
 
@@ -151,20 +151,20 @@ _____________________________________________
 
  **Body [raw]:** 
 
-- [x] id_utilizador: integer
-- [x] username: text
-- [x] password: text
-- [x] name: text
-- [x] nif: numeric
-- [x] email: text
-- [x] phone: integer
-- [x] address: text
-- [x] city: text
-- [x] postal_code: integer
-- [x] phone_security: text, 
-- [x] type_license: text,
-- [x] vehicle: text,
-- [x] type: text
+- [x]  id_utilizador: integer
+- [x]  username: text
+- [x]  password: text
+- [x]  name: text
+- [x]  nif: numeric
+- [x]  email: text
+- [x]  phone: integer
+- [x]  address: text
+- [x]  city: text
+- [x]  postal_code: integer
+- [x]  phone_security: text, 
+- [x]  type_license: text,
+- [x]  vehicle: text,
+- [x]  type: text
 
 <br />
    **URl** <br />
@@ -211,19 +211,19 @@ ___________________________________________
  
 <br />
 
-- [x] id_utilizador: integer  <br />
-- [x] name: text 
-- [x] username: text 
-- [x] password: text 
-- [x] name: text
-- [x] nif: numeric
-- [x] email: text
-- [x] phone: integer
-- [x] address: text
-- [x] city: text
-- [x] description: integer
-- [x] logo: text, 
-- [x] type: text
+- [x]  id_utilizador: integer  <br />
+- [x]  name: text 
+- [x]  username: text 
+- [x]  password: text 
+- [x]  name: text
+- [x]  nif: numeric
+- [x]  email: text
+- [x]  phone: integer
+- [x]  address: text
+- [x]  city: text
+- [x]  description: integer
+- [x]  logo: text, 
+- [x]  type: text
 
 <br />
 
@@ -266,20 +266,21 @@ ___________________________________________
 * **Método:**
    `POST`
 <br />
- **Body [raw]:**   
+**Body [raw]:**   
+ 
 <ul>
   
-- [x] id_utilizador: integer
-- [x] name: text
-- [x] username: text
-- [x] password: text
-- [x] name: text
-- [x] nif: numeric
-- [x] email: text
-- [x] phone: integer
-- [x] address: text
-- [x] city: text
-- [x] type: text
+- [x]  id_utilizador: integer
+- [x]  name: text
+- [x]  username: text
+- [x]  password: text
+- [x]  name: text
+- [x]  nif: numeric
+- [x]  email: text
+- [x]  phone: integer
+- [x]  address: text
+- [x]  city: text
+- [x]  type: text
 
 </ul>
 
