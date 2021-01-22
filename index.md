@@ -158,7 +158,8 @@ _____________________________________________
 * **Método:**
    `POST`
 <br />
-* **Body [raw]:**   
+* **Body [raw]:** 
+<ul>
 - [x] id_utilizador: integer
 - [x] username: text
 - [x] password: text
@@ -173,7 +174,7 @@ _____________________________________________
 - [x] type_license: text,
 - [x] vehicle: text,
 - [x] type: text
-
+</ul>
 <br />
 * **URl**
    `localhost:3000/api/register` <br /> 
@@ -215,7 +216,8 @@ ___________________________________________
 * **Método:**
    `POST`
 <br />
-* **Body [raw]:**   
+* **Body [raw]:**
+<ul>
 - [x] id_utilizador: integer \
 - [x] name: text \
 - [x] username: text \
@@ -229,7 +231,7 @@ ___________________________________________
 - [x] description: integer\
 - [x] logo: text, \
 - [x] type: text\
-
+</ul>
 <br />
 * **URl**
    `localhost:3000/api/register` <br /> 
@@ -270,6 +272,7 @@ ___________________________________________
    `POST`
 <br />
 * **Body [raw]:**   
+<ul>
 - [x] id_utilizador: integer
 - [x] name: text
 - [x] username: text
@@ -281,7 +284,7 @@ ___________________________________________
 - [x] address: text
 - [x] city: text
 - [x] type: text
-
+</ul>
 <br />
 * **URl**
    `localhost:3000/api/register` <br /> 
