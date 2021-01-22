@@ -4,7 +4,7 @@ Aplicação de Venda de Produtos Alimentares
 -----------------------------------------------------
 <br>
 <br>
-<img align="center" src="drive_food1.jpg" alt="DriveFood" width="200" height="auto">
+<img align="center" src="drive_food1.png" alt="DriveFood" width="200" height="auto">
 
 <h1> REST API - Documentação </h1>
 
@@ -103,8 +103,8 @@ _____________________________________________
    `POST`
 <br />
 * **Body [raw]:** 
-<ul>
 
+<ul>
 - [x] id_utilizador: integer
 - [x] username: text
 - [x] password: text
@@ -117,6 +117,7 @@ _____________________________________________
 - [x] postal_code: integer
 - [x] type: text
 </ul>
+
 <br />
 * **URl**
    `localhost:3000/api/register` <br />  
@@ -175,6 +176,7 @@ _____________________________________________
 - [x] vehicle: text,
 - [x] type: text
 </ul>
+
 <br />
 * **URl**
    `localhost:3000/api/register` <br /> 
@@ -217,21 +219,23 @@ ___________________________________________
    `POST`
 <br />
 * **Body [raw]:**
+
 <ul>
-- [x] id_utilizador: integer \
-- [x] name: text \
-- [x] username: text \
-- [x] password: text \
-- [x] name: text\
-- [x] nif: numeric\
-- [x] email: text\
-- [x] phone: integer\
-- [x] address: text\
-- [x] city: text\
-- [x] description: integer\
-- [x] logo: text, \
-- [x] type: text\
+- [x] id_utilizador: integer 
+- [x] name: text 
+- [x] username: text 
+- [x] password: text 
+- [x] name: text
+- [x] nif: numeric
+- [x] email: text
+- [x] phone: integer
+- [x] address: text
+- [x] city: text
+- [x] description: integer
+- [x] logo: text, 
+- [x] type: text
 </ul>
+
 <br />
 * **URl**
    `localhost:3000/api/register` <br /> 
