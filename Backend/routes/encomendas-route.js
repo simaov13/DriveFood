@@ -12,7 +12,7 @@ router.post('/encomenda', encomendaController.adicionarEncomenda);
 //alterar
 router.put('/encomenda/:id_encomenda', encomendaController.editarEncomenda);
 //eliminar
-router.delete('/encomenda/:id_encomenda/:type', encomendaController.eliminarEncomenda);
+router.delete('/encomenda/:id_encomenda', encomendaController.eliminarEncomenda);
 
 
 module.exports = router;

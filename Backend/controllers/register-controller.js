@@ -222,7 +222,8 @@ exports.register = (req, res) => {
                 db.run(sql, [username, name, hash, nif, address, postal_code, email, city, phone, type], function (err) {
                     //se erro
                     if (err) {
-                        res.status(500).send(err.message)
+                        res.status(500).send(err.message);
+                        throw err;
                     } else {
                         //se nao cria
                         res.status(201).send({

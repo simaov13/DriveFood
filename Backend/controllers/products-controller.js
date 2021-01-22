@@ -233,7 +233,7 @@ exports.eliminarProduto = (req, res) => {
                     } else {
                         if (!result) {
                             res.status(409).send({ message: 'Produto não encontrado' });
-                            throw "err";
+                            //throw "err";
                         } else {
                             //eliminar produto
                             let sql1 = 'DELETE FROM product WHERE id_produto = ?';
