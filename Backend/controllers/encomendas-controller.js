@@ -27,7 +27,7 @@ exports.getEncomenda = (req, res) => {
     try {
         //base dados
         let sql = 'SELECT * FROM encomenda WHERE id_encomenda = ?';
-        db.get(sql, [req.params.id_encomenda], (err, result) => {
+        db.get(sql, [req.params.id_encomenda], (err, row) => {
             if (err) {
                 res.status(500).send(err.message);
             } else {
@@ -35,12 +35,11 @@ exports.getEncomenda = (req, res) => {
                     // Utilizador registado
                     message: 'Encomenda',
                     encomenda: {
+                        id_encomenda: row.id_encomenda,
                         id_produto: row.id_produto,
-                        name: row.name,
-                        description: row.description,
-                        logo: row.logo,
-                        price: row.price,
-                        id_restaurante: row.id_restaurante
+                        quantity: row.quantity,
+                        id_restaurante: row.id_restaurante,
+                        payment_method: row.payment_method
                     },
                 });
             }

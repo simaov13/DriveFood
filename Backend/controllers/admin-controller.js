@@ -22,7 +22,7 @@ exports.getUsers = (req, res) => {
 //Um Administrador por ver um utilizador
 exports.getUser = (req, res) => {
     try {
-        let sql = 'SELECT * FROM id_utilizador WHERE id_utilizador = ?';
+        let sql = 'SELECT * FROM user WHERE id_utilizador = ?';
         db.get(sql, [req.params.id_utilizador], (err, row) => {
             if (err) {
                 res.status(500).send(err.message);
