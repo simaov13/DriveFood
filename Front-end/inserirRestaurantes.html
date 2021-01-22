@@ -49,7 +49,7 @@
                 <div class="column mb-3">
                     <!-- nome do restaurante -->
                     <i class="fa fa-cutlery"></i> <label for="nome" class="form-label">Nome do Restaurante</label>
-                    <input type="text" class="form-control" id="nomerestaurantes" placeholder="Escreva o nome do restaurante..."
+                    <input type="text" class="form-control" id="nomerestaurante" placeholder="Escreva o nome do restaurante..."
                         required>
                 </div>
                 <div class="column mb-3">
@@ -71,12 +71,23 @@
                         required>
                 </div>
                 <div class="column mb-3">
+                    <!-- tipo restaurante -->
+                    <i class="fa fa-info-circle"></i> <label for="tiporestaurante" class="form-label">Tipo de Restaurante</label>
+                    <select class="form-control" name="tiporestaurante" id="tiporestaurante">
+                        <option value="" disabled selected hidden>Escolha o tipo de restaurante...</option>
+                        <option value="Hamburger">Hamburguer</a></option>
+                        <option value="Pizaria">Pizzaria</a></option>
+                        <option value="Chinês">Chinês</a></option>
+                        <option value="Japonês">Japonês</a></option>
+                        <option value="Rodizio">Rodizio</a></option>
+                    </select>
+                </div>
+                <div class="column mb-3">
                     <!-- logotipo-->
                     <i class="fa fa-upload"></i> <label for="imagemrestaurante" class="form-label">Imagem</label>
                     <input class="form-control form-control-sm" id="imagemrestaurante" type="file" />
                 </div>
-                <button id="validar" class="button_registar">Inserir Restaurante</button>
-                <!--<input type="button" id="validar" value="Registar" class="button_registar">-->
+                <input type="submit" id="validar" value="Inserir Restaurante" class="button_registar">
             </form>
         </div>
     </div>
@@ -86,7 +97,7 @@
     <script src="./js/skel.min.js"></script>
     <script src="./js/util.js"></script>
     <script src="./js/main.js"></script>
-    <script src="./js/register.js"></script>
+    <script src="./js/inserirRestaurantes.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"
         integrity="sha384-q2kxQ16AaE6UbzuKqyBE9/u/KzioAlnx2maXQHiDX9d4/zp8Ok3f+M7DPm+Ib6IU" crossorigin="anonymous">
         </script>

@@ -1,8 +1,10 @@
 const express = require('express');
 const router = express.Router();
+const cors = require('cors')
 
 const restauranteController = require('../controllers/restaurant-controller');
 
+router.use(cors())
 //todos os restaurantes
 router.get('/restaurantes', restauranteController.getRestaurantes);
 //um restaurante

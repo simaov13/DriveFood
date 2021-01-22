@@ -1,8 +1,10 @@
 const express = require('express');
 const router = express.Router();
+const cors = require('cors')
 
 const produtosController = require('../controllers/products-controller');
 
+router.use(cors())
 //todos os produtos
 router.get('/produtos', produtosController.getProducts);
 //um produto
