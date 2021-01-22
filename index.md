@@ -110,11 +110,9 @@ _____________________________________________________
 - [x] type: text
 
 <br />
-* **URl**
+**URl**
    localhost:3000/api/register <br />  
-
-* **Sucesso:**
-
+**Sucesso:**
 **Status:** `201 CREATED` <br />
 
 ```json
@@ -259,7 +257,7 @@ if (err) {
 
 ___________________________________________
 
-### / Registar Utilizador tipo Administrador <br /><br />
+### Registar Utilizador tipo Administrador <br /><br />
  **Descrição:**
    `Registar um utilizador tipo Administrador.`
 <br />
@@ -282,9 +280,9 @@ ___________________________________________
 </ul>
 <br />
 
- **URl**
+ **URl** <br />
    localhost:3000/api/register <br /> 
-   **Status:** `201 CREATED` <br /
+   **Status:** `201 CREATED` <br />
 
 ```json
    {
@@ -310,7 +308,7 @@ if (err) {
   throw err;
 } 
 ```
-**Verificação Token ** <br />
+### Verificação Token  <br />
 ```
     //verificar se existe token
     const tokenUnsplited = req.headers.authorization;
