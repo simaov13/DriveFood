@@ -44,7 +44,7 @@ Aplicação de Venda de Produtos Alimentares
 
 <h2>Db</h2>
 <ul>
-    <li>Ficheiro api</li>
+    <li>Ficheiro drivefood</li>
 </ul>
 
 ------------------------------------------------------------
@@ -74,7 +74,7 @@ Aplicação de Venda de Produtos Alimentares
 <p>As funções dentro desta pasta só podem ser executadas pelos utilizador do tipo "superadmin".
 Foi criado apenas um superadmin e será o único a permitir a criação de administradores.</p>
 
-<h2 color:"	#7FFFD4"> POST</h2><h2>Login<h2>
+<h2> POST</h2><h2>Login<h2>
 <br>
 <p>Este request é para iniciar sessão.</p>
 <p>Campos obrigatórios:</p>
@@ -83,19 +83,19 @@ Foi criado apenas um superadmin e será o único a permitir a criação de admin
     <li>Password: Password do Utilizador(Aceita texto)</li>
 </ul>
 <br>
-<p color:"#7FFFD4"> URL</h2><h2>Criar Utilizador Cliente<p>
+<p> URL</h2><h2>Criar Utilizador Cliente<p>
 <br>
 <p>localhost:3000/api/register</p>
 <br>
 <h3>Body Raw<h3>
 <br>
-<img align="right" src="login.png" alt="login" width="200" height="auto">
+<img align="right" src="login.png" alt="login" width="500" height="auto">
 
 
-<h2 color:"#7FFFD4"> POST</h2><h2>Criar Utilizador Cliente<h2>
+<h2> POST</h2><h2>Criar Utilizador Cliente<h2>
 <br>
 <p>Este request é para criar um cliente.</p>
 <br>
-<p color:"#7FFFD4"> URL</h2><h2>Criar Utilizador Cliente<p>
+<p> URL</h2><h2>Criar Utilizador Cliente<p>
 <br>
 <p>localhost:3000/api/register</p>
