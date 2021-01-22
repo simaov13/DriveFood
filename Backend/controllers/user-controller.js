@@ -116,8 +116,89 @@ exports.eliminarUtilizador = (req, res) => {
             var decoded = jwt.verify(token, 'Token');
             //se ele for diferente merchant dá erro, se nao executa
             var id_utilizador = req.params.id_utilizador;
+
             //verificar o tipo de utilizador
-            if (decoded.type != "user") {
+            if (decoded.type == "user") {
+                let sql = 'DELETE FROM user WHERE id_utilizador = ?';
+                db.get(sql, [req.params.id_utilizador], (err) => {
+                    if (err) {
+                        res.status(500).send(err.message);
+                        throw "err";
+                    } else {
+                        res.status(200).send({ message: 'Utilizador tipo cliente eliminado com sucesso' });
+                    }
+                });
+            } else {
+                let response = {
+                    message: "failed",
+                    request: {
+                        type: 'GET',
+                        description: 'Obter Informação sobre o utilizador cliente'
+                    }
+                }
+                //error
+                res.status(400).send(response);
+                throw "err";
+            }
+            //verificar se é igual a admin
+            if (decoded.type == "admin") {
+                let sql = 'DELETE FROM user WHERE id_utilizador = ?';
+                db.get(sql, [req.params.id_utilizador], (err) => {
+                    if (err) {
+                        res.status(500).send(err.message);
+                        throw "err";
+                    } else {
+                        res.status(200).send({ message: ' Utilizador tipo administrador eliminado com sucesso' });
+                    }
+                });
+            } else {
+                let response = {
+                    message: "failed",
+                    request: {
+                        type: 'GET',
+                        description: 'Obter Informação sobre o utilizador administrador'
+                    }
+                }
+                //error
+                res.status(400).send(response);
+                throw "err";
+            }
+            //verificar se e igual a merchant
+            if (decoded.type == "merchant") {
+                let sql = 'DELETE FROM user WHERE id_utilizador = ?';
+                db.get(sql, [req.params.id_utilizador], (err) => {
+                    if (err) {
+                        res.status(500).send(err.message);
+                        throw "err";
+                    } else {
+                        res.status(200).send({ message: 'Utilizador tipo empresa eliminado com sucesso' });
+                    }
+                });
+            } else {
+                let response = {
+                    message: "failed",
+                    request: {
+                        type: 'GET',
+                        description: 'Obter Informação sobre o utilizador empresa'
+                    }
+                }
+                //error
+                res.status(400).send(response);
+                throw "err";
+            }
+            //verificar se é igual a driver 
+            if (decoded.type == "driver") {
+                //eliminar user
+                let sql = 'DELETE FROM user WHERE id_utilizador = ?';
+                db.get(sql, [req.params.id_utilizador], (err) => {
+                    if (err) {
+                        res.status(500).send(err.message);
+                        throw "err";
+                    } else {
+                        res.status(200).send({ message: 'Utilizador tipo condutor eliminado com sucesso' });
+                    }
+                });
+            } else {
                 let response = {
                     message: "failed",
                     request: {
@@ -127,40 +208,11 @@ exports.eliminarUtilizador = (req, res) => {
                 }
                 //error
                 res.status(400).send(response);
+                throw "err";
             }
-            //eliminar user
-            let sql = 'DELETE FROM user WHERE id_utilizador = ?';
-            db.get(sql, [req.params.id_utilizador], (err) => {
-                if (err) {
-                    res.status(500).send(err.message);
-                } else {
-                    res.status(200).send({ message: 'Utilizador eliminado com sucesso' });
-                }
-            });
-
-        } else if (decoded.type != "admin") {
-            let response = {
-                message: "failed",
-                request: {
-                    type: 'GET',
-                    description: 'Obter Informação sobre o utilizador'
-                }
-            }
-            //error
-            res.status(400).send(response);
         }
-        //eliminar user
-        let sql = 'DELETE FROM user WHERE id_utilizador = ?';
-        db.get(sql, [req.params.id_utilizador], (err) => {
-            if (err) {
-                res.status(500).send(err.message);
-            } else {
-                res.status(200).send({ message: 'Administrador eliminado com sucesso' });
-            }
-        });
-
     } catch (err) {
-        res.status(500).send({ message: err.message });
+        console.log(err);
     }
     return;
 };

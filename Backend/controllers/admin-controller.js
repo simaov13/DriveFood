@@ -178,7 +178,7 @@ exports.eliminarRestaurante = (req, res) => {
             var decoded = jwt.verify(token, 'Token');
             var id_utilizador = req.params.id_utilizador;
             //se ele for diferente merchant dá erro, se nao executa
-            if (decoded.type != "admin" || decoded.type != "merchant") {
+            if (decoded.type != "admin" && decoded.type != "merchant") {
                 let response = {
                     message: "failed",
                     request: {
