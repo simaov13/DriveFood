@@ -90,7 +90,7 @@ Body Raw <br /><br />
 _____________________________________________________
 <br />
 
-### Registar Utilizador tipo Condutor <br /><br />
+### Registar Utilizador tipo Cliente <br /><br />
 **Descrição:**
    `Registar um cliente.`
 <br />
@@ -204,12 +204,15 @@ if (err) {
 ___________________________________________
 
 ###  Registar Utilizador tipo Empresa <br /><br />
+
  **Descrição:**
    `Registar um utilizador tipo Empresa.`
 <br />
+
  **Método:**
    `POST`
 <br />
+
  **Body [raw]:**
  
 <br />
@@ -263,14 +266,16 @@ if (err) {
 ___________________________________________
 
 ### Registar Utilizador tipo Administrador <br /><br />
+
  **Descrição:**
    `Registar um utilizador tipo Administrador.`
 <br />
-* **Método:**
+
+**Método:**
    `POST`
 <br />
+
 **Body [raw]:**   
- 
 <ul>
   
 - [x]  id_utilizador: integer
@@ -342,7 +347,7 @@ if (err) {
 ```
 ___________________________________________
 
-###  Login de um Utilizadot <br /><br />
+###  Login de um Utilizador <br /><br />
  **Descrição:**
    `Login de um utilizador.`
 <br />
@@ -355,7 +360,9 @@ ___________________________________________
  **Método:**
    `POST`
 <br />
+
  **Body [raw]:**
+ 
  <ul>
   
 - [x] username : text, <br />
@@ -376,6 +383,7 @@ ___________________________________________
   }
   ```
   <br />
+  
   **Resposta:** <br />
   
   ```json
@@ -387,5 +395,179 @@ ___________________________________________
     }
 }
 ``` 
+___________________________________________
 
+  ###  Criar, Editar e Eliminar um restaurante <br /><br />
+  #### Criar um restaurante
+ **Descrição:**
+   `O Utilizador Empresa terá de fazer login, em seguida, atraves do token é possivel a criação, a edição e a eliminação de um restaurante.`
+<br />
+ **Campos Obrigatórios:**
+<ul>
+- [x] name : text, <br />
+- [x] password : text <br /> 
+- [x] phone : integer <br /> 
+- [x] email : text <br /> 
+- [x] type_restaurant : text <br /> 
+</ul>
+
+<br />
+
+ **Método:**
+   `POST`
+<br />
+
+ **Body [raw]:**
+ 
+ **URl** <br />
+   localhost:3000/api/restaurante <br /> 
+   **Status:** `Create 201` <br />
+   
+  ```
+{
+    "name":"Pizzaria Italiana",
+    "address":"Rua do entroncamento",
+    "phone": 253456779,
+    "email":"pizzariaitaliana1@gmail.com",
+    "type_restaurant":"Pizaria"                         
+}
+
+  ```
+  <br />
   
+**Resposta:** <br />
+  
+```json
+
+{
+    "message": "Restaurante adicionado com sucesso",
+    "user": {
+        "name": "Pizzaria Italiana",
+        "address": "Rua do entroncamento",
+        "phone": 253456779,
+        "email": "pizzariaitaliana1@gmail.com",
+        "type_restaurant": "Pizaria"
+    }
+}
+
+``` 
+_______________________________________________________
+
+ #### Editar um restaurante
+ **Descrição:**
+   `O Utilizador Empresa terá de fazer login, em seguida, atraves do token é possivel a criação, a edição e a eliminação de um restaurante.
+    É necessário apenas o id do restaurante`
+<br />
+ **Campos Obrigatórios:**
+<ul>
+- [x] name : text, <br />
+- [x] password : text <br /> 
+- [x] phone : integer <br /> 
+- [x] email : text <br /> 
+- [x] type_restaurant : text <br /> 
+</ul>
+
+<br />
+
+ **Método:**
+   `PUT`
+<br />
+
+ **Body [raw]:**
+ 
+ **URl** <br />
+   localhost:3000/api/restaurante/:id_restaurante <br /> 
+   **Status:** `201` <br />
+   
+  ```
+{
+    "name":"Pizzaria Italiana",
+    "address":"Rua do entroncamento",
+    "phone": 253456779,
+    "email":"pizzariaitaliana1@gmail.com",
+    "type_restaurant":"Pizaria"                         
+}
+
+  ```
+  <br />
+  
+**Resposta:** <br />
+  
+```json
+
+{
+    "message": "Restaurante editado com sucesso",
+    "user": {
+        "name": "Pizzaria Miki",
+        "address": "Rua do entroncamento",
+        "phone": 253456749,
+        "email": "pizzariamiki@gmail.com",
+        "type_restaurant": "Pizaria"
+    }
+}
+
+``` 
+
+
+_______________________________________________________
+
+ #### Eliminar um restaurante
+ 
+ **Descrição:**
+   `O Utilizador Empresa terá de fazer login, em seguida, atraves do token é possivel a criação, a edição e a eliminação de um restaurante.
+    É necessário apenas o id do restaurante`
+<br />
+
+ **Campos Obrigatórios:**
+<ul>
+- [x] name : text, <br />
+- [x] password : text <br /> 
+- [x] phone : integer <br /> 
+- [x] email : text <br /> 
+- [x] type_restaurant : text <br /> 
+</ul>
+
+<br />
+
+ **Método:**
+   `DELETE`
+<br />
+
+ **Body [raw]:**
+ 
+ **URl** <br />
+   localhost:3000/api/restaurante/:id_restaurante <br /> 
+   **Status:** `201` <br />
+   
+  ```
+{
+    "name":"Pizzaria Italiana",
+    "address":"Rua do entroncamento",
+    "phone": 253456779,
+    "email":"pizzariaitaliana1@gmail.com",
+    "type_restaurant":"Pizaria"                         
+}
+
+  ```
+  <br />
+  
+**Resposta:** <br />
+  
+```json
+
+{
+    "message": "Restaurante eliminado com sucesso"
+}
+
+``` 
+
+
+
+
+
+
+
+
+
+
+
