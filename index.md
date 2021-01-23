@@ -117,6 +117,8 @@ _____________________________________________________
    **URl** <br />
    localhost:3000/api/register <br /> 
    **Status:** `201 CREATED` <br />
+ 
+ **Resposta:** <br />
 
 ```json
 {
@@ -173,6 +175,8 @@ _____________________________________________
    **URl** <br />
    localhost:3000/api/register <br /> 
    **Status:** `201 CREATED` <br />
+   
+**Resposta:** <br />
 
 ```json
 {
@@ -237,6 +241,8 @@ ___________________________________________
    localhost:3000/api/register <br /> 
    **Status:** `201 CREATED` <br />
    
+**Resposta:** <br />
+
 ```json
 {
     "message": "Empresa registada com sucesso",
@@ -297,6 +303,8 @@ ___________________________________________
  **URl** <br />
    localhost:3000/api/register <br /> 
    **Status:** `201 CREATED` <br />
+
+**Resposta:** <br />
 
 ```json
    {
@@ -565,6 +573,183 @@ _______________________________________________________
 
 
 
+
+
+
+
+
+
+___________________________________________
+
+  ###  Criar, Editar e Eliminar um Produto num Restaurante <br /><br />
+  #### Criar um Produto
+ **Descrição:**
+   `O Utilizador Empresa terá de fazer login, em seguida, atraves do token é possivel a criação, a edição e a eliminação de um produto.`
+<br />
+ **Campos Obrigatórios:**
+<ul>
+- [x] name : text, <br />
+- [x] description : text <br /> 
+- [x] price : integer <br /> 
+- [x] id_restaurante : integer <br /> 
+</ul>
+
+<br />
+
+ **Método:**
+   `POST`
+<br />
+
+ **Body [raw]:**
+ 
+ **URl** <br />
+   localhost:3000/api/produto <br /> 
+   **Status:** `Create 201` <br />
+   
+  ```
+{
+    "name":"Francesinha",
+    "description":"Molho especial da casa",
+    "price":10,
+    "id_restaurante":2
+}
+
+  ```
+  <br />
+  
+**Resposta:** <br />
+  
+```json
+
+{
+    "message": "Produto criado com sucesso!",
+    "product": {
+        "name": "Francesinha",
+        "description": "Molho especial da casa",
+        "logo": 10,
+        "price": 10,
+        "id_restaurante": 2
+    }
+}
+
+``` 
+_______________________________________________________
+
+ #### Editar um produto 
+ **Descrição:**
+   `O Utilizador Empresa terá de fazer login, em seguida, atraves do token é possivel a criação, a edição e a eliminação de um produto.
+    É necessário apenas o id do produto`
+<br />
+ **Campos Obrigatórios:**
+<ul>
+- [x] name : text, <br />
+- [x] description : text <br /> 
+- [x] price : integer <br /> 
+- [x] id_restaurante : integer <br /> 
+</ul>
+
+<br />
+
+ **Método:**
+   `PUT`
+<br />
+
+ **Body [raw]:**
+ 
+ **URl** <br />
+   localhost:3000/api/produto/:id_produto <br /> 
+   **Status:** `201` <br />
+   
+  ```
+{
+    "name":"Francesinha de Alheira",
+    "description":"Molho especial da casa",
+    "price":7,
+    "id_restaurante":2
+}
+
+  ```
+  <br />
+  
+**Resposta:** <br />
+  
+```json
+
+{
+    "message": "Produto editado com sucesso!",
+    "product": {
+        "id_produto": "10",
+        "name": "Francesinha de Alheira",
+        "description": "Molho especial da casa",
+        "logo": 7,
+        "price": 7,
+        "id_restaurante": 2
+    }
+}
+
+``` 
+
+
+_______________________________________________________
+
+ #### Eliminar um produto
+ 
+ **Descrição:**
+   `O Utilizador Empresa terá de fazer login, em seguida, atraves do token é possivel a criação, a edição e a eliminação de um produto.
+    É necessário apenas o id do produto`
+<br />
+
+ **Campos Obrigatórios:**
+<ul>
+- [x] name : text, <br />
+- [x] description : text <br /> 
+- [x] price : integer <br /> 
+- [x] id_restaurante : integer <br /> 
+</ul>
+
+<br />
+
+ **Método:**
+   `DELETE`
+<br />
+
+ **Body [raw]:**
+ 
+ **URl** <br />
+   localhost:3000/api/produto/:id_produto <br /> 
+   **Status:** `201` <br />
+   
+  ```
+{
+    "name":"Pizzaria Italiana",
+    "address":"Rua do entroncamento",
+    "phone": 253456779,
+    "email":"pizzariaitaliana1@gmail.com",
+    "type_restaurant":"Pizaria"                         
+}
+
+  ```
+  <br />
+  
+**Resposta:** <br />
+  
+```json
+
+{
+    "message": "Produto eliminado com sucesso"
+}
+
+``` 
+
+**Erro** <br />
+
+```json
+
+{
+    "message": "Produto não encontrado"
+}
+
+``` 
 
 
 
