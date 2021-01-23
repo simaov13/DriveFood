@@ -377,6 +377,7 @@ ___________________________________________
   ```
   <br />
   **Resposta:** <br />
+  
   ```json
   {
     "message": "Autenticado com sucesso",
@@ -385,5 +386,6 @@ ___________________________________________
         "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwidHlwZSI6ImFkbWluIiwiaWF0IjoxNjExMzU3NzA1LCJleHAiOjE2MTE0NDQxMDV9.G1UHQNjr6qK3T73NE57jxrvHjD2SGimzHkr1rldrgJc"
     }
 }
-    ```
+``` 
+
   
