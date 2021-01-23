@@ -135,7 +135,7 @@ exports.adicionarRestaurante = (req, res) => {
 exports.editarRestaurante = (req, res) => {
     try {
         // req.body
-        let id_restaurante = req.body.id_restaurante;
+        let id_restaurante = req.params.id_restaurante;
         let name = req.body.name;
         let image = req.body.image;
         let address = req.body.address;

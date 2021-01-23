@@ -24,6 +24,7 @@ exports.login = (req, res) => {
             db.get(sql, [username], (err, result) => {
                 if (err) {
                     res.status(500).send(err.message);
+                    throw "err";
                 } else {
                     //incripta a password
                     if (bcrypt.compareSync(password, result.password)) {

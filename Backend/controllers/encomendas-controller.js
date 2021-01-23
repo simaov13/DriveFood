@@ -145,17 +145,18 @@ exports.adicionarEncomenda = (req, res) => {
 exports.editarEncomenda = (req, res) => {
     try {
         // req.body
-        let id_encomenda = req.body.id_encomenda;
-        let username = req.body.username;
+        let id_encomenda = req.params.id_encomenda;
+        let id_produto = req.body.id_produto;
         let id_restaurante = req.body.id_restaurante;
         let payment_method = req.body.payment_method;
+        let quantity = req.body.quantity;
         // token e decoded
         const token = req.headers.authorization.split(' ')[1];
         var decoded = jwt.verify(token, 'Token');
 
         var id_utilizador = req.params.id_utilizador;
         //verificar o tipo de utilizador
-        if (decoded.type != "user" || decoded.type != "admin") {
+        if (decoded.type != "user" && decoded.type != "admin") {
             let response = {
                 message: "failed",
                 request: {
@@ -168,8 +169,8 @@ exports.editarEncomenda = (req, res) => {
             throw "err";
         } else {
             //update encomenda
-            let sql = 'UPDATE order set id_utilizador = ?, id_restaurante = ?, paymenth_method = ? WHERE  id_encomenda = ?'
-            db.run(sql, [id_utilizador, id_restaurante, payment_method, id_encomenda], (err) => {
+            let sql = 'UPDATE encomenda set id_utilizador = ?, id_restaurante = ?, id_produto = ?, quantity = ?, payment_method = ? WHERE  id_encomenda = ?'
+            db.run(sql, [id_utilizador, id_restaurante, id_produto, quantity, payment_method, id_encomenda], (err) => {
                 if (err) {
                     res.status(500).send(err.message);
                 } else {
