@@ -207,7 +207,7 @@ exports.editarProduto = (req, res) => {
 exports.eliminarProduto = (req, res) => {
     try {
         // req.body
-        let id_produto = req.body.id_produto;
+        let id_produto = req.params.id_produto;
         //verificação do token
         const tokenUnsplited = req.headers.authorization;
         if (tokenUnsplited) {
@@ -238,7 +238,7 @@ exports.eliminarProduto = (req, res) => {
                     } else {
                         if (!result) {
                             res.status(409).send({ message: 'Produto não encontrado' });
-                            //throw "err";
+                            throw "err";
                         } else {
                             //eliminar produto
                             let sql1 = 'DELETE FROM product WHERE id_produto = ?';
