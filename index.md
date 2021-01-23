@@ -755,4 +755,275 @@ _______________________________________________________
 
 
 
+___________________________________________
+
+  ###  Criar, Editar e Eliminar uma Encomenda <br /><br />
+  #### Criar uma Entrega
+ **Descrição:**
+   `O Utilizador Tipo Cliente ou Administrador terá de fazer login, em seguida, atraves do token é possivel a criação, a edição e a eliminação de uma encomenda.`
+<br />
+ **Campos Obrigatórios:**
+<ul>
+- [x] id_produto : integer, <br />
+- [x] quantity : integer <br /> 
+- [x] id_restaurante : integer <br /> 
+- [x] payment_method : text <br /> 
+</ul>
+
+<br />
+
+ **Método:**
+   `POST`
+<br />
+
+ **Body [raw]:**
+ 
+ **URl** <br />
+   localhost:3000/api/encomenda <br /> 
+   **Status:** `Create 201` <br />
+   
+  ```
+{
+    "id_produto": 1,
+    "quantity":6,
+    "id_restaurante":1,
+    "payment_method":"mbway"
+   
+}
+
+  ```
+  <br />
+  
+**Resposta:** <br />
+  
+```json
+
+{
+    "message": "Encomenda criada com sucesso!",
+    "user": {
+        "id_produto": 1,
+        "quantity": 6,
+        "id_restaurante": 1,
+        "payment_method": "mbway"
+    }
+}
+
+``` 
+_______________________________________________________
+
+ #### Editar uma Encomenda
+ **Descrição:**
+   `O Utilizador tipo CLiente e Administrador terá de fazer login, em seguida, atraves do token é possivel a criação, a edição e a eliminação de uma encomenda.
+    É necessário apenas o id da encomenda`
+<br />
+ **Campos Obrigatórios:**
+<ul>
+- [x] id_produto : integer, <br />
+- [x] quantity : integer <br /> 
+- [x] id_restaurante : integer <br /> 
+- [x] payment_method : text <br /> 
+</ul>
+
+<br />
+
+ **Método:**
+   `PUT`
+<br />
+
+ **Body [raw]:**
+ 
+ **URl** <br />
+   localhost:3000/api/encomenda/:id_encomenda <br /> 
+   **Status:** `201` <br />
+   
+  ```
+{
+    "id_produto": 1,
+    "quantity":3,
+    "id_restaurante":1,
+    "payment_method":"mbway"
+   
+}
+
+  ```
+  <br />
+  
+**Resposta:** <br />
+  
+```json
+
+{
+    "message": "Encomenda editada com sucesso!",
+    "encomenda": {
+        "id_encomenda": "4",
+        "id_produto": 1,
+        "quantity": 3,
+        "id_restaurante": 1,
+        "payment_method": "mbway"
+    }
+}
+
+``` 
+
+
+_______________________________________________________
+
+ #### Eliminar uma Encomenda
+ 
+ **Descrição:**
+   `O Utilizador Tipo Cliente e Administrador terá de fazer login, em seguida, atraves do token é possivel a criação, a edição e a eliminação de uma encomenda.
+    É necessário apenas o id da encomenda`
+<br />
+
+ **Campos Obrigatórios:**
+<ul>
+- [x] id_produto : integer, <br />
+- [x] quantity : integer <br /> 
+- [x] id_restaurante : integer <br /> 
+- [x] payment_method : text <br /> 
+</ul>
+
+<br />
+
+ **Método:**
+   `DELETE`
+<br />
+
+ **Body [raw]:**
+ 
+ **URl** <br />
+   localhost:3000/api/encomenda/:id_encomenda <br /> 
+   **Status:** `201` <br />
+   
+  ```
+{
+    "message": "Encomenda editada com sucesso!",
+    "encomenda": {
+        "id_encomenda": "4",
+        "id_produto": 1,
+        "quantity": 3,
+        "id_restaurante": 1,
+        "payment_method": "mbway"
+    }
+}
+
+  ```
+  <br />
+  
+**Resposta:** <br />
+  
+```json
+
+{
+    "message": "Encomenda eliminada com sucesso"
+}
+
+``` 
+
+ 
+___________________________________________
+
+  ###  Criar, Eliminar uma Entrega <br /><br />
+  #### Criar uma Entrega
+ **Descrição:**
+   `O Utilizador Tipo Cliente ou Administrador terá de fazer login, em seguida, atraves do token é possivel a criação, a edição e a eliminação de uma entrega.`
+<br />
+ **Campos Obrigatórios:**
+<ul>
+- [x] id_entrega : integer, <br />
+- [x] id_encomenda : integer <br /> 
+- [x] id_utilizador : integer <br /> 
+</ul>
+
+<br />
+
+ **Método:**
+   `POST`
+<br />
+
+ **Body [raw]:**
+ 
+ **URl** <br />
+   localhost:3000/api/entrega <br /> 
+   **Status:** `Create 201` <br />
+   
+  ```
+{
+    "id_encomenda": 2,
+    "id_utilizador":26
+}
+
+  ```
+  <br />
+  
+**Resposta:** <br />
+  
+```json
+
+{
+    "message": "Entrega criada com sucesso!",
+    "user": {
+        "id_encomenda": 2,
+        "id_utilizador": 26
+    }
+}
+
+``` 
+_______________________________________________________
+
+ #### Eliminar uma entrega
+ 
+ **Descrição:**
+   `O Utilizador Tipo Cliente e Administrador terá de fazer login, em seguida, atraves do token é possivel a criação e a eliminação de uma entrega.
+    É necessário apenas o id da entrega`
+<br />
+
+ **Campos Obrigatórios:**
+<ul>
+- [x] id_entrega : integer, <br />
+- [x] id_encomenda : integer <br /> 
+- [x] id_utilizador : integer <br /> 
+</ul>
+
+<br />
+
+ **Método:**
+   `DELETE`
+<br />
+
+ **Body [raw]:**
+ 
+ **URl** <br />
+   localhost:3000/api/entrega/:id_entrega <br /> 
+   **Status:** `201` <br />
+   
+  ```
+{
+    "id_encomenda": 2,
+    "id_utilizador":26
+}
+
+  ```
+  <br />
+  
+**Resposta:** <br />
+  
+```json
+
+{
+    "message": "Entrega eliminada com sucesso"
+}
+
+``` 
+
+ 
+**Erro** <br />
+
+```json
+
+{
+    "message": "Entrega não existe"
+}
+
+``` 
 
