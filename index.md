@@ -692,7 +692,7 @@ _______________________________________________________
 
 _______________________________________________________
 
- #### Eliminar um produto
+ #### Eliminar um produto <br />
  
  **Descrição:**
    `O Utilizador Empresa terá de fazer login, em seguida, atraves do token é possivel a criação, a edição e a eliminação de um produto.
@@ -758,7 +758,7 @@ _______________________________________________________
 ___________________________________________
 
   ###  Criar, Editar e Eliminar uma Encomenda <br /><br />
-  #### Criar uma Entrega
+  #### Criar uma Entrega <br />
  **Descrição:**
    `O Utilizador Tipo Cliente ou Administrador terá de fazer login, em seguida, atraves do token é possivel a criação, a edição e a eliminação de uma encomenda.`
 <br />
@@ -811,7 +811,7 @@ ___________________________________________
 ``` 
 _______________________________________________________
 
- #### Editar uma Encomenda
+ ####Editar uma Encomenda
  **Descrição:**
    `O Utilizador tipo CLiente e Administrador terá de fazer login, em seguida, atraves do token é possivel a criação, a edição e a eliminação de uma encomenda.
     É necessário apenas o id da encomenda`
@@ -868,7 +868,7 @@ _______________________________________________________
 
 _______________________________________________________
 
- #### Eliminar uma Encomenda
+ ####Eliminar uma Encomenda
  
  **Descrição:**
    `O Utilizador Tipo Cliente e Administrador terá de fazer login, em seguida, atraves do token é possivel a criação, a edição e a eliminação de uma encomenda.
@@ -923,7 +923,7 @@ _______________________________________________________
  
 ___________________________________________
 
-  ###  Criar, Eliminar uma Entrega <br /><br />
+  ###Criar, Eliminar uma Entrega <br /><br />
   #### Criar uma Entrega
  **Descrição:**
    `O Utilizador Tipo Cliente ou Administrador terá de fazer login, em seguida, atraves do token é possivel a criação, a edição e a eliminação de uma entrega.`
@@ -971,7 +971,7 @@ ___________________________________________
 ``` 
 _______________________________________________________
 
- #### Eliminar uma entrega
+ ####Eliminar uma entrega
  
  **Descrição:**
    `O Utilizador Tipo Cliente e Administrador terá de fazer login, em seguida, atraves do token é possivel a criação e a eliminação de uma entrega.
