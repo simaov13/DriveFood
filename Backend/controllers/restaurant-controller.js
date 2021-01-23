@@ -212,18 +212,21 @@ exports.eliminarRestaurante = (req, res) => {
                 }
                 //error
                 res.status(400).send(response);
+                throw "err";
             } else {
                 //verificar se existe
                 let sql = 'SELECT id_restaurante FROM restaurante WHERE id_restaurante = ?';
                 db.get(sql, [id_restaurante], (err) => {
                     if (err) {
                         res.status(409).send({ message: 'Restaurante não existe' });
+                        throw "err";
                     } else {
                         //eliminar restaurante
                         let sql1 = 'DELETE FROM restaurante WHERE id_restaurante = ?';
                         db.get(sql1, [req.params.id_restaurante], (err) => {
                             if (err) {
                                 res.status(500).send(err.message);
+                                throw "err";
                             } else {
                                 res.status(201).send({
                                     message: 'Restaurante eliminado com sucesso',

@@ -199,7 +199,7 @@ exports.editarEncomenda = (req, res) => {
 exports.eliminarEncomenda = (req, res) => {
     try {
         //req id_encomenda
-        let id_encomenda = req.body.id_encomenda;
+        let id_encomenda = req.params.id_encomenda;
         //verificação do token
         const tokenUnsplited = req.headers.authorization;
         if (tokenUnsplited) {
