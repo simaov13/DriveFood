@@ -247,7 +247,7 @@ exports.eliminarProduto = (req, res) => {
                                     res.status(500).send(err.message);
                                     throw "err";
                                 } else {
-                                    res.status(200).send({ message: 'Produto eliminado com sucesso' });
+                                    res.status(204).send({ message: 'Produto eliminado com sucesso' });
                                 }
                             });
                         }

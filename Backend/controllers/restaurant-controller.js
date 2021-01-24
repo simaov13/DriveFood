@@ -168,7 +168,7 @@ exports.editarRestaurante = (req, res) => {
                     if (err) {
                         res.status(500).send(err.message);
                     } else {
-                        res.status(201).send({
+                        res.status(200).send({
                             message: 'Restaurante editado com sucesso',
                             user: {
                                 name: name,
@@ -228,7 +228,7 @@ exports.eliminarRestaurante = (req, res) => {
                                 res.status(500).send(err.message);
                                 throw "err";
                             } else {
-                                res.status(201).send({
+                                res.status(204).send({
                                     message: 'Restaurante eliminado com sucesso',
                                 });
                             }

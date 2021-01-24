@@ -151,7 +151,7 @@ exports.eliminarEntrega = (req, res) => {
                                 res.status(500).send(err.message);
                                 throw "err";
                             } else {
-                                res.status(201).send({
+                                res.status(204).send({
                                     //encomenda eliminada
                                     message: 'Entrega eliminada com sucesso'
                                 });

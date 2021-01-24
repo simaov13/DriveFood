@@ -81,7 +81,7 @@ exports.eliminarUtilizador = (req, res) => {
                         res.status(500).send(err.message);
                         throw "err";
                     } else {
-                        res.status(200).send({ message: 'Utilizador eliminado com sucesso' });
+                        res.status(204).send({ message: 'Utilizador eliminado com sucesso' });
                     }
                 });
             }
@@ -197,7 +197,7 @@ exports.eliminarRestaurante = (req, res) => {
                         res.status(500).send(err.message);
                         throw "err";
                     } else {
-                        res.status(200).send({ message: 'Restaurante eliminado com sucesso' });
+                        res.status(204).send({ message: 'Restaurante eliminado com sucesso' });
                     }
                 });
             }
