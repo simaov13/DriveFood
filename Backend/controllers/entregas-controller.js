@@ -60,8 +60,8 @@ exports.adicionarEntrega = (req, res) => {
 
         //verificar se a encomenda já existe
         if (decoded.type == 'driver') {
-            let sql = 'SELECT id_encomenda FROM encomenda WHERE id_encomenda = ?';
-            db.get(sql, [id_encomenda], (err, result) => {
+            let sql = 'SELECT id_entrega FROM encomenda WHERE id_entrega = ?';
+            db.get(sql, [id_entrega], (err, result) => {
                 if (err) {
                     res.status(500).send(err.message);
                     throw "err";
