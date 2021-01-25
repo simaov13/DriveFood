@@ -3,13 +3,13 @@ $(".remover").click(function (e) {
     e.preventDefault();
     //dados a enviar, vai buscar os valores dos campos que queremos enviar para a BD
     var dadosajax = {
-        id_restaurante: 5,
+        id_produto: 12,
     };
     /*
     true = error;
     false = nao da erro;
     */
-        pageurl = "http://localhost:3000/api/restaurante/7";
+        pageurl = "http://localhost:3000/api/produto/12";
         //ajax
         $.ajax({
             //url da pagina
@@ -24,7 +24,7 @@ $(".remover").click(function (e) {
             //se ocorrer um erro na chamada ajax, retorna este alerta
             //possiveis erros: pagina nao existe, erro de codigo na pagina, falha de comunicacao/internet, etc etc etc
             error: function (jqXHR, textStatus, err) {
-                alert("Erro: Remover Restaurante!");
+                alert("Erro: Remover Produto!");
 
                 console.log(data);
                 console.log(jqXHR);
@@ -34,13 +34,13 @@ $(".remover").click(function (e) {
             success: function (result) {
                 //se foi removido com sucesso
                 if ($.trim(result) == "1") {
-                    alert("O seu restaurante foi removido com sucesso!");
+                    alert("O seu produto foi removido com sucesso!");
                 }
                 //se foi um erro
                 else {
                     //Erro: Ocorreu um erro ao inserir o seu registo!
-                    alert("O seu restaurante foi removido com sucesso!");
-                    window.location.href = "restaurantes.html";
+                    alert("O seu produto foi removido com sucesso!");
+                    window.location.href = "produtos.html";
                 }
             },
         });
