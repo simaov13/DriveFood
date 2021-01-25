@@ -14,3 +14,20 @@
 .star-rating .fa-star {
     color: yellow;
 }
+
+.editar {
+    text-decoration: none;
+    float: right;
+    color: red;
+    margin: 3px;
+    padding: 2px;
+}
+
+.remover {
+    text-decoration: none;
+    margin: 3px;
+    margin-right: 2px;
+    padding: 2px;
+    float: right;
+    color: red;
+}
