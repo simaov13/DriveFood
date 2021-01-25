@@ -135,7 +135,7 @@ exports.adicionarRestaurante = (req, res) => {
 exports.editarRestaurante = (req, res) => {
     try {
         // req.body
-        let id_restaurante = req.body.id_restaurante;
+        let id_restaurante = req.params.id_restaurante;
         let name = req.body.name;
         let image = req.body.image;
         let address = req.body.address;
@@ -168,7 +168,7 @@ exports.editarRestaurante = (req, res) => {
                     if (err) {
                         res.status(500).send(err.message);
                     } else {
-                        res.status(201).send({
+                        res.status(200).send({
                             message: 'Restaurante editado com sucesso',
                             user: {
                                 name: name,
@@ -212,20 +212,23 @@ exports.eliminarRestaurante = (req, res) => {
                 }
                 //error
                 res.status(400).send(response);
+                throw "err";
             } else {
                 //verificar se existe
                 let sql = 'SELECT id_restaurante FROM restaurante WHERE id_restaurante = ?';
                 db.get(sql, [id_restaurante], (err) => {
                     if (err) {
                         res.status(409).send({ message: 'Restaurante não existe' });
+                        throw "err";
                     } else {
                         //eliminar restaurante
                         let sql1 = 'DELETE FROM restaurante WHERE id_restaurante = ?';
                         db.get(sql1, [req.params.id_restaurante], (err) => {
                             if (err) {
                                 res.status(500).send(err.message);
+                                throw "err";
                             } else {
-                                res.status(201).send({
+                                res.status(204).send({
                                     message: 'Restaurante eliminado com sucesso',
                                 });
                             }

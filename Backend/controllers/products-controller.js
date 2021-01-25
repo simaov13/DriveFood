@@ -145,11 +145,12 @@ exports.adicionarProduto = (req, res) => {
 exports.editarProduto = (req, res) => {
     try {
         // req.body
-        let id_produto = req.body.id_produto;
+        let id_produto = req.params.id_produto;
         let name = req.body.name;
         let description = req.body.description;
         let price = req.body.price;
         let logo = req.body.price;
+        let id_restaurante = req.body.id_restaurante;
         //let id_restaurante = req.body.id_restaurante;
         //token e decoded
         const token = req.headers.authorization.split(' ')[1];
@@ -171,23 +172,29 @@ exports.editarProduto = (req, res) => {
             throw "err";
         } else {
             //update ao produto
-            let sql = 'UPDATE product set name = ?, description = ?, logo = ?, price = ? WHERE id_produto = ?'
-            db.run(sql, [name, description, logo, price, id_produto], (err) => {
+            let sql = 'UPDATE product SET name = ?, description = ?, logo = ?, price = ? , id_restaurante = ? WHERE id_produto = ?'
+            db.run(sql, [name, description, logo, price, id_restaurante, id_produto], function (err) {
                 if (err) {
                     res.status(500).send(err.message);
+                    throw "err";
                 } else {
-                    res.status(200).send({
-                        //produto criado com sucesso
-                        message: 'Produto editado com sucesso!',
-                        product: {
-                            id_produto: id_produto,
-                            name: name,
-                            description: description,
-                            logo: logo,
-                            price: price,
-                            id_restaurante: id_restaurante
-                        },
-                    });
+                    console.log(this.changes)
+                    if (this.changes == 0)  {
+                        res.status(500).send({ message: "Não alterou" })
+                    } else {
+                        res.status(200).send({
+                            //produto criado com sucesso
+                            message: 'Produto editado com sucesso!',
+                            product: {
+                                id_produto: id_produto,
+                                name: name,
+                                description: description,
+                                logo: logo,
+                                price: price,
+                                id_restaurante: id_restaurante
+                            },
+                        });
+                    }
                 }
             });
         }
@@ -196,13 +203,11 @@ exports.editarProduto = (req, res) => {
     }
     return;
 };
-
 //eliminar produto 
-//procura o id 
 exports.eliminarProduto = (req, res) => {
     try {
         // req.body
-        let id_produto = req.body.id_produto;
+        let id_produto = req.params.id_produto;
         //verificação do token
         const tokenUnsplited = req.headers.authorization;
         if (tokenUnsplited) {
@@ -233,7 +238,7 @@ exports.eliminarProduto = (req, res) => {
                     } else {
                         if (!result) {
                             res.status(409).send({ message: 'Produto não encontrado' });
-                            //throw "err";
+                            throw "err";
                         } else {
                             //eliminar produto
                             let sql1 = 'DELETE FROM product WHERE id_produto = ?';
@@ -242,7 +247,7 @@ exports.eliminarProduto = (req, res) => {
                                     res.status(500).send(err.message);
                                     throw "err";
                                 } else {
-                                    res.status(200).send({ message: 'Produto eliminado com sucesso' });
+                                    res.status(204).send({ message: 'Produto eliminado com sucesso' });
                                 }
                             });
                         }

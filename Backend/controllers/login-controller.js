@@ -9,6 +9,7 @@ exports.login = (req, res) => {
         //req.body
         let username = req.body.username;
         let password = req.body.password;
+        let id_utilizador = req.body.id_utilizador;
         let type = req.body.type;
 
         var VerificarCampos = false;
@@ -23,11 +24,13 @@ exports.login = (req, res) => {
             db.get(sql, [username], (err, result) => {
                 if (err) {
                     res.status(500).send(err.message);
+                    throw "err";
                 } else {
                     //incripta a password
                     if (bcrypt.compareSync(password, result.password)) {
                         //Token
                         var token = jwt.sign({
+                            id_utilizador : id_utilizador,
                             username: username,
                             type: result.type
                         }, 'Token', {
@@ -38,6 +41,7 @@ exports.login = (req, res) => {
                             message: 'Autenticado com sucesso',
                             //retorna o array com o username , type, token
                             user: {
+                                id_utilizador : id_utilizador,
                                 username: result.username,
                                 type: result.type,
                                 token: token

@@ -52,7 +52,7 @@ $("#validarEmpresa").click(function (e) {
                 else {
                     //Erro: Ocorreu um erro ao inserir o seu registo!
                     alert("O seu registo foi inserido com sucesso!");
-                    window.location.href = "index.html";
+                    window.location.href = "indexEmpresa.html";
                 }
             },
         });

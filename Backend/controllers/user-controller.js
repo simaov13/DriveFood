@@ -125,7 +125,7 @@ exports.eliminarUtilizador = (req, res) => {
                         res.status(500).send(err.message);
                         throw "err";
                     } else {
-                        res.status(200).send({ message: 'Utilizador tipo cliente eliminado com sucesso' });
+                        res.status(204).send({ message: 'Utilizador tipo cliente eliminado com sucesso' });
                     }
                 });
             } else {
@@ -148,7 +148,7 @@ exports.eliminarUtilizador = (req, res) => {
                         res.status(500).send(err.message);
                         throw "err";
                     } else {
-                        res.status(200).send({ message: ' Utilizador tipo administrador eliminado com sucesso' });
+                        res.status(204).send({ message: ' Utilizador tipo administrador eliminado com sucesso' });
                     }
                 });
             } else {
@@ -171,7 +171,7 @@ exports.eliminarUtilizador = (req, res) => {
                         res.status(500).send(err.message);
                         throw "err";
                     } else {
-                        res.status(200).send({ message: 'Utilizador tipo empresa eliminado com sucesso' });
+                        res.status(204).send({ message: 'Utilizador tipo empresa eliminado com sucesso' });
                     }
                 });
             } else {
@@ -195,7 +195,7 @@ exports.eliminarUtilizador = (req, res) => {
                         res.status(500).send(err.message);
                         throw "err";
                     } else {
-                        res.status(200).send({ message: 'Utilizador tipo condutor eliminado com sucesso' });
+                        res.status(204).send({ message: 'Utilizador tipo condutor eliminado com sucesso' });
                     }
                 });
             } else {
