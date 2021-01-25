@@ -359,6 +359,7 @@ ___________________________________________
  **Descrição:**
    `Login de um utilizador.`
 <br />
+
  **Campos Obrigatórios:**
    <ul>
     Username: Nome do Utilizador(Aceita texto) <br />
@@ -406,7 +407,7 @@ ___________________________________________
 ___________________________________________
 
   ###  Criar, Editar e Eliminar um restaurante <br /><br />
-  #### Criar um restaurante
+  ### Criar um restaurante
  **Descrição:**
    `O Utilizador Empresa terá de fazer login, em seguida, atraves do token é possivel a criação, a edição e a eliminação de um restaurante.`
 <br />
@@ -461,7 +462,7 @@ ___________________________________________
 ``` 
 _______________________________________________________
 
- #### Editar um restaurante
+ ### Editar um restaurante
  **Descrição:**
    `O Utilizador Empresa terá de fazer login, em seguida, atraves do token é possivel a criação, a edição e a eliminação de um restaurante.
     É necessário apenas o id do restaurante`
@@ -485,7 +486,7 @@ _______________________________________________________
  
  **URl** <br />
    localhost:3000/api/restaurante/:id_restaurante <br /> 
-   **Status:** `201` <br />
+   **Status:** `200` <br />
    
   ```
 {
@@ -545,7 +546,7 @@ _______________________________________________________
  
  **URl** <br />
    localhost:3000/api/restaurante/:id_restaurante <br /> 
-   **Status:** `201` <br />
+   **Status:** `204` <br />
    
   ```
 {
@@ -582,7 +583,7 @@ _______________________________________________________
 ___________________________________________
 
   ###  Criar, Editar e Eliminar um Produto num Restaurante <br /><br />
-  #### Criar um Produto
+  ###  Criar um Produto
  **Descrição:**
    `O Utilizador Empresa terá de fazer login, em seguida, atraves do token é possivel a criação, a edição e a eliminação de um produto.`
 <br />
@@ -635,7 +636,7 @@ ___________________________________________
 ``` 
 _______________________________________________________
 
- #### Editar um produto 
+ ### Editar um produto 
  **Descrição:**
    `O Utilizador Empresa terá de fazer login, em seguida, atraves do token é possivel a criação, a edição e a eliminação de um produto.
     É necessário apenas o id do produto`
@@ -692,7 +693,7 @@ _______________________________________________________
 
 _______________________________________________________
 
- #### Eliminar um produto <br />
+ ### Eliminar um produto <br />
  
  **Descrição:**
    `O Utilizador Empresa terá de fazer login, em seguida, atraves do token é possivel a criação, a edição e a eliminação de um produto.
@@ -717,7 +718,7 @@ _______________________________________________________
  
  **URl** <br />
    localhost:3000/api/produto/:id_produto <br /> 
-   **Status:** `201` <br />
+   **Status:** `204` <br />
    
   ```
 {
@@ -811,7 +812,7 @@ ___________________________________________
 ``` 
 _______________________________________________________
 
- ####Editar uma Encomenda
+ ### Editar uma Encomenda
  **Descrição:**
    `O Utilizador tipo CLiente e Administrador terá de fazer login, em seguida, atraves do token é possivel a criação, a edição e a eliminação de uma encomenda.
     É necessário apenas o id da encomenda`
@@ -834,7 +835,7 @@ _______________________________________________________
  
  **URl** <br />
    localhost:3000/api/encomenda/:id_encomenda <br /> 
-   **Status:** `201` <br />
+   **Status:** `200` <br />
    
   ```
 {
@@ -868,7 +869,7 @@ _______________________________________________________
 
 _______________________________________________________
 
- ####Eliminar uma Encomenda
+ ### Eliminar uma Encomenda
  
  **Descrição:**
    `O Utilizador Tipo Cliente e Administrador terá de fazer login, em seguida, atraves do token é possivel a criação, a edição e a eliminação de uma encomenda.
@@ -893,21 +894,7 @@ _______________________________________________________
  
  **URl** <br />
    localhost:3000/api/encomenda/:id_encomenda <br /> 
-   **Status:** `201` <br />
-   
-  ```
-{
-    "message": "Encomenda editada com sucesso!",
-    "encomenda": {
-        "id_encomenda": "4",
-        "id_produto": 1,
-        "quantity": 3,
-        "id_restaurante": 1,
-        "payment_method": "mbway"
-    }
-}
-
-  ```
+   **Status:** `204` <br />
   <br />
   
 **Resposta:** <br />
@@ -923,8 +910,8 @@ _______________________________________________________
  
 ___________________________________________
 
-  ###Criar, Eliminar uma Entrega <br /><br />
-  #### Criar uma Entrega
+  ### Criar, Eliminar uma Entrega <br /><br />
+  ### Criar uma Entrega
  **Descrição:**
    `O Utilizador Tipo Cliente ou Administrador terá de fazer login, em seguida, atraves do token é possivel a criação, a edição e a eliminação de uma entrega.`
 <br />
@@ -971,7 +958,7 @@ ___________________________________________
 ``` 
 _______________________________________________________
 
- ####Eliminar uma entrega
+ ### Eliminar uma entrega
  
  **Descrição:**
    `O Utilizador Tipo Cliente e Administrador terá de fazer login, em seguida, atraves do token é possivel a criação e a eliminação de uma entrega.
@@ -995,7 +982,7 @@ _______________________________________________________
  
  **URl** <br />
    localhost:3000/api/entrega/:id_entrega <br /> 
-   **Status:** `201` <br />
+   **Status:** `204` <br />
    
   ```
 {
