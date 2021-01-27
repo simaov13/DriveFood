@@ -8,6 +8,10 @@ Aplicação de Venda de Produtos Alimentares
 
 ### REST API - Documentação 
 
+### Quem somos?
+
+DriveFood é uma empresa criada para entrega de produtos alimentares de modo a que as pessoas não tenham de sair de casa. O nosso objetivo é crescer a empresa a nivel nacional e conseguir entregar em todas as casas os produtos alimentares.
+
 ### Rotas
 <ul>
   <li>Admin-route</li>
