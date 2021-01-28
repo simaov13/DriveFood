@@ -74,6 +74,7 @@ DriveFood é uma empresa criada para entrega de produtos alimentares de modo a q
 ## Login e Register
 <br />
 Esta coleção terá os requests relacionados com o iniciar sessão (login) e registar utilizadores (register).
+Comentario 2021
 
 ## SuperAdmin
 <br />
