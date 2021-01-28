@@ -1,0 +1,37 @@
+# This is a basic workflow to help you get started with Actions
+
+name: deploy
+
+on:
+  # Trigger the workflow on push or pull request,
+  # but only for the main branch
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  deploy:
+   if: github.ref == 'refs/heads/main'
+   runs-on: [ubuntu-latest]
+   steps:
+     - uses: actions/checkout@v1
+     - name: Push to server
+       uses: appleboy/ssh-action@master
+       with:
+          host: ${{ secrets.IP }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+          script: |
+                 cd projeto
+                 rm -rf *
+                 git clone "https://github.com/simaov13/DriveFood.git"
+                 cd DriveFood
+                 cd Backend
+                 docker stop drivefoodapp
+                 docker rm drivefoodapp
+                 docker rmi drivefood/node-web-app
+                 docker build -t drivefood/node-web-app .
+                 docker run -p 80:8080 --name drivefoodapp -d drivefood/node-web-app
