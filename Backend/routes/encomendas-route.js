@@ -1,8 +1,10 @@
 const express = require('express');
 const router = express.Router();
+const cors = require('cors')
 
 const encomendaController = require('../controllers/encomendas-controller');
 
+router.use(cors())
 //todas as encomendas
 router.get('/encomendas', encomendaController.getEncomendas);
 //uma encomenda

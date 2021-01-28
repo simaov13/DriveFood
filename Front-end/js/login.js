@@ -69,6 +69,7 @@ $("#login").click(function (e) {
                 console.log(data);
                 var token = data.user.token;
                 sessionStorage.setItem("tokenSession", token);
+                alert("Login efetuado com sucesso!");
                 window.location = "indexUtilizador.html";
             },
             error: function (jqXHR, textStatus, err) {

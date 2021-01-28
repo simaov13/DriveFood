@@ -1,19 +1,34 @@
 $("#editar").click(function (e) {
     e.preventDefault();
+
+    var getUrlParameter = function getUrlParameter(sParam) {
+        var sPageURL = window.location.search.substring(1),
+            sURLVariables = sPageURL.split('&'),
+            sParameterName,
+            i;
+    
+        for (i = 0; i < sURLVariables.length; i++) {
+            sParameterName = sURLVariables[i].split('=');
+    
+            if (sParameterName[0] === sParam) {
+                return sParameterName[1] === undefined ? true : decodeURIComponent(sParameterName[1]);
+            }
+        }
+    };
+
     //dados a enviar, vai buscar os valores dos campos que queremos enviar para a BD
     var dadosajax = {
         name: $("#name").val(),
         description: $("#description").val(),
         price: $("#price").val(),
-        logo: $("#imagemproduto").val(),
-        id_restaurante: 1,
+        image: document.getElementById("logo").files[0].name,
     };
     /*
     true = error;
     false = nao da erro;
     */
     if (verifyName() == false && verifyDescription() == false && verifyPrice() == false) {
-        pageurl = "http://localhost:3000/api/produto/12";
+        pageurl = "http://localhost:3000/api/produto/" + getUrlParameter('id');
         //ajax
         $.ajax({
             //url da pagina
@@ -44,7 +59,7 @@ $("#editar").click(function (e) {
                 else {
                     //Erro: Ocorreu um erro ao inserir o seu registo!
                     alert("O seu produto foi editado com sucesso!");
-                    window.location.href = "produtos.html";
+                    window.location.href = "restaurantes.html";
                 }
             },
         });

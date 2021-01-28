@@ -1,5 +1,20 @@
 $("#editar").click(function (e) {
     e.preventDefault();
+
+    var getUrlParameter = function getUrlParameter(sParam) {
+        var sPageURL = window.location.search.substring(1),
+            sURLVariables = sPageURL.split('&'),
+            sParameterName,
+            i;
+    
+        for (i = 0; i < sURLVariables.length; i++) {
+            sParameterName = sURLVariables[i].split('=');
+    
+            if (sParameterName[0] === sParam) {
+                return sParameterName[1] === undefined ? true : decodeURIComponent(sParameterName[1]);
+            }
+        }
+    };
     //dados a enviar, vai buscar os valores dos campos que queremos enviar para a BD
     var dadosajax = {
         name: $("#nomerestaurante").val(),
@@ -7,14 +22,14 @@ $("#editar").click(function (e) {
         phone: $("#phone").val(),
         type_restaurant: $("#tiporestaurante :selected").val(),
         address: $("#address").val(),
-        id_restaurante: 5,
+        image: document.getElementById("logo").files[0].name,
     };
     /*
     true = error;
     false = nao da erro;
     */
     if (verifyName() == false && verifyEmail() == false && verifyAddress() == false) {
-        pageurl = "http://localhost:3000/api/restaurante/5";
+        pageurl = "http://localhost:3000/api/restaurante/" + getUrlParameter('id');
         //ajax
         $.ajax({
             //url da pagina

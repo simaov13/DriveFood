@@ -5,7 +5,7 @@ $("#validar").click(function (e) {
         name: $("#nomeproduto").val(),
         description: $("#description").val(),
         price: $("#preco").val(),
-        logo: $("#imagemproduto").val(),
+        logo: document.getElementById("imagemproduto").files[0].name,
         id_restaurante: 1,
     };
     /*

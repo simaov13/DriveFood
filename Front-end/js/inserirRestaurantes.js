@@ -7,7 +7,7 @@ $("#validar").click(function (e) {
         address: $("#localizacao").val(),
         phone: $("#telefone").val(),
         type_restaurant: $("#tiporestaurante :selected").val(),
-        image: $("#imagemrestaurante").val(),
+        image: document.getElementById("imagemrestaurante").files[0].name,
     };
     /*
     true = error;

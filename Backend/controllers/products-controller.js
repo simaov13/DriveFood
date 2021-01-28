@@ -53,6 +53,25 @@ exports.getProduct = (req, res) => {
     return;
 };
 
+//produto atraves do id do restaurante
+exports.getProductsRestaurante = (req, res) => {
+    try {
+        //base dados
+        let sql = 'SELECT * FROM product WHERE id_restaurante = ?';
+
+        db.all(sql, [req.params.id_restaurante], (err, row) => {
+            if (err) {
+                res.status(500).send(err.message);
+            } else {
+                res.json(row);
+            }
+        });
+    } catch (err) {
+        res.status(500).send({ message: err.message });
+    }
+    return;
+};
+
 
 //adicionar produtos
 exports.adicionarProduto = (req, res) => {
@@ -62,7 +81,7 @@ exports.adicionarProduto = (req, res) => {
         let name = req.body.name;
         let description = req.body.description;
         let price = req.body.price;
-        let logo = req.body.price;
+        let logo = req.body.logo;
         let id_restaurante = req.body.id_restaurante;
         //token / decoded
         const token = req.headers.authorization.split(' ')[1];

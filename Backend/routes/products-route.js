@@ -9,6 +9,8 @@ router.use(cors())
 router.get('/produtos', produtosController.getProducts);
 //um produto
 router.get('/produto/:id_produto', produtosController.getProduct);
+//um produto atraves do restaurante
+router.get('/produtos/:id_restaurante', produtosController.getProductsRestaurante);
 //adiocionar
 router.post('/produto', produtosController.adicionarProduto);
 //alterar
