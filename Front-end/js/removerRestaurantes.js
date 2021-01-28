@@ -12,7 +12,7 @@ $(document).ready(function() {
         true = error;
         false = nao da erro;
         */
-            pageurl = "http://localhost:3000/api/restaurante/" + dadosajax.id_restaurante;
+            pageurl = "http://localhost:8080/api/restaurante/" + dadosajax.id_restaurante;
             //ajax
             $.ajax({
                 //url da pagina

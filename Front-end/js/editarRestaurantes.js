@@ -29,7 +29,7 @@ $("#editar").click(function (e) {
     false = nao da erro;
     */
     if (verifyName() == false && verifyEmail() == false && verifyAddress() == false) {
-        pageurl = "http://localhost:3000/api/restaurante/" + getUrlParameter('id');
+        pageurl = "http://localhost:8080/api/restaurante/" + getUrlParameter('id');
         //ajax
         $.ajax({
             //url da pagina

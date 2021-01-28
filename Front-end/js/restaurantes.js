@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    pageurl = "http://localhost:3000/api/restaurantes";
+    pageurl = "http://localhost:8080/api/restaurantes";
     //ajax
     $.ajax({
         //url da pagina

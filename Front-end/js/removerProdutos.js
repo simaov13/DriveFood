@@ -11,7 +11,7 @@ $(document).ready(function() {
         true = error;
         false = nao da erro;
         */
-            pageurl = "http://localhost:3000/api/produto/" + dadosajax.id_produto;
+            pageurl = "http://localhost:8080/api/produto/" + dadosajax.id_produto;
             //ajax
             $.ajax({
                 //url da pagina

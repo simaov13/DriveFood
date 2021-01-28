@@ -8,7 +8,7 @@ $("#remover").click(function (e) {
     true = error;
     false = nao da erro;
     */
-        pageurl = "http://localhost:3000/api/encomenda/5";
+        pageurl = "http://localhost:8080/api/encomenda/5";
         //ajax
         $.ajax({
             //url da pagina

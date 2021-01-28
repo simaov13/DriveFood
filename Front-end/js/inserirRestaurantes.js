@@ -14,7 +14,7 @@ $("#validar").click(function (e) {
     false = nao da erro;
     */
     if (verifyName() == false && verifyEmail() == false && verifyPhone() == false) {
-        pageurl = "http://localhost:3000/api/restaurante";
+        pageurl = "http://localhost:8080/api/restaurante";
         //ajax
         $.ajax({
             //url da pagina

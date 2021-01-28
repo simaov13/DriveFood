@@ -53,7 +53,7 @@ $("#login").click(function (e) {
         }
         console.log(dadosajax);
         //nao sei o que é para por aqui
-        pageurl = "http://localhost:3000/api/login";
+        pageurl = "http://localhost:8080/api/login";
         //ajax
         $.ajax({
             //url da pagina

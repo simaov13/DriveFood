@@ -28,7 +28,7 @@ $("#editar").click(function (e) {
     false = nao da erro;
     */
     if (verifyName() == false && verifyDescription() == false && verifyPrice() == false) {
-        pageurl = "http://localhost:3000/api/produto/" + getUrlParameter('id');
+        pageurl = "http://localhost:8080/api/produto/" + getUrlParameter('id');
         //ajax
         $.ajax({
             //url da pagina

@@ -4,7 +4,7 @@ function ajaxToken() {
     return new Promise((resolve, reject) => {
         $.ajax({
             //user = cliente
-            url: 'http://localhost:3000/api/tokenUser/user',
+            url: 'http://localhost:8080/api/tokenUser/user',
             type: 'GET',
             cache: false,
             headers: {

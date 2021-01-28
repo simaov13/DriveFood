@@ -13,7 +13,7 @@ $("#encomenda").click(function (e) {
     true = error;
     false = nao da erro;
     */
-        pageurl = "http://localhost:3000/api/encomenda";
+        pageurl = "http://localhost:8080/api/encomenda";
         //ajax
         $.ajax({
             //url da pagina

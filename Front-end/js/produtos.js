@@ -14,7 +14,7 @@ $(document).ready(function () {
             }
         }
     };
-    pageurl = "http://localhost:3000/api/produtos/" + getUrlParameter('restaurante');
+    pageurl = "http://localhost:8080/api/produtos/" + getUrlParameter('restaurante');
     //ajax
     $.ajax({
         //url da pagina
